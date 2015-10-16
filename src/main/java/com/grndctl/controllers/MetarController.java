@@ -1,13 +1,9 @@
 package com.grndctl.controllers;
 
 import com.grndctl.model.metar.METAR;
-import com.grndctl.model.metar.Response;
 import com.grndctl.services.MetarSvc;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,13 +13,13 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 
 /**
- * Created by michael on 10/16/15.
+ * {@link METAR}s for a station.
+ *
+ * @author Michael Di Salvo
  */
 @RestController
 @RequestMapping("/metar")
 public class MetarController {
-
-    private static final Logger LOG = LogManager.getLogger(MetarController.class);
 
     private static final String STATION = "station";
 
@@ -36,10 +32,18 @@ public class MetarController {
         this.svc = svc;
     }
 
-    @RequestMapping(value = "", method = GET, consumes = "application/json", produces = "application/json")
+    /**
+     * <code>METAR</code>s for a station.  <code>hrsBefore</code> parameter is provided to retrieve historical reports.
+     *
+     * @param station Station string (Default -> KIAD)
+     * @param hrsBefore Hours before now (Default -> 1.0)
+     * @return <code>List</code> of filtered <code>METAR</code>s
+     * @throws Exception
+     */
+    @RequestMapping(value = "", method = GET, produces = "application/json")
     public List<METAR> getMetar(
             @RequestParam(value = STATION, defaultValue = "KIAD") String station,
-            @RequestParam(value = HRS_BEFORE, required = false, defaultValue = "1") Double hrsBefore) throws Exception {
+            @RequestParam(value = HRS_BEFORE, required = false, defaultValue = "1.0") Double hrsBefore) throws Exception {
             if (hrsBefore == null)
                 return svc.getCurrentMetar(station);
             else

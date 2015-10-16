@@ -2,6 +2,8 @@ package com.grndctl.services;
 
 import com.grndctl.model.taf.Response;
 import com.grndctl.model.taf.TAF;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import javax.xml.bind.JAXBException;
@@ -15,6 +17,8 @@ import java.util.List;
  */
 @Service
 public class TafSvc {
+
+    private static final Logger LOG = LogManager.getLogger(TafSvc.class);
 
     private static final String RQST_URL = "https://aviationweather.gov/adds/"
             + "dataserver_current/httpparam?datasource=tafs&requesttype=retrieve"
@@ -46,6 +50,8 @@ public class TafSvc {
                 .append(HRS_BEFORE)
                 .append(1)
                 .toString());
+        LOG.info(url.toString());
+
         return unmarshall(url.openConnection().getInputStream()).getData().getTAF();
     }
 
@@ -59,6 +65,8 @@ public class TafSvc {
                 .append(TIME_TYPE)
                 .append(timeType)
                 .toString());
+        LOG.info(url.toString());
+
         return unmarshall(url.openConnection().getInputStream()).getData().getTAF();
     }
 

@@ -1,11 +1,8 @@
 package com.grndctl.controllers;
 
-import com.grndctl.model.taf.Response;
 import com.grndctl.model.taf.TAF;
 import com.grndctl.model.taf.TimeType;
 import com.grndctl.services.TafSvc;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,13 +13,13 @@ import java.util.List;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 /**
- * Created by michael on 10/16/15.
+ * Terminal Aerodrome Forecasts as issued by the NWS.
+ *
+ * @author Michael Di Salvo
  */
 @RestController
 @RequestMapping("/taf")
 public class TafController {
-
-    private static final Logger LOG = LogManager.getLogger(TafController.class);
 
     private static final String STATION = "station";
 
@@ -37,7 +34,16 @@ public class TafController {
         this.svc = svc;
     }
 
-    @RequestMapping(value = "", method = GET, consumes = "application/json", produces = "application/json")
+    /**
+     * Retrieve <code>TAF</code>s hours before now for a station by either issue time or validity.
+     *
+     * @param code Station string
+     * @param hoursBefore Hours before now
+     * @param timeType <code>ISSUE</code> or <code>VALID</code>
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping(value = "", method = GET, produces = "application/json")
     public List<TAF> getTafs(
             @RequestParam(value = STATION, defaultValue = "KIAD") String code,
             @RequestParam(value = HRS_BEFORE, defaultValue = "2") Double hoursBefore,

@@ -477,6 +477,10 @@ public class METAR {
         return this.skyCondition;
     }
 
+    public void setSkyCondition(List<SkyCondition> skyCondition) {
+        this.skyCondition = skyCondition;
+    }
+
     /**
      * Gets the value of the flightCategory property.
      * 
@@ -771,4 +775,81 @@ public class METAR {
         this.elevationM = value;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        METAR metar = (METAR) o;
+
+        if (altimInHg != null ? !altimInHg.equals(metar.altimInHg) : metar.altimInHg != null) return false;
+        if (dewpointC != null ? !dewpointC.equals(metar.dewpointC) : metar.dewpointC != null) return false;
+        if (elevationM != null ? !elevationM.equals(metar.elevationM) : metar.elevationM != null) return false;
+        if (flightCategory != null ? !flightCategory.equals(metar.flightCategory) : metar.flightCategory != null)
+            return false;
+        if (latitude != null ? !latitude.equals(metar.latitude) : metar.latitude != null) return false;
+        if (longitude != null ? !longitude.equals(metar.longitude) : metar.longitude != null) return false;
+        if (maxT24HrC != null ? !maxT24HrC.equals(metar.maxT24HrC) : metar.maxT24HrC != null) return false;
+        if (maxTC != null ? !maxTC.equals(metar.maxTC) : metar.maxTC != null) return false;
+        if (metarType != null ? !metarType.equals(metar.metarType) : metar.metarType != null) return false;
+        if (minT24HrC != null ? !minT24HrC.equals(metar.minT24HrC) : metar.minT24HrC != null) return false;
+        if (minTC != null ? !minTC.equals(metar.minTC) : metar.minTC != null) return false;
+        if (observationTime != null ? !observationTime.equals(metar.observationTime) : metar.observationTime != null)
+            return false;
+        if (pcp24HrIn != null ? !pcp24HrIn.equals(metar.pcp24HrIn) : metar.pcp24HrIn != null) return false;
+        if (pcp3HrIn != null ? !pcp3HrIn.equals(metar.pcp3HrIn) : metar.pcp3HrIn != null) return false;
+        if (pcp6HrIn != null ? !pcp6HrIn.equals(metar.pcp6HrIn) : metar.pcp6HrIn != null) return false;
+        if (precipIn != null ? !precipIn.equals(metar.precipIn) : metar.precipIn != null) return false;
+        if (rawText != null ? !rawText.equals(metar.rawText) : metar.rawText != null) return false;
+        if (seaLevelPressureMb != null ? !seaLevelPressureMb.equals(metar.seaLevelPressureMb) : metar.seaLevelPressureMb != null)
+            return false;
+        if (snowIn != null ? !snowIn.equals(metar.snowIn) : metar.snowIn != null) return false;
+        if (stationId != null ? !stationId.equals(metar.stationId) : metar.stationId != null) return false;
+        if (tempC != null ? !tempC.equals(metar.tempC) : metar.tempC != null) return false;
+        if (threeHrPressureTendencyMb != null ? !threeHrPressureTendencyMb.equals(metar.threeHrPressureTendencyMb) : metar.threeHrPressureTendencyMb != null)
+            return false;
+        if (vertVisFt != null ? !vertVisFt.equals(metar.vertVisFt) : metar.vertVisFt != null) return false;
+        if (visibilityStatuteMi != null ? !visibilityStatuteMi.equals(metar.visibilityStatuteMi) : metar.visibilityStatuteMi != null)
+            return false;
+        if (windDirDegrees != null ? !windDirDegrees.equals(metar.windDirDegrees) : metar.windDirDegrees != null)
+            return false;
+        if (windGustKt != null ? !windGustKt.equals(metar.windGustKt) : metar.windGustKt != null) return false;
+        if (windSpeedKt != null ? !windSpeedKt.equals(metar.windSpeedKt) : metar.windSpeedKt != null) return false;
+        if (wxString != null ? !wxString.equals(metar.wxString) : metar.wxString != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = rawText != null ? rawText.hashCode() : 0;
+        result = 31 * result + (stationId != null ? stationId.hashCode() : 0);
+        result = 31 * result + (observationTime != null ? observationTime.hashCode() : 0);
+        result = 31 * result + (latitude != null ? latitude.hashCode() : 0);
+        result = 31 * result + (longitude != null ? longitude.hashCode() : 0);
+        result = 31 * result + (tempC != null ? tempC.hashCode() : 0);
+        result = 31 * result + (dewpointC != null ? dewpointC.hashCode() : 0);
+        result = 31 * result + (windDirDegrees != null ? windDirDegrees.hashCode() : 0);
+        result = 31 * result + (windSpeedKt != null ? windSpeedKt.hashCode() : 0);
+        result = 31 * result + (windGustKt != null ? windGustKt.hashCode() : 0);
+        result = 31 * result + (visibilityStatuteMi != null ? visibilityStatuteMi.hashCode() : 0);
+        result = 31 * result + (altimInHg != null ? altimInHg.hashCode() : 0);
+        result = 31 * result + (seaLevelPressureMb != null ? seaLevelPressureMb.hashCode() : 0);
+        result = 31 * result + (wxString != null ? wxString.hashCode() : 0);
+        result = 31 * result + (flightCategory != null ? flightCategory.hashCode() : 0);
+        result = 31 * result + (threeHrPressureTendencyMb != null ? threeHrPressureTendencyMb.hashCode() : 0);
+        result = 31 * result + (maxTC != null ? maxTC.hashCode() : 0);
+        result = 31 * result + (minTC != null ? minTC.hashCode() : 0);
+        result = 31 * result + (maxT24HrC != null ? maxT24HrC.hashCode() : 0);
+        result = 31 * result + (minT24HrC != null ? minT24HrC.hashCode() : 0);
+        result = 31 * result + (precipIn != null ? precipIn.hashCode() : 0);
+        result = 31 * result + (pcp3HrIn != null ? pcp3HrIn.hashCode() : 0);
+        result = 31 * result + (pcp6HrIn != null ? pcp6HrIn.hashCode() : 0);
+        result = 31 * result + (pcp24HrIn != null ? pcp24HrIn.hashCode() : 0);
+        result = 31 * result + (snowIn != null ? snowIn.hashCode() : 0);
+        result = 31 * result + (vertVisFt != null ? vertVisFt.hashCode() : 0);
+        result = 31 * result + (metarType != null ? metarType.hashCode() : 0);
+        result = 31 * result + (elevationM != null ? elevationM.hashCode() : 0);
+        return result;
+    }
 }

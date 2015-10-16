@@ -2,6 +2,8 @@ package com.grndctl.services;
 
 import com.grndctl.model.station.Response;
 import com.grndctl.model.station.Station;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import javax.xml.bind.JAXBException;
@@ -15,6 +17,8 @@ import java.util.List;
  */
 @Service
 public class StationSvc {
+
+    private static final Logger LOG = LogManager.getLogger(StationSvc.class);
 
     private static final String RQST_URL = "https://aviationweather.gov/adds/"
             + "dataserver_current/httpparam?datasource=stations&requesttype=retrieve"
@@ -37,6 +41,8 @@ public class StationSvc {
                 .append(STATION_STRING)
                 .append(code.toUpperCase())
                 .toString());
+        LOG.info(url.toString());
+
         return unmarshall(url.openConnection().getInputStream()).getData().getStation();
     }
 

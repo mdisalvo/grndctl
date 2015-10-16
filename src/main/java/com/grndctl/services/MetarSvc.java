@@ -2,6 +2,8 @@ package com.grndctl.services;
 
 import com.grndctl.model.metar.METAR;
 import com.grndctl.model.metar.Response;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import javax.xml.bind.JAXBException;
@@ -15,6 +17,8 @@ import java.util.List;
  */
 @Service
 public class MetarSvc {
+
+    private static final Logger LOG = LogManager.getLogger(MetarSvc.class);
 
     private static final String RQST_URL = "https://aviationweather.gov/adds/dataserver_current/httpparam?" +
             "dataSource=metars&requestType=retrieve&format=xml";
@@ -45,6 +49,8 @@ public class MetarSvc {
                 .append(HRS_BEFORE)
                 .append(ONE_HR)
                 .toString());
+        LOG.info(url.toString());
+
         return unmarshall(url.openConnection().getInputStream()).getData().getMETAR();
     }
 
@@ -56,6 +62,8 @@ public class MetarSvc {
                 .append(STATION_STRING)
                 .append(station)
                 .toString());
+        LOG.info(url.toString());
+
         return unmarshall(url.openConnection().getInputStream()).getData().getMETAR();
     }
 

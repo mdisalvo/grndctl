@@ -3,24 +3,21 @@ package com.grndctl.controllers;
 import com.grndctl.model.aggregates.CombinedWx;
 import com.grndctl.services.MetarSvc;
 import com.grndctl.services.TafSvc;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 /**
- * Created by michael on 10/16/15.
+ * Combines the {@link MetarSvc} with the {@link TafSvc} to get the combined meteorological conditions for an aerodrome.
+ *
+ * @author Michael Di Salvo
  */
 @RestController
 @RequestMapping("/combinedwx")
 public class CombinedWxController {
-
-    private static final Logger LOG = LogManager.getLogger(CombinedWxController.class);
 
     private static final String STATION = "station";
 
@@ -35,10 +32,18 @@ public class CombinedWxController {
         this.tafSvc = tafSvc;
     }
 
-    @RequestMapping(value = "", method = GET)
+    /**
+     * The combined conditions for a field. Takes a string parameter for the field to retrieve, and hours before now.
+     *
+     * @param station Station string (Ex & Default -> KIAD)
+     * @param hoursBefore Hours before now (Default -> 1.0)
+     * @return <code>CombinedWx</code> entity
+     * @throws Exception
+     */
+    @RequestMapping(value = "", method = GET, produces = "application/json")
     public CombinedWx getCombinedWx(
             @RequestParam(value = STATION, defaultValue = "KIAD") String station,
-            @RequestParam(value = HOURS_BEFORE, required = false, defaultValue = "1") Double hoursBefore) throws Exception {
+            @RequestParam(value = HOURS_BEFORE, required = false, defaultValue = "1.0") Double hoursBefore) throws Exception {
 
         CombinedWx resp = new CombinedWx();
         resp.setMetars(metarSvc.getMetars(station, (hoursBefore == null || hoursBefore < 1.0 ? 1.0 : hoursBefore)));

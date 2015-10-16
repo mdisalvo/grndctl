@@ -2,6 +2,8 @@ package com.grndctl.services;
 
 import com.grndctl.model.airsigmet.AIRSIGMET;
 import com.grndctl.model.airsigmet.Response;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import javax.xml.bind.JAXBException;
@@ -18,6 +20,8 @@ import java.util.List;
  */
 @Service
 public class AirsigmetSvc {
+
+    private static final Logger LOG = LogManager.getLogger(AirsigmetSvc.class);
 
     private static final String RQST_URL = "https://aviationweather.gov/adds/" +
             "dataserver_current/httpparam?datasource=airsigmets&requesttype=retrieve" +
@@ -64,6 +68,8 @@ public class AirsigmetSvc {
                 .append(END_TIME)
                 .append(times[1])
                 .toString());
+        LOG.info(url.toString());
+
         return unmarshall(url.openConnection().getInputStream()).getData().getAIRSIGMET();
     }
 
@@ -73,6 +79,8 @@ public class AirsigmetSvc {
                 .append(HOURS_BEFORE_NOW)
                 .append(hoursBeforeNow)
                 .toString());
+        LOG.info(url.toString());
+
         return unmarshall(url.openConnection().getInputStream()).getData().getAIRSIGMET();
     }
 
@@ -87,6 +95,8 @@ public class AirsigmetSvc {
                 .append(HOURS_BEFORE_NOW)
                 .append(hrsBeforeNow)
                 .toString());
+        LOG.info(url.toString());
+
         return unmarshall(url.openConnection().getInputStream()).getData().getAIRSIGMET();
     }
 
@@ -105,6 +115,8 @@ public class AirsigmetSvc {
                 .append(HOURS_BEFORE_NOW)
                 .append(hrsBeforeNow)
                 .toString());
+        LOG.info(url.toString());
+
         return unmarshall(url.openConnection().getInputStream()).getData().getAIRSIGMET();
     }
 

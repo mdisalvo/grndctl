@@ -308,4 +308,39 @@ public class TAF {
         return this.forecast;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        TAF taf = (TAF) o;
+
+        if (bulletinTime != null ? !bulletinTime.equals(taf.bulletinTime) : taf.bulletinTime != null) return false;
+        if (elevationM != null ? !elevationM.equals(taf.elevationM) : taf.elevationM != null) return false;
+        if (issueTime != null ? !issueTime.equals(taf.issueTime) : taf.issueTime != null) return false;
+        if (latitude != null ? !latitude.equals(taf.latitude) : taf.latitude != null) return false;
+        if (longitude != null ? !longitude.equals(taf.longitude) : taf.longitude != null) return false;
+        if (rawText != null ? !rawText.equals(taf.rawText) : taf.rawText != null) return false;
+        if (remarks != null ? !remarks.equals(taf.remarks) : taf.remarks != null) return false;
+        if (stationId != null ? !stationId.equals(taf.stationId) : taf.stationId != null) return false;
+        if (validTimeFrom != null ? !validTimeFrom.equals(taf.validTimeFrom) : taf.validTimeFrom != null) return false;
+        if (validTimeTo != null ? !validTimeTo.equals(taf.validTimeTo) : taf.validTimeTo != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = rawText != null ? rawText.hashCode() : 0;
+        result = 31 * result + (stationId != null ? stationId.hashCode() : 0);
+        result = 31 * result + (issueTime != null ? issueTime.hashCode() : 0);
+        result = 31 * result + (bulletinTime != null ? bulletinTime.hashCode() : 0);
+        result = 31 * result + (validTimeFrom != null ? validTimeFrom.hashCode() : 0);
+        result = 31 * result + (validTimeTo != null ? validTimeTo.hashCode() : 0);
+        result = 31 * result + (remarks != null ? remarks.hashCode() : 0);
+        result = 31 * result + (latitude != null ? latitude.hashCode() : 0);
+        result = 31 * result + (longitude != null ? longitude.hashCode() : 0);
+        result = 31 * result + (elevationM != null ? elevationM.hashCode() : 0);
+        return result;
+    }
 }

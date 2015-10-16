@@ -1,5 +1,5 @@
 var com = { qmino : { miredot : {}}};
-com.qmino.miredot.restApiSource = {"validLicence":true,"buildSystem":"maven 3","allowUsageTracking":true,"singlePage":true,"licenceErrorMessage":null,"miredotRevision":"780bc70fd738","jsonDocHidden":true,"licenceHash":"224558982392553513","miredotVersion":"1.6.0","jsonDocEnabled":false,"dateOfGeneration":"2015-10-16 19:37:24","licenceType":"FREE","hideLogoOnTop":false,"projectName":"grndctl","projectVersion":"1.0-SNAPSHOT","projectTitle":"GrndCtl\/AvWx 1.0-SNAPSHOT"};
+com.qmino.miredot.restApiSource = {"validLicence":true,"buildSystem":"maven 3","allowUsageTracking":true,"singlePage":true,"licenceErrorMessage":null,"miredotRevision":"780bc70fd738","jsonDocHidden":true,"licenceHash":"224558982392553513","miredotVersion":"1.6.0","jsonDocEnabled":false,"dateOfGeneration":"2015-10-18 00:50:13","licenceType":"FREE","hideLogoOnTop":false,"projectName":"grndctl","projectVersion":"1.0-SNAPSHOT","projectTitle":"GrndCtl\/AvWx 1.0-SNAPSHOT"};
 com.qmino.miredot.restApiSource.tos = {
 	com_grndctl_model_metar_METAR_in: { "type": "complex", "name": "com_grndctl_model_metar_METAR_in", "content": [] },
 	com_grndctl_model_metar_METAR_out: { "type": "complex", "name": "com_grndctl_model_metar_METAR_out", "content": [] },
@@ -304,12 +304,6 @@ com.qmino.miredot.restApiSource.tos["com_grndctl_model_metar_METAR_out"].content
 		"deprecated": false
 	},
 	{
-		"name": "maxTC",
-		"comment": null,
-		"typeValue": { "type": "simple", "typeValue": "number" },
-		"deprecated": false
-	},
-	{
 		"name": "stationId",
 		"comment": null,
 		"typeValue": { "type": "simple", "typeValue": "string" },
@@ -347,6 +341,12 @@ com.qmino.miredot.restApiSource.tos["com_grndctl_model_metar_METAR_out"].content
 	},
 	{
 		"name": "threeHrPressureTendencyMb",
+		"comment": null,
+		"typeValue": { "type": "simple", "typeValue": "number" },
+		"deprecated": false
+	},
+	{
+		"name": "maxTC",
 		"comment": null,
 		"typeValue": { "type": "simple", "typeValue": "number" },
 		"deprecated": false
@@ -730,13 +730,13 @@ com.qmino.miredot.restApiSource.tos["com_grndctl_model_metar_QualityControlFlags
 com.qmino.miredot.restApiSource.tos["com_grndctl_model_metar_QualityControlFlags_in"].comment = null;
 com.qmino.miredot.restApiSource.tos["com_grndctl_model_metar_QualityControlFlags_out"].content = [ 
 	{
-		"name": "corrected",
+		"name": "auto",
 		"comment": null,
 		"typeValue": { "type": "simple", "typeValue": "string" },
 		"deprecated": false
 	},
 	{
-		"name": "auto",
+		"name": "corrected",
 		"comment": null,
 		"typeValue": { "type": "simple", "typeValue": "string" },
 		"deprecated": false
@@ -1030,6 +1030,12 @@ com.qmino.miredot.restApiSource.tos["com_grndctl_model_taf_Forecast_out"].ordere
 com.qmino.miredot.restApiSource.tos["com_grndctl_model_taf_Forecast_out"].comment = null;
 com.qmino.miredot.restApiSource.tos["com_grndctl_model_taf_Temperature_in"].content = [ 
 	{
+		"name": "validTime",
+		"comment": null,
+		"typeValue": { "type": "simple", "typeValue": "string" },
+		"deprecated": false
+	},
+	{
 		"name": "sfcTempC",
 		"comment": null,
 		"typeValue": { "type": "simple", "typeValue": "number" },
@@ -1043,12 +1049,6 @@ com.qmino.miredot.restApiSource.tos["com_grndctl_model_taf_Temperature_in"].cont
 	},
 	{
 		"name": "minTempC",
-		"comment": null,
-		"typeValue": { "type": "simple", "typeValue": "string" },
-		"deprecated": false
-	},
-	{
-		"name": "validTime",
 		"comment": null,
 		"typeValue": { "type": "simple", "typeValue": "string" },
 		"deprecated": false
@@ -1058,6 +1058,12 @@ com.qmino.miredot.restApiSource.tos["com_grndctl_model_taf_Temperature_in"].orde
 com.qmino.miredot.restApiSource.tos["com_grndctl_model_taf_Temperature_in"].comment = null;
 com.qmino.miredot.restApiSource.tos["com_grndctl_model_taf_Temperature_out"].content = [ 
 	{
+		"name": "validTime",
+		"comment": null,
+		"typeValue": { "type": "simple", "typeValue": "string" },
+		"deprecated": false
+	},
+	{
 		"name": "sfcTempC",
 		"comment": null,
 		"typeValue": { "type": "simple", "typeValue": "number" },
@@ -1071,12 +1077,6 @@ com.qmino.miredot.restApiSource.tos["com_grndctl_model_taf_Temperature_out"].con
 	},
 	{
 		"name": "minTempC",
-		"comment": null,
-		"typeValue": { "type": "simple", "typeValue": "string" },
-		"deprecated": false
-	},
-	{
-		"name": "validTime",
 		"comment": null,
 		"typeValue": { "type": "simple", "typeValue": "string" },
 		"deprecated": false
@@ -1166,13 +1166,13 @@ com.qmino.miredot.restApiSource.tos["com_grndctl_model_pirep_QualityControlFlags
 com.qmino.miredot.restApiSource.tos["com_grndctl_model_pirep_QualityControlFlags_out"].comment = null;
 com.qmino.miredot.restApiSource.tos["com_grndctl_model_airsigmet_Hazard_in"].content = [ 
 	{
-		"name": "type",
+		"name": "severity",
 		"comment": null,
 		"typeValue": { "type": "simple", "typeValue": "string" },
 		"deprecated": false
 	},
 	{
-		"name": "severity",
+		"name": "type",
 		"comment": null,
 		"typeValue": { "type": "simple", "typeValue": "string" },
 		"deprecated": false
@@ -1242,15 +1242,15 @@ com.qmino.miredot.restApiSource.tos["com_grndctl_model_taf_TurbulenceCondition_o
 com.qmino.miredot.restApiSource.tos["com_grndctl_model_taf_TurbulenceCondition_out"].comment = null;
 com.qmino.miredot.restApiSource.tos["com_grndctl_model_aggregates_CombinedWx_in"].content = [ 
 	{
-		"name": "tafs",
-		"comment": null,
-		"typeValue": { "type": "collection", "typeValue":com.qmino.miredot.restApiSource.tos["com_grndctl_model_taf_TAF_in"] },
-		"deprecated": false
-	},
-	{
 		"name": "metars",
 		"comment": null,
 		"typeValue": { "type": "collection", "typeValue":com.qmino.miredot.restApiSource.tos["com_grndctl_model_metar_METAR_in"] },
+		"deprecated": false
+	},
+	{
+		"name": "tafs",
+		"comment": null,
+		"typeValue": { "type": "collection", "typeValue":com.qmino.miredot.restApiSource.tos["com_grndctl_model_taf_TAF_in"] },
 		"deprecated": false
 	}
 ];
@@ -1338,6 +1338,12 @@ com.qmino.miredot.restApiSource.tos["com_grndctl_model_airsigmet_AIRSIGMET_out"]
 		"deprecated": false
 	},
 	{
+		"name": "area",
+		"comment": null,
+		"typeValue": { "type": "collection", "typeValue":com.qmino.miredot.restApiSource.tos["com_grndctl_model_airsigmet_Area_out"] },
+		"deprecated": false
+	},
+	{
 		"name": "validTimeFrom",
 		"comment": null,
 		"typeValue": { "type": "simple", "typeValue": "string" },
@@ -1347,12 +1353,6 @@ com.qmino.miredot.restApiSource.tos["com_grndctl_model_airsigmet_AIRSIGMET_out"]
 		"name": "validTimeTo",
 		"comment": null,
 		"typeValue": { "type": "simple", "typeValue": "string" },
-		"deprecated": false
-	},
-	{
-		"name": "area",
-		"comment": null,
-		"typeValue": { "type": "collection", "typeValue":com.qmino.miredot.restApiSource.tos["com_grndctl_model_airsigmet_Area_out"] },
 		"deprecated": false
 	},
 	{
@@ -1422,6 +1422,12 @@ com.qmino.miredot.restApiSource.tos["com_grndctl_model_metar_SkyCondition_out"].
 com.qmino.miredot.restApiSource.tos["com_grndctl_model_metar_SkyCondition_out"].comment = null;
 com.qmino.miredot.restApiSource.tos["com_grndctl_model_taf_IcingCondition_in"].content = [ 
 	{
+		"name": "icingIntensity",
+		"comment": null,
+		"typeValue": { "type": "simple", "typeValue": "string" },
+		"deprecated": false
+	},
+	{
 		"name": "icingMinAltFtAgl",
 		"comment": null,
 		"typeValue": { "type": "simple", "typeValue": "number" },
@@ -1431,12 +1437,6 @@ com.qmino.miredot.restApiSource.tos["com_grndctl_model_taf_IcingCondition_in"].c
 		"name": "icingMaxAltFtAgl",
 		"comment": null,
 		"typeValue": { "type": "simple", "typeValue": "number" },
-		"deprecated": false
-	},
-	{
-		"name": "icingIntensity",
-		"comment": null,
-		"typeValue": { "type": "simple", "typeValue": "string" },
 		"deprecated": false
 	}
 ];
@@ -1444,6 +1444,12 @@ com.qmino.miredot.restApiSource.tos["com_grndctl_model_taf_IcingCondition_in"].o
 com.qmino.miredot.restApiSource.tos["com_grndctl_model_taf_IcingCondition_in"].comment = null;
 com.qmino.miredot.restApiSource.tos["com_grndctl_model_taf_IcingCondition_out"].content = [ 
 	{
+		"name": "icingIntensity",
+		"comment": null,
+		"typeValue": { "type": "simple", "typeValue": "string" },
+		"deprecated": false
+	},
+	{
 		"name": "icingMinAltFtAgl",
 		"comment": null,
 		"typeValue": { "type": "simple", "typeValue": "number" },
@@ -1453,12 +1459,6 @@ com.qmino.miredot.restApiSource.tos["com_grndctl_model_taf_IcingCondition_out"].
 		"name": "icingMaxAltFtAgl",
 		"comment": null,
 		"typeValue": { "type": "simple", "typeValue": "number" },
-		"deprecated": false
-	},
-	{
-		"name": "icingIntensity",
-		"comment": null,
-		"typeValue": { "type": "simple", "typeValue": "string" },
 		"deprecated": false
 	}
 ];
@@ -1472,13 +1472,13 @@ com.qmino.miredot.restApiSource.tos["com_grndctl_model_taf_SkyCondition_in"].con
 		"deprecated": false
 	},
 	{
-		"name": "cloudType",
+		"name": "skyCover",
 		"comment": null,
 		"typeValue": { "type": "simple", "typeValue": "string" },
 		"deprecated": false
 	},
 	{
-		"name": "skyCover",
+		"name": "cloudType",
 		"comment": null,
 		"typeValue": { "type": "simple", "typeValue": "string" },
 		"deprecated": false
@@ -1494,13 +1494,13 @@ com.qmino.miredot.restApiSource.tos["com_grndctl_model_taf_SkyCondition_out"].co
 		"deprecated": false
 	},
 	{
-		"name": "cloudType",
+		"name": "skyCover",
 		"comment": null,
 		"typeValue": { "type": "simple", "typeValue": "string" },
 		"deprecated": false
 	},
 	{
-		"name": "skyCover",
+		"name": "cloudType",
 		"comment": null,
 		"typeValue": { "type": "simple", "typeValue": "string" },
 		"deprecated": false
@@ -1636,12 +1636,6 @@ com.qmino.miredot.restApiSource.tos["com_grndctl_model_station_SiteType_out"].co
 		"deprecated": false
 	},
 	{
-		"name": "tAF",
-		"comment": null,
-		"typeValue": { "type": "simple", "typeValue": "object" },
-		"deprecated": false
-	},
-	{
 		"name": "nEXRAD",
 		"comment": null,
 		"typeValue": { "type": "simple", "typeValue": "object" },
@@ -1661,6 +1655,12 @@ com.qmino.miredot.restApiSource.tos["com_grndctl_model_station_SiteType_out"].co
 	},
 	{
 		"name": "wFOOffice",
+		"comment": null,
+		"typeValue": { "type": "simple", "typeValue": "object" },
+		"deprecated": false
+	},
+	{
+		"name": "tAF",
 		"comment": null,
 		"typeValue": { "type": "simple", "typeValue": "object" },
 		"deprecated": false
@@ -1738,7 +1738,37 @@ com.qmino.miredot.restApiSource.tos["com_grndctl_model_airsigmet_Area_out"].orde
 com.qmino.miredot.restApiSource.tos["com_grndctl_model_airsigmet_Area_out"].comment = null;
 com.qmino.miredot.restApiSource.tos["com_grndctl_model_station_Station_in"].content = [ 
 	{
+		"name": "latitude",
+		"comment": null,
+		"typeValue": { "type": "simple", "typeValue": "number" },
+		"deprecated": false
+	},
+	{
+		"name": "longitude",
+		"comment": null,
+		"typeValue": { "type": "simple", "typeValue": "number" },
+		"deprecated": false
+	},
+	{
 		"name": "site",
+		"comment": null,
+		"typeValue": { "type": "simple", "typeValue": "string" },
+		"deprecated": false
+	},
+	{
+		"name": "stationId",
+		"comment": null,
+		"typeValue": { "type": "simple", "typeValue": "string" },
+		"deprecated": false
+	},
+	{
+		"name": "elevationM",
+		"comment": null,
+		"typeValue": { "type": "simple", "typeValue": "number" },
+		"deprecated": false
+	},
+	{
+		"name": "state",
 		"comment": null,
 		"typeValue": { "type": "simple", "typeValue": "string" },
 		"deprecated": false
@@ -1760,36 +1790,6 @@ com.qmino.miredot.restApiSource.tos["com_grndctl_model_station_Station_in"].cont
 		"comment": null,
 		"typeValue": com.qmino.miredot.restApiSource.tos["com_grndctl_model_station_SiteType_in"],
 		"deprecated": false
-	},
-	{
-		"name": "latitude",
-		"comment": null,
-		"typeValue": { "type": "simple", "typeValue": "number" },
-		"deprecated": false
-	},
-	{
-		"name": "longitude",
-		"comment": null,
-		"typeValue": { "type": "simple", "typeValue": "number" },
-		"deprecated": false
-	},
-	{
-		"name": "state",
-		"comment": null,
-		"typeValue": { "type": "simple", "typeValue": "string" },
-		"deprecated": false
-	},
-	{
-		"name": "stationId",
-		"comment": null,
-		"typeValue": { "type": "simple", "typeValue": "string" },
-		"deprecated": false
-	},
-	{
-		"name": "elevationM",
-		"comment": null,
-		"typeValue": { "type": "simple", "typeValue": "number" },
-		"deprecated": false
 	}
 ];
 com.qmino.miredot.restApiSource.tos["com_grndctl_model_station_Station_in"].ordered = false;
@@ -1808,24 +1808,6 @@ com.qmino.miredot.restApiSource.tos["com_grndctl_model_station_Station_out"].con
 		"deprecated": false
 	},
 	{
-		"name": "site",
-		"comment": null,
-		"typeValue": { "type": "simple", "typeValue": "string" },
-		"deprecated": false
-	},
-	{
-		"name": "wmoId",
-		"comment": null,
-		"typeValue": { "type": "simple", "typeValue": "string" },
-		"deprecated": false
-	},
-	{
-		"name": "siteType",
-		"comment": null,
-		"typeValue": com.qmino.miredot.restApiSource.tos["com_grndctl_model_station_SiteType_out"],
-		"deprecated": false
-	},
-	{
 		"name": "latitude",
 		"comment": null,
 		"typeValue": { "type": "simple", "typeValue": "number" },
@@ -1838,6 +1820,12 @@ com.qmino.miredot.restApiSource.tos["com_grndctl_model_station_Station_out"].con
 		"deprecated": false
 	},
 	{
+		"name": "site",
+		"comment": null,
+		"typeValue": { "type": "simple", "typeValue": "string" },
+		"deprecated": false
+	},
+	{
 		"name": "stationId",
 		"comment": null,
 		"typeValue": { "type": "simple", "typeValue": "string" },
@@ -1847,6 +1835,18 @@ com.qmino.miredot.restApiSource.tos["com_grndctl_model_station_Station_out"].con
 		"name": "elevationM",
 		"comment": null,
 		"typeValue": { "type": "simple", "typeValue": "number" },
+		"deprecated": false
+	},
+	{
+		"name": "wmoId",
+		"comment": null,
+		"typeValue": { "type": "simple", "typeValue": "string" },
+		"deprecated": false
+	},
+	{
+		"name": "siteType",
+		"comment": null,
+		"typeValue": com.qmino.miredot.restApiSource.tos["com_grndctl_model_station_SiteType_out"],
 		"deprecated": false
 	}
 ];
@@ -1872,6 +1872,12 @@ com.qmino.miredot.restApiSource.tos["com_grndctl_model_taf_TAF_in"].content = [
 		"deprecated": false
 	},
 	{
+		"name": "issueTime",
+		"comment": null,
+		"typeValue": { "type": "simple", "typeValue": "string" },
+		"deprecated": false
+	},
+	{
 		"name": "stationId",
 		"comment": null,
 		"typeValue": { "type": "simple", "typeValue": "string" },
@@ -1881,18 +1887,6 @@ com.qmino.miredot.restApiSource.tos["com_grndctl_model_taf_TAF_in"].content = [
 		"name": "elevationM",
 		"comment": null,
 		"typeValue": { "type": "simple", "typeValue": "number" },
-		"deprecated": false
-	},
-	{
-		"name": "bulletinTime",
-		"comment": null,
-		"typeValue": { "type": "simple", "typeValue": "string" },
-		"deprecated": false
-	},
-	{
-		"name": "remarks",
-		"comment": null,
-		"typeValue": { "type": "simple", "typeValue": "string" },
 		"deprecated": false
 	},
 	{
@@ -1908,7 +1902,13 @@ com.qmino.miredot.restApiSource.tos["com_grndctl_model_taf_TAF_in"].content = [
 		"deprecated": false
 	},
 	{
-		"name": "issueTime",
+		"name": "bulletinTime",
+		"comment": null,
+		"typeValue": { "type": "simple", "typeValue": "string" },
+		"deprecated": false
+	},
+	{
+		"name": "remarks",
 		"comment": null,
 		"typeValue": { "type": "simple", "typeValue": "string" },
 		"deprecated": false
@@ -1942,6 +1942,12 @@ com.qmino.miredot.restApiSource.tos["com_grndctl_model_taf_TAF_out"].content = [
 		"deprecated": false
 	},
 	{
+		"name": "issueTime",
+		"comment": null,
+		"typeValue": { "type": "simple", "typeValue": "string" },
+		"deprecated": false
+	},
+	{
 		"name": "stationId",
 		"comment": null,
 		"typeValue": { "type": "simple", "typeValue": "string" },
@@ -1951,6 +1957,18 @@ com.qmino.miredot.restApiSource.tos["com_grndctl_model_taf_TAF_out"].content = [
 		"name": "elevationM",
 		"comment": null,
 		"typeValue": { "type": "simple", "typeValue": "number" },
+		"deprecated": false
+	},
+	{
+		"name": "validTimeFrom",
+		"comment": null,
+		"typeValue": { "type": "simple", "typeValue": "string" },
+		"deprecated": false
+	},
+	{
+		"name": "validTimeTo",
+		"comment": null,
+		"typeValue": { "type": "simple", "typeValue": "string" },
 		"deprecated": false
 	},
 	{
@@ -1969,24 +1987,6 @@ com.qmino.miredot.restApiSource.tos["com_grndctl_model_taf_TAF_out"].content = [
 		"name": "forecast",
 		"comment": null,
 		"typeValue": { "type": "collection", "typeValue":com.qmino.miredot.restApiSource.tos["com_grndctl_model_taf_Forecast_out"] },
-		"deprecated": false
-	},
-	{
-		"name": "validTimeFrom",
-		"comment": null,
-		"typeValue": { "type": "simple", "typeValue": "string" },
-		"deprecated": false
-	},
-	{
-		"name": "validTimeTo",
-		"comment": null,
-		"typeValue": { "type": "simple", "typeValue": "string" },
-		"deprecated": false
-	},
-	{
-		"name": "issueTime",
-		"comment": null,
-		"typeValue": { "type": "simple", "typeValue": "string" },
 		"deprecated": false
 	}
 ];
@@ -2110,13 +2110,13 @@ com.qmino.miredot.restApiSource.tos["com_grndctl_model_flightplan_ValidationResu
 com.qmino.miredot.restApiSource.tos["com_grndctl_model_flightplan_ValidationResults_in"].comment = null;
 com.qmino.miredot.restApiSource.tos["com_grndctl_model_flightplan_ValidationResults_out"].content = [ 
 	{
-		"name": "messages",
+		"name": "flightPlan",
 		"comment": null,
 		"typeValue": { "type": "simple", "typeValue": "string" },
 		"deprecated": false
 	},
 	{
-		"name": "flightPlan",
+		"name": "messages",
 		"comment": null,
 		"typeValue": { "type": "simple", "typeValue": "string" },
 		"deprecated": false
@@ -2182,12 +2182,12 @@ com.qmino.miredot.restApiSource.tos["com_grndctl_model_pirep_IcingCondition_out"
 com.qmino.miredot.restApiSource.tos["com_grndctl_model_pirep_IcingCondition_out"].comment = null;
 com.qmino.miredot.restApiSource.interfaces = [
 	{
-		"beschrijving": "",
+		"beschrijving": "Retrieve all of the active <code>AIRSIGMET</code>s currently issued by the NWS.",
 		"url": "/airsigmet/",
 		"http": "GET",
-		"title": null,
+		"title": "Retrieve all of the active AIRSIGMETs currently issued by the NWS",
 		"tags": [],
-		"authors": [],
+		"authors": ["Michael Di Salvo"],
 		"compressed": false,
 		"deprecated": false,
 		"consumes": [],
@@ -2195,7 +2195,7 @@ com.qmino.miredot.restApiSource.interfaces = [
 		"roles": [],
 		"rolesAllowed": null,
 		"permitAll": false,
-		"output": {"typeValue": { "type": "collection", "typeValue":com.qmino.miredot.restApiSource.tos["com_grndctl_model_airsigmet_AIRSIGMET_out"] }, "comment": null},
+		"output": {"typeValue": { "type": "collection", "typeValue":com.qmino.miredot.restApiSource.tos["com_grndctl_model_airsigmet_AIRSIGMET_out"] }, "comment": "<code>List</code> of <code>AIRSIGMET</code>s"},
 		"statusCodes": [
                 { "httpCode": 200, "comment": "The service call has completed successfully."},
                 { "httpCode": 500, "comment": "The service call has not succeeded."}
@@ -2212,20 +2212,20 @@ com.qmino.miredot.restApiSource.interfaces = [
             }
 	},
 	{
-		"beschrijving": "",
+		"beschrijving": "Convert Fahrenheit to Centigrade.",
 		"url": "/conversions/FtoC",
 		"http": "GET",
-		"title": null,
+		"title": "Convert Fahrenheit to Centigrade",
 		"tags": [],
-		"authors": [],
+		"authors": ["Michael Di Salvo"],
 		"compressed": false,
 		"deprecated": false,
 		"consumes": [],
-		"produces": [],
+		"produces": ["application/json"],
 		"roles": [],
 		"rolesAllowed": null,
 		"permitAll": false,
-		"output": {"typeValue": { "type": "simple", "typeValue": "number" }, "comment": null},
+		"output": {"typeValue": { "type": "simple", "typeValue": "number" }, "comment": "F converted to Temp. Centigrade as a <code>double</code>"},
 		"statusCodes": [
                 { "httpCode": 200, "comment": "The service call has completed successfully."},
                 { "httpCode": 500, "comment": "The service call has not succeeded."}
@@ -2233,7 +2233,7 @@ com.qmino.miredot.restApiSource.interfaces = [
 		"hash": "369846856",
 		"inputs": {
                 "PATH": [],
-                "QUERY": [{"name": "tempF", "typeValue": { "type": "simple", "typeValue": "number" }, "comment": null, "jaxrs": "QUERY"}],
+                "QUERY": [{"name": "tempF", "typeValue": { "type": "simple", "typeValue": "number" }, "comment": "Temp. Fahrenheit", "jaxrs": "QUERY"}],
                 "BODY": [],
                 "HEADER": [],
                 "COOKIE": [],
@@ -2242,12 +2242,12 @@ com.qmino.miredot.restApiSource.interfaces = [
             }
 	},
 	{
-		"beschrijving": "",
+		"beschrijving": "Retreive <code>AIRSIGMET</code>s by lat/lon box, with an additional parameter for hours before now.",
 		"url": "/airsigmet/latLonLimited",
 		"http": "GET",
-		"title": null,
+		"title": "Retreive AIRSIGMETs by lat/lon box, with an additional parameter for hours before now",
 		"tags": [],
-		"authors": [],
+		"authors": ["Michael Di Salvo"],
 		"compressed": false,
 		"deprecated": false,
 		"consumes": [],
@@ -2255,7 +2255,7 @@ com.qmino.miredot.restApiSource.interfaces = [
 		"roles": [],
 		"rolesAllowed": null,
 		"permitAll": false,
-		"output": {"typeValue": { "type": "collection", "typeValue":com.qmino.miredot.restApiSource.tos["com_grndctl_model_airsigmet_AIRSIGMET_out"] }, "comment": null},
+		"output": {"typeValue": { "type": "collection", "typeValue":com.qmino.miredot.restApiSource.tos["com_grndctl_model_airsigmet_AIRSIGMET_out"] }, "comment": "<code>List</code> of filtered <code>AIRSIGMET</code>s"},
 		"statusCodes": [
                 { "httpCode": 200, "comment": "The service call has completed successfully."},
                 { "httpCode": 500, "comment": "The service call has not succeeded."}
@@ -2264,11 +2264,11 @@ com.qmino.miredot.restApiSource.interfaces = [
 		"inputs": {
                 "PATH": [],
                 "QUERY": [
-                    {"name": "hrsBefore", "typeValue": { "type": "simple", "typeValue": "number" }, "comment": null, "jaxrs": "QUERY"},
-                    {"name": "minLat", "typeValue": { "type": "simple", "typeValue": "number" }, "comment": null, "jaxrs": "QUERY"},
-                    {"name": "maxLat", "typeValue": { "type": "simple", "typeValue": "number" }, "comment": null, "jaxrs": "QUERY"},
-                    {"name": "minLon", "typeValue": { "type": "simple", "typeValue": "number" }, "comment": null, "jaxrs": "QUERY"},
-                    {"name": "maxLon", "typeValue": { "type": "simple", "typeValue": "number" }, "comment": null, "jaxrs": "QUERY"}
+                    {"name": "hrsBefore", "typeValue": { "type": "simple", "typeValue": "number" }, "comment": "Hours before now (Default -> 1.0)", "jaxrs": "QUERY"},
+                    {"name": "minLat", "typeValue": { "type": "simple", "typeValue": "number" }, "comment": "Minimum latitude (Default -> 25)", "jaxrs": "QUERY"},
+                    {"name": "maxLat", "typeValue": { "type": "simple", "typeValue": "number" }, "comment": "Maximum latitude (Default -> 65)", "jaxrs": "QUERY"},
+                    {"name": "minLon", "typeValue": { "type": "simple", "typeValue": "number" }, "comment": "Minimum longitude (Default -> -130)", "jaxrs": "QUERY"},
+                    {"name": "maxLon", "typeValue": { "type": "simple", "typeValue": "number" }, "comment": "Maximum longitude (Default -> -40)", "jaxrs": "QUERY"}
                 ],
                 "BODY": [],
                 "HEADER": [],
@@ -2278,20 +2278,20 @@ com.qmino.miredot.restApiSource.interfaces = [
             }
 	},
 	{
-		"beschrijving": "",
+		"beschrijving": "Convert mb to inHg.",
 		"url": "/conversions/millibarsToInches",
 		"http": "GET",
-		"title": null,
+		"title": "Convert mb to inHg",
 		"tags": [],
-		"authors": [],
+		"authors": ["Michael Di Salvo"],
 		"compressed": false,
 		"deprecated": false,
 		"consumes": [],
-		"produces": [],
+		"produces": ["application/json"],
 		"roles": [],
 		"rolesAllowed": null,
 		"permitAll": false,
-		"output": {"typeValue": { "type": "simple", "typeValue": "number" }, "comment": null},
+		"output": {"typeValue": { "type": "simple", "typeValue": "number" }, "comment": "mg converted to inHg as a <code>double</code>"},
 		"statusCodes": [
                 { "httpCode": 200, "comment": "The service call has completed successfully."},
                 { "httpCode": 500, "comment": "The service call has not succeeded."}
@@ -2299,7 +2299,7 @@ com.qmino.miredot.restApiSource.interfaces = [
 		"hash": "1559536144",
 		"inputs": {
                 "PATH": [],
-                "QUERY": [{"name": "pressMillibars", "typeValue": { "type": "simple", "typeValue": "number" }, "comment": null, "jaxrs": "QUERY"}],
+                "QUERY": [{"name": "pressMillibars", "typeValue": { "type": "simple", "typeValue": "number" }, "comment": "Pressure in mb to conver", "jaxrs": "QUERY"}],
                 "BODY": [],
                 "HEADER": [],
                 "COOKIE": [],
@@ -2308,20 +2308,20 @@ com.qmino.miredot.restApiSource.interfaces = [
             }
 	},
 	{
-		"beschrijving": "",
+		"beschrijving": "The combined conditions for a field. Takes a string parameter for the field to retrieve, and hours before now.",
 		"url": "/combinedwx/",
 		"http": "GET",
-		"title": null,
+		"title": "The combined conditions for a field",
 		"tags": [],
-		"authors": [],
+		"authors": ["Michael Di Salvo"],
 		"compressed": false,
 		"deprecated": false,
 		"consumes": [],
-		"produces": [],
+		"produces": ["application/json"],
 		"roles": [],
 		"rolesAllowed": null,
 		"permitAll": false,
-		"output": {"typeValue": com.qmino.miredot.restApiSource.tos["com_grndctl_model_aggregates_CombinedWx_out"], "comment": null},
+		"output": {"typeValue": com.qmino.miredot.restApiSource.tos["com_grndctl_model_aggregates_CombinedWx_out"], "comment": "<code>CombinedWx</code> entity"},
 		"statusCodes": [
                 { "httpCode": 200, "comment": "The service call has completed successfully."},
                 { "httpCode": 500, "comment": "The service call has not succeeded."}
@@ -2330,8 +2330,8 @@ com.qmino.miredot.restApiSource.interfaces = [
 		"inputs": {
                 "PATH": [],
                 "QUERY": [
-                    {"name": "station", "typeValue": { "type": "simple", "typeValue": "string" }, "comment": null, "jaxrs": "QUERY"},
-                    {"name": "hoursbefore", "typeValue": { "type": "simple", "typeValue": "number" }, "comment": null, "jaxrs": "QUERY"}
+                    {"name": "station", "typeValue": { "type": "simple", "typeValue": "string" }, "comment": "Station string (Ex & Default -> KIAD)", "jaxrs": "QUERY"},
+                    {"name": "hoursbefore", "typeValue": { "type": "simple", "typeValue": "number" }, "comment": "Hours before now (Default -> 1.0)", "jaxrs": "QUERY"}
                 ],
                 "BODY": [],
                 "HEADER": [],
@@ -2341,20 +2341,20 @@ com.qmino.miredot.restApiSource.interfaces = [
             }
 	},
 	{
-		"beschrijving": "",
+		"beschrijving": "Accepts an ICAO flight plan as a <code>String</code> to validate.",
 		"url": "/intlfpvalidator/validate",
 		"http": "POST",
-		"title": null,
+		"title": "Accepts an ICAO flight plan as a String to validate",
 		"tags": [],
-		"authors": [],
+		"authors": ["Michael Di Salvo"],
 		"compressed": false,
 		"deprecated": false,
-		"consumes": [],
-		"produces": [],
+		"consumes": ["application/json"],
+		"produces": ["application/json"],
 		"roles": [],
 		"rolesAllowed": null,
 		"permitAll": false,
-		"output": {"typeValue": com.qmino.miredot.restApiSource.tos["com_grndctl_model_flightplan_ValidationResults_out"], "comment": null},
+		"output": {"typeValue": com.qmino.miredot.restApiSource.tos["com_grndctl_model_flightplan_ValidationResults_out"], "comment": "<code>ValidationResults</code> object that holds the original flight plan, and the returned messages."},
 		"statusCodes": [
                 { "httpCode": 200, "comment": "The service call has completed successfully."},
                 { "httpCode": 412, "comment": "Invalid JSON input."},
@@ -2364,7 +2364,7 @@ com.qmino.miredot.restApiSource.interfaces = [
 		"inputs": {
                 "PATH": [],
                 "QUERY": [],
-                "BODY": [{"typeValue": { "type": "simple", "typeValue": "string" }, "comment": null, "jaxrs": "BODY"}],
+                "BODY": [{"typeValue": { "type": "simple", "typeValue": "string" }, "comment": "ICAO flight plan to validate", "jaxrs": "BODY"}],
                 "HEADER": [],
                 "COOKIE": [],
                 "FORM": [],
@@ -2372,20 +2372,20 @@ com.qmino.miredot.restApiSource.interfaces = [
             }
 	},
 	{
-		"beschrijving": "",
+		"beschrijving": "Convert inHg to mb.",
 		"url": "/conversions/inchesToMillibars",
 		"http": "GET",
-		"title": null,
+		"title": "Convert inHg to mb",
 		"tags": [],
-		"authors": [],
+		"authors": ["Michael Di Salvo"],
 		"compressed": false,
 		"deprecated": false,
 		"consumes": [],
-		"produces": [],
+		"produces": ["application/json"],
 		"roles": [],
 		"rolesAllowed": null,
 		"permitAll": false,
-		"output": {"typeValue": { "type": "simple", "typeValue": "number" }, "comment": null},
+		"output": {"typeValue": { "type": "simple", "typeValue": "number" }, "comment": "inHg converted to mb as a <code>double</code>"},
 		"statusCodes": [
                 { "httpCode": 200, "comment": "The service call has completed successfully."},
                 { "httpCode": 500, "comment": "The service call has not succeeded."}
@@ -2393,7 +2393,7 @@ com.qmino.miredot.restApiSource.interfaces = [
 		"hash": "-1396498230",
 		"inputs": {
                 "PATH": [],
-                "QUERY": [{"name": "pressInches", "typeValue": { "type": "simple", "typeValue": "number" }, "comment": null, "jaxrs": "QUERY"}],
+                "QUERY": [{"name": "pressInches", "typeValue": { "type": "simple", "typeValue": "number" }, "comment": "Pressure in inHg to convert", "jaxrs": "QUERY"}],
                 "BODY": [],
                 "HEADER": [],
                 "COOKIE": [],
@@ -2402,12 +2402,12 @@ com.qmino.miredot.restApiSource.interfaces = [
             }
 	},
 	{
-		"beschrijving": "",
+		"beschrijving": "<code>METAR</code>s for a station. <code>hrsBefore</code> parameter is provided to retrieve historical reports.",
 		"url": "/metar/",
 		"http": "GET",
-		"title": null,
+		"title": "METARs for a station",
 		"tags": [],
-		"authors": [],
+		"authors": ["Michael Di Salvo"],
 		"compressed": false,
 		"deprecated": false,
 		"consumes": [],
@@ -2415,7 +2415,7 @@ com.qmino.miredot.restApiSource.interfaces = [
 		"roles": [],
 		"rolesAllowed": null,
 		"permitAll": false,
-		"output": {"typeValue": { "type": "collection", "typeValue":com.qmino.miredot.restApiSource.tos["com_grndctl_model_metar_METAR_out"] }, "comment": null},
+		"output": {"typeValue": { "type": "collection", "typeValue":com.qmino.miredot.restApiSource.tos["com_grndctl_model_metar_METAR_out"] }, "comment": "<code>List</code> of filtered <code>METAR</code>s"},
 		"statusCodes": [
                 { "httpCode": 200, "comment": "The service call has completed successfully."},
                 { "httpCode": 500, "comment": "The service call has not succeeded."}
@@ -2424,8 +2424,8 @@ com.qmino.miredot.restApiSource.interfaces = [
 		"inputs": {
                 "PATH": [],
                 "QUERY": [
-                    {"name": "station", "typeValue": { "type": "simple", "typeValue": "string" }, "comment": null, "jaxrs": "QUERY"},
-                    {"name": "hrsbefore", "typeValue": { "type": "simple", "typeValue": "number" }, "comment": null, "jaxrs": "QUERY"}
+                    {"name": "station", "typeValue": { "type": "simple", "typeValue": "string" }, "comment": "Station string (Default -> KIAD)", "jaxrs": "QUERY"},
+                    {"name": "hrsbefore", "typeValue": { "type": "simple", "typeValue": "number" }, "comment": "Hours before now (Default -> 1.0)", "jaxrs": "QUERY"}
                 ],
                 "BODY": [],
                 "HEADER": [],
@@ -2435,20 +2435,20 @@ com.qmino.miredot.restApiSource.interfaces = [
             }
 	},
 	{
-		"beschrijving": "",
+		"beschrijving": "Convert Centigrade to Fahrenheit.",
 		"url": "/conversions/CtoF",
 		"http": "GET",
-		"title": null,
+		"title": "Convert Centigrade to Fahrenheit",
 		"tags": [],
-		"authors": [],
+		"authors": ["Michael Di Salvo"],
 		"compressed": false,
 		"deprecated": false,
 		"consumes": [],
-		"produces": [],
+		"produces": ["application/json"],
 		"roles": [],
 		"rolesAllowed": null,
 		"permitAll": false,
-		"output": {"typeValue": { "type": "simple", "typeValue": "number" }, "comment": null},
+		"output": {"typeValue": { "type": "simple", "typeValue": "number" }, "comment": "C converted to Temp. Fahrenheit as a <code>double</code>"},
 		"statusCodes": [
                 { "httpCode": 200, "comment": "The service call has completed successfully."},
                 { "httpCode": 500, "comment": "The service call has not succeeded."}
@@ -2456,7 +2456,7 @@ com.qmino.miredot.restApiSource.interfaces = [
 		"hash": "-673068882",
 		"inputs": {
                 "PATH": [],
-                "QUERY": [{"name": "tempC", "typeValue": { "type": "simple", "typeValue": "number" }, "comment": null, "jaxrs": "QUERY"}],
+                "QUERY": [{"name": "tempC", "typeValue": { "type": "simple", "typeValue": "number" }, "comment": "Temp. Centigrade", "jaxrs": "QUERY"}],
                 "BODY": [],
                 "HEADER": [],
                 "COOKIE": [],
@@ -2465,12 +2465,12 @@ com.qmino.miredot.restApiSource.interfaces = [
             }
 	},
 	{
-		"beschrijving": "",
+		"beschrijving": "Retrieve <code>TAF</code>s hours before now for a station by either issue time or validity.",
 		"url": "/taf/",
 		"http": "GET",
-		"title": null,
+		"title": "Retrieve TAFs hours before now for a station by either issue time or validity",
 		"tags": [],
-		"authors": [],
+		"authors": ["Michael Di Salvo"],
 		"compressed": false,
 		"deprecated": false,
 		"consumes": [],
@@ -2478,7 +2478,7 @@ com.qmino.miredot.restApiSource.interfaces = [
 		"roles": [],
 		"rolesAllowed": null,
 		"permitAll": false,
-		"output": {"typeValue": { "type": "collection", "typeValue":com.qmino.miredot.restApiSource.tos["com_grndctl_model_taf_TAF_out"] }, "comment": null},
+		"output": {"typeValue": { "type": "collection", "typeValue":com.qmino.miredot.restApiSource.tos["com_grndctl_model_taf_TAF_out"] }, "comment": ""},
 		"statusCodes": [
                 { "httpCode": 200, "comment": "The service call has completed successfully."},
                 { "httpCode": 500, "comment": "The service call has not succeeded."}
@@ -2487,9 +2487,9 @@ com.qmino.miredot.restApiSource.interfaces = [
 		"inputs": {
                 "PATH": [],
                 "QUERY": [
-                    {"name": "station", "typeValue": { "type": "simple", "typeValue": "string" }, "comment": null, "jaxrs": "QUERY"},
-                    {"name": "hrsbefore", "typeValue": { "type": "simple", "typeValue": "number" }, "comment": null, "jaxrs": "QUERY"},
-                    {"name": "timetype", "typeValue": com.qmino.miredot.restApiSource.enums["com_grndctl_model_taf_TimeType"], "comment": null, "jaxrs": "QUERY"}
+                    {"name": "station", "typeValue": { "type": "simple", "typeValue": "string" }, "comment": "Station string", "jaxrs": "QUERY"},
+                    {"name": "hrsbefore", "typeValue": { "type": "simple", "typeValue": "number" }, "comment": "Hours before now", "jaxrs": "QUERY"},
+                    {"name": "timetype", "typeValue": com.qmino.miredot.restApiSource.enums["com_grndctl_model_taf_TimeType"], "comment": "<code>ISSUE</code> or <code>VALID</code>", "jaxrs": "QUERY"}
                 ],
                 "BODY": [],
                 "HEADER": [],
@@ -2499,72 +2499,12 @@ com.qmino.miredot.restApiSource.interfaces = [
             }
 	},
 	{
-		"beschrijving": "",
+		"beschrijving": "Get the reps. The <code>PIREP</code>s.",
 		"url": "/pirep/",
 		"http": "GET",
-		"title": null,
+		"title": "Get the reps",
 		"tags": [],
-		"authors": [],
-		"compressed": false,
-		"deprecated": false,
-		"consumes": [],
-		"produces": [],
-		"roles": [],
-		"rolesAllowed": null,
-		"permitAll": false,
-		"output": {"typeValue": { "type": "collection", "typeValue":com.qmino.miredot.restApiSource.tos["com_grndctl_model_pirep_PIREP_out"] }, "comment": null},
-		"statusCodes": [
-                { "httpCode": 200, "comment": "The service call has completed successfully."},
-                { "httpCode": 500, "comment": "The service call has not succeeded."}
-            ],
-		"hash": "804611394",
-		"inputs": {
-                "PATH": [],
-                "QUERY": [{"name": "hrsbefore", "typeValue": { "type": "simple", "typeValue": "number" }, "comment": null, "jaxrs": "QUERY"}],
-                "BODY": [],
-                "HEADER": [],
-                "COOKIE": [],
-                "FORM": [],
-                "MATRIX": []
-            }
-	},
-	{
-		"beschrijving": "",
-		"url": "/station/",
-		"http": "GET",
-		"title": null,
-		"tags": [],
-		"authors": [],
-		"compressed": false,
-		"deprecated": false,
-		"consumes": [],
-		"produces": [],
-		"roles": [],
-		"rolesAllowed": null,
-		"permitAll": false,
-		"output": {"typeValue": { "type": "collection", "typeValue":com.qmino.miredot.restApiSource.tos["com_grndctl_model_station_Station_out"] }, "comment": null},
-		"statusCodes": [
-                { "httpCode": 200, "comment": "The service call has completed successfully."},
-                { "httpCode": 500, "comment": "The service call has not succeeded."}
-            ],
-		"hash": "-2049038807",
-		"inputs": {
-                "PATH": [],
-                "QUERY": [{"name": "station", "typeValue": { "type": "simple", "typeValue": "string" }, "comment": null, "jaxrs": "QUERY"}],
-                "BODY": [],
-                "HEADER": [],
-                "COOKIE": [],
-                "FORM": [],
-                "MATRIX": []
-            }
-	},
-	{
-		"beschrijving": "",
-		"url": "/airsigmet/altLimited",
-		"http": "GET",
-		"title": null,
-		"tags": [],
-		"authors": [],
+		"authors": ["Michael Di Salvo"],
 		"compressed": false,
 		"deprecated": false,
 		"consumes": [],
@@ -2572,7 +2512,67 @@ com.qmino.miredot.restApiSource.interfaces = [
 		"roles": [],
 		"rolesAllowed": null,
 		"permitAll": false,
-		"output": {"typeValue": { "type": "collection", "typeValue":com.qmino.miredot.restApiSource.tos["com_grndctl_model_airsigmet_AIRSIGMET_out"] }, "comment": null},
+		"output": {"typeValue": { "type": "collection", "typeValue":com.qmino.miredot.restApiSource.tos["com_grndctl_model_pirep_PIREP_out"] }, "comment": "<code>List</code> of filtered <code>PIREP</code>s"},
+		"statusCodes": [
+                { "httpCode": 200, "comment": "The service call has completed successfully."},
+                { "httpCode": 500, "comment": "The service call has not succeeded."}
+            ],
+		"hash": "804611394",
+		"inputs": {
+                "PATH": [],
+                "QUERY": [{"name": "hrsbefore", "typeValue": { "type": "simple", "typeValue": "number" }, "comment": "Hours before now", "jaxrs": "QUERY"}],
+                "BODY": [],
+                "HEADER": [],
+                "COOKIE": [],
+                "FORM": [],
+                "MATRIX": []
+            }
+	},
+	{
+		"beschrijving": "Get information for a field such as latest <code>METAR</code> latest <code>TAF</code>, forecasts, etc.",
+		"url": "/station/",
+		"http": "GET",
+		"title": "Get information for a field such as latest METAR latest TAF, forecasts, etc",
+		"tags": [],
+		"authors": ["Michael Di Salvo"],
+		"compressed": false,
+		"deprecated": false,
+		"consumes": [],
+		"produces": ["application/json"],
+		"roles": [],
+		"rolesAllowed": null,
+		"permitAll": false,
+		"output": {"typeValue": { "type": "collection", "typeValue":com.qmino.miredot.restApiSource.tos["com_grndctl_model_station_Station_out"] }, "comment": "<code>List</code> of filtered <code>Station</code>s"},
+		"statusCodes": [
+                { "httpCode": 200, "comment": "The service call has completed successfully."},
+                { "httpCode": 500, "comment": "The service call has not succeeded."}
+            ],
+		"hash": "-2049038807",
+		"inputs": {
+                "PATH": [],
+                "QUERY": [{"name": "station", "typeValue": { "type": "simple", "typeValue": "string" }, "comment": "Station string", "jaxrs": "QUERY"}],
+                "BODY": [],
+                "HEADER": [],
+                "COOKIE": [],
+                "FORM": [],
+                "MATRIX": []
+            }
+	},
+	{
+		"beschrijving": "Retrieve <code>AIRSIGMET</code>s by altitude range, with an additional parameter for hours before now.",
+		"url": "/airsigmet/altLimited",
+		"http": "GET",
+		"title": "Retrieve AIRSIGMETs by altitude range, with an additional parameter for hours before now",
+		"tags": [],
+		"authors": ["Michael Di Salvo"],
+		"compressed": false,
+		"deprecated": false,
+		"consumes": [],
+		"produces": ["application/json"],
+		"roles": [],
+		"rolesAllowed": null,
+		"permitAll": false,
+		"output": {"typeValue": { "type": "collection", "typeValue":com.qmino.miredot.restApiSource.tos["com_grndctl_model_airsigmet_AIRSIGMET_out"] }, "comment": "<code>List</code> of filtered <code>AIRSIGMET</code>s"},
 		"statusCodes": [
                 { "httpCode": 200, "comment": "The service call has completed successfully."},
                 { "httpCode": 500, "comment": "The service call has not succeeded."}
@@ -2581,9 +2581,9 @@ com.qmino.miredot.restApiSource.interfaces = [
 		"inputs": {
                 "PATH": [],
                 "QUERY": [
-                    {"name": "hrsBefore", "typeValue": { "type": "simple", "typeValue": "number" }, "comment": null, "jaxrs": "QUERY"},
-                    {"name": "minAltitudeFt", "typeValue": { "type": "simple", "typeValue": "number" }, "comment": null, "jaxrs": "QUERY"},
-                    {"name": "maxAltitudeFt", "typeValue": { "type": "simple", "typeValue": "number" }, "comment": null, "jaxrs": "QUERY"}
+                    {"name": "hrsBefore", "typeValue": { "type": "simple", "typeValue": "number" }, "comment": "Hours before now (Default -> 1.0)", "jaxrs": "QUERY"},
+                    {"name": "minAltitudeFt", "typeValue": { "type": "simple", "typeValue": "number" }, "comment": "Minimum altitude (Default -> 5000)", "jaxrs": "QUERY"},
+                    {"name": "maxAltitudeFt", "typeValue": { "type": "simple", "typeValue": "number" }, "comment": "Maximum altitude (Default -> 30000)", "jaxrs": "QUERY"}
                 ],
                 "BODY": [],
                 "HEADER": [],
@@ -2594,36 +2594,8 @@ com.qmino.miredot.restApiSource.interfaces = [
 	}];
 com.qmino.miredot.projectWarnings = [
 	{
-		"category": "JAVADOC_MISSING_SUMMARY",
-		"description": "Missing summary tag",
-		"failedBuild": false,
-		"interface": null,
-		"entity": null
-	},
-	{
-		"category": "JAVADOC_MISSING_INTERFACEDOCUMENTATION",
-		"description": "Missing interface documentation",
-		"failedBuild": false,
-		"interface": null,
-		"entity": null
-	},
-	{
-		"category": "JAVADOC_MISSING_PARAMETER_DOCUMENTATION",
-		"description": "Missing return type documentation",
-		"failedBuild": false,
-		"interface": null,
-		"entity": null
-	},
-	{
 		"category": "JAVADOC_MISSING_EXCEPTION_DOCUMENTATION",
 		"description": "Exception thrown by method has no comment",
-		"failedBuild": false,
-		"interface": null,
-		"entity": null
-	},
-	{
-		"category": "JAVADOC_MISSING_AUTHORS",
-		"description": "No author(s) specified for interface.",
 		"failedBuild": false,
 		"interface": null,
 		"entity": null
@@ -2636,113 +2608,8 @@ com.qmino.miredot.projectWarnings = [
 		"entity": null
 	},
 	{
-		"category": "JAVADOC_MISSING_SUMMARY",
-		"description": "Missing summary tag",
-		"failedBuild": false,
-		"interface": null,
-		"entity": null
-	},
-	{
-		"category": "JAVADOC_MISSING_INTERFACEDOCUMENTATION",
-		"description": "Missing interface documentation",
-		"failedBuild": false,
-		"interface": null,
-		"entity": null
-	},
-	{
-		"category": "JAVADOC_MISSING_PARAMETER_DOCUMENTATION",
-		"description": "Missing parameter documentation",
-		"failedBuild": false,
-		"interface": null,
-		"entity": null
-	},
-	{
-		"category": "JAVADOC_MISSING_PARAMETER_DOCUMENTATION",
-		"description": "Missing return type documentation",
-		"failedBuild": false,
-		"interface": null,
-		"entity": null
-	},
-	{
-		"category": "JAVADOC_MISSING_AUTHORS",
-		"description": "No author(s) specified for interface.",
-		"failedBuild": false,
-		"interface": null,
-		"entity": null
-	},
-	{
-		"category": "JAXRS_MISSING_PRODUCES",
-		"description": "Interface returns a result, but does not specify a Produces value.",
-		"failedBuild": false,
-		"interface": null,
-		"entity": null
-	},
-	{
-		"category": "JAVADOC_MISSING_SUMMARY",
-		"description": "Missing summary tag",
-		"failedBuild": false,
-		"interface": null,
-		"entity": null
-	},
-	{
-		"category": "JAVADOC_MISSING_INTERFACEDOCUMENTATION",
-		"description": "Missing interface documentation",
-		"failedBuild": false,
-		"interface": null,
-		"entity": null
-	},
-	{
-		"category": "JAVADOC_MISSING_PARAMETER_DOCUMENTATION",
-		"description": "Missing parameter documentation",
-		"failedBuild": false,
-		"interface": null,
-		"entity": null
-	},
-	{
-		"category": "JAVADOC_MISSING_PARAMETER_DOCUMENTATION",
-		"description": "Missing parameter documentation",
-		"failedBuild": false,
-		"interface": null,
-		"entity": null
-	},
-	{
-		"category": "JAVADOC_MISSING_PARAMETER_DOCUMENTATION",
-		"description": "Missing parameter documentation",
-		"failedBuild": false,
-		"interface": null,
-		"entity": null
-	},
-	{
-		"category": "JAVADOC_MISSING_PARAMETER_DOCUMENTATION",
-		"description": "Missing parameter documentation",
-		"failedBuild": false,
-		"interface": null,
-		"entity": null
-	},
-	{
-		"category": "JAVADOC_MISSING_PARAMETER_DOCUMENTATION",
-		"description": "Missing parameter documentation",
-		"failedBuild": false,
-		"interface": null,
-		"entity": null
-	},
-	{
-		"category": "JAVADOC_MISSING_PARAMETER_DOCUMENTATION",
-		"description": "Missing return type documentation",
-		"failedBuild": false,
-		"interface": null,
-		"entity": null
-	},
-	{
 		"category": "JAVADOC_MISSING_EXCEPTION_DOCUMENTATION",
 		"description": "Exception thrown by method has no comment",
-		"failedBuild": false,
-		"interface": null,
-		"entity": null
-	},
-	{
-		"category": "JAVADOC_MISSING_AUTHORS",
-		"description": "No author(s) specified for interface.",
 		"failedBuild": false,
 		"interface": null,
 		"entity": null
@@ -2755,99 +2622,8 @@ com.qmino.miredot.projectWarnings = [
 		"entity": null
 	},
 	{
-		"category": "JAVADOC_MISSING_SUMMARY",
-		"description": "Missing summary tag",
-		"failedBuild": false,
-		"interface": null,
-		"entity": null
-	},
-	{
-		"category": "JAVADOC_MISSING_INTERFACEDOCUMENTATION",
-		"description": "Missing interface documentation",
-		"failedBuild": false,
-		"interface": null,
-		"entity": null
-	},
-	{
-		"category": "JAVADOC_MISSING_PARAMETER_DOCUMENTATION",
-		"description": "Missing parameter documentation",
-		"failedBuild": false,
-		"interface": null,
-		"entity": null
-	},
-	{
-		"category": "JAVADOC_MISSING_PARAMETER_DOCUMENTATION",
-		"description": "Missing return type documentation",
-		"failedBuild": false,
-		"interface": null,
-		"entity": null
-	},
-	{
-		"category": "JAVADOC_MISSING_AUTHORS",
-		"description": "No author(s) specified for interface.",
-		"failedBuild": false,
-		"interface": null,
-		"entity": null
-	},
-	{
-		"category": "JAXRS_MISSING_PRODUCES",
-		"description": "Interface returns a result, but does not specify a Produces value.",
-		"failedBuild": false,
-		"interface": null,
-		"entity": null
-	},
-	{
-		"category": "JAVADOC_MISSING_SUMMARY",
-		"description": "Missing summary tag",
-		"failedBuild": false,
-		"interface": null,
-		"entity": null
-	},
-	{
-		"category": "JAVADOC_MISSING_INTERFACEDOCUMENTATION",
-		"description": "Missing interface documentation",
-		"failedBuild": false,
-		"interface": null,
-		"entity": null
-	},
-	{
-		"category": "JAVADOC_MISSING_PARAMETER_DOCUMENTATION",
-		"description": "Missing parameter documentation",
-		"failedBuild": false,
-		"interface": null,
-		"entity": null
-	},
-	{
-		"category": "JAVADOC_MISSING_PARAMETER_DOCUMENTATION",
-		"description": "Missing parameter documentation",
-		"failedBuild": false,
-		"interface": null,
-		"entity": null
-	},
-	{
-		"category": "JAVADOC_MISSING_PARAMETER_DOCUMENTATION",
-		"description": "Missing return type documentation",
-		"failedBuild": false,
-		"interface": null,
-		"entity": null
-	},
-	{
 		"category": "JAVADOC_MISSING_EXCEPTION_DOCUMENTATION",
 		"description": "Exception thrown by method has no comment",
-		"failedBuild": false,
-		"interface": null,
-		"entity": null
-	},
-	{
-		"category": "JAVADOC_MISSING_AUTHORS",
-		"description": "No author(s) specified for interface.",
-		"failedBuild": false,
-		"interface": null,
-		"entity": null
-	},
-	{
-		"category": "JAXRS_MISSING_PRODUCES",
-		"description": "Interface returns a result, but does not specify a Produces value.",
 		"failedBuild": false,
 		"interface": null,
 		"entity": null
@@ -2860,57 +2636,8 @@ com.qmino.miredot.projectWarnings = [
 		"entity": null
 	},
 	{
-		"category": "JAVADOC_MISSING_SUMMARY",
-		"description": "Missing summary tag",
-		"failedBuild": false,
-		"interface": null,
-		"entity": null
-	},
-	{
-		"category": "JAVADOC_MISSING_INTERFACEDOCUMENTATION",
-		"description": "Missing interface documentation",
-		"failedBuild": false,
-		"interface": null,
-		"entity": null
-	},
-	{
-		"category": "JAVADOC_MISSING_PARAMETER_DOCUMENTATION",
-		"description": "Missing parameter documentation",
-		"failedBuild": false,
-		"interface": null,
-		"entity": null
-	},
-	{
-		"category": "JAVADOC_MISSING_PARAMETER_DOCUMENTATION",
-		"description": "Missing return type documentation",
-		"failedBuild": false,
-		"interface": null,
-		"entity": null
-	},
-	{
 		"category": "JAVADOC_MISSING_EXCEPTION_DOCUMENTATION",
 		"description": "Exception thrown by method has no comment",
-		"failedBuild": false,
-		"interface": null,
-		"entity": null
-	},
-	{
-		"category": "JAVADOC_MISSING_AUTHORS",
-		"description": "No author(s) specified for interface.",
-		"failedBuild": false,
-		"interface": null,
-		"entity": null
-	},
-	{
-		"category": "JAXRS_MISSING_PRODUCES",
-		"description": "Interface returns a result, but does not specify a Produces value.",
-		"failedBuild": false,
-		"interface": null,
-		"entity": null
-	},
-	{
-		"category": "JAXRS_MISSING_CONSUMES",
-		"description": "Interface specifies a JAXRS-BODY parameter, but does not specify a Consumes value.",
 		"failedBuild": false,
 		"interface": null,
 		"entity": null
@@ -2923,92 +2650,8 @@ com.qmino.miredot.projectWarnings = [
 		"entity": null
 	},
 	{
-		"category": "JAVADOC_MISSING_SUMMARY",
-		"description": "Missing summary tag",
-		"failedBuild": false,
-		"interface": null,
-		"entity": null
-	},
-	{
-		"category": "JAVADOC_MISSING_INTERFACEDOCUMENTATION",
-		"description": "Missing interface documentation",
-		"failedBuild": false,
-		"interface": null,
-		"entity": null
-	},
-	{
-		"category": "JAVADOC_MISSING_PARAMETER_DOCUMENTATION",
-		"description": "Missing parameter documentation",
-		"failedBuild": false,
-		"interface": null,
-		"entity": null
-	},
-	{
-		"category": "JAVADOC_MISSING_PARAMETER_DOCUMENTATION",
-		"description": "Missing return type documentation",
-		"failedBuild": false,
-		"interface": null,
-		"entity": null
-	},
-	{
-		"category": "JAVADOC_MISSING_AUTHORS",
-		"description": "No author(s) specified for interface.",
-		"failedBuild": false,
-		"interface": null,
-		"entity": null
-	},
-	{
-		"category": "JAXRS_MISSING_PRODUCES",
-		"description": "Interface returns a result, but does not specify a Produces value.",
-		"failedBuild": false,
-		"interface": null,
-		"entity": null
-	},
-	{
-		"category": "JAVADOC_MISSING_SUMMARY",
-		"description": "Missing summary tag",
-		"failedBuild": false,
-		"interface": null,
-		"entity": null
-	},
-	{
-		"category": "JAVADOC_MISSING_INTERFACEDOCUMENTATION",
-		"description": "Missing interface documentation",
-		"failedBuild": false,
-		"interface": null,
-		"entity": null
-	},
-	{
-		"category": "JAVADOC_MISSING_PARAMETER_DOCUMENTATION",
-		"description": "Missing parameter documentation",
-		"failedBuild": false,
-		"interface": null,
-		"entity": null
-	},
-	{
-		"category": "JAVADOC_MISSING_PARAMETER_DOCUMENTATION",
-		"description": "Missing parameter documentation",
-		"failedBuild": false,
-		"interface": null,
-		"entity": null
-	},
-	{
-		"category": "JAVADOC_MISSING_PARAMETER_DOCUMENTATION",
-		"description": "Missing return type documentation",
-		"failedBuild": false,
-		"interface": null,
-		"entity": null
-	},
-	{
 		"category": "JAVADOC_MISSING_EXCEPTION_DOCUMENTATION",
 		"description": "Exception thrown by method has no comment",
-		"failedBuild": false,
-		"interface": null,
-		"entity": null
-	},
-	{
-		"category": "JAVADOC_MISSING_AUTHORS",
-		"description": "No author(s) specified for interface.",
 		"failedBuild": false,
 		"interface": null,
 		"entity": null
@@ -3021,83 +2664,6 @@ com.qmino.miredot.projectWarnings = [
 		"entity": null
 	},
 	{
-		"category": "JAVADOC_MISSING_SUMMARY",
-		"description": "Missing summary tag",
-		"failedBuild": false,
-		"interface": null,
-		"entity": null
-	},
-	{
-		"category": "JAVADOC_MISSING_INTERFACEDOCUMENTATION",
-		"description": "Missing interface documentation",
-		"failedBuild": false,
-		"interface": null,
-		"entity": null
-	},
-	{
-		"category": "JAVADOC_MISSING_PARAMETER_DOCUMENTATION",
-		"description": "Missing parameter documentation",
-		"failedBuild": false,
-		"interface": null,
-		"entity": null
-	},
-	{
-		"category": "JAVADOC_MISSING_PARAMETER_DOCUMENTATION",
-		"description": "Missing return type documentation",
-		"failedBuild": false,
-		"interface": null,
-		"entity": null
-	},
-	{
-		"category": "JAVADOC_MISSING_AUTHORS",
-		"description": "No author(s) specified for interface.",
-		"failedBuild": false,
-		"interface": null,
-		"entity": null
-	},
-	{
-		"category": "JAXRS_MISSING_PRODUCES",
-		"description": "Interface returns a result, but does not specify a Produces value.",
-		"failedBuild": false,
-		"interface": null,
-		"entity": null
-	},
-	{
-		"category": "JAVADOC_MISSING_SUMMARY",
-		"description": "Missing summary tag",
-		"failedBuild": false,
-		"interface": null,
-		"entity": null
-	},
-	{
-		"category": "JAVADOC_MISSING_INTERFACEDOCUMENTATION",
-		"description": "Missing interface documentation",
-		"failedBuild": false,
-		"interface": null,
-		"entity": null
-	},
-	{
-		"category": "JAVADOC_MISSING_PARAMETER_DOCUMENTATION",
-		"description": "Missing parameter documentation",
-		"failedBuild": false,
-		"interface": null,
-		"entity": null
-	},
-	{
-		"category": "JAVADOC_MISSING_PARAMETER_DOCUMENTATION",
-		"description": "Missing parameter documentation",
-		"failedBuild": false,
-		"interface": null,
-		"entity": null
-	},
-	{
-		"category": "JAVADOC_MISSING_PARAMETER_DOCUMENTATION",
-		"description": "Missing parameter documentation",
-		"failedBuild": false,
-		"interface": null,
-		"entity": null
-	},
-	{
 		"category": "JAVADOC_MISSING_PARAMETER_DOCUMENTATION",
 		"description": "Missing return type documentation",
 		"failedBuild": false,
@@ -3107,13 +2673,6 @@ com.qmino.miredot.projectWarnings = [
 	{
 		"category": "JAVADOC_MISSING_EXCEPTION_DOCUMENTATION",
 		"description": "Exception thrown by method has no comment",
-		"failedBuild": false,
-		"interface": null,
-		"entity": null
-	},
-	{
-		"category": "JAVADOC_MISSING_AUTHORS",
-		"description": "No author(s) specified for interface.",
 		"failedBuild": false,
 		"interface": null,
 		"entity": null
@@ -3126,50 +2685,8 @@ com.qmino.miredot.projectWarnings = [
 		"entity": null
 	},
 	{
-		"category": "JAVADOC_MISSING_SUMMARY",
-		"description": "Missing summary tag",
-		"failedBuild": false,
-		"interface": null,
-		"entity": null
-	},
-	{
-		"category": "JAVADOC_MISSING_INTERFACEDOCUMENTATION",
-		"description": "Missing interface documentation",
-		"failedBuild": false,
-		"interface": null,
-		"entity": null
-	},
-	{
-		"category": "JAVADOC_MISSING_PARAMETER_DOCUMENTATION",
-		"description": "Missing parameter documentation",
-		"failedBuild": false,
-		"interface": null,
-		"entity": null
-	},
-	{
-		"category": "JAVADOC_MISSING_PARAMETER_DOCUMENTATION",
-		"description": "Missing return type documentation",
-		"failedBuild": false,
-		"interface": null,
-		"entity": null
-	},
-	{
 		"category": "JAVADOC_MISSING_EXCEPTION_DOCUMENTATION",
 		"description": "Exception thrown by method has no comment",
-		"failedBuild": false,
-		"interface": null,
-		"entity": null
-	},
-	{
-		"category": "JAVADOC_MISSING_AUTHORS",
-		"description": "No author(s) specified for interface.",
-		"failedBuild": false,
-		"interface": null,
-		"entity": null
-	},
-	{
-		"category": "JAXRS_MISSING_PRODUCES",
-		"description": "Interface returns a result, but does not specify a Produces value.",
 		"failedBuild": false,
 		"interface": null,
 		"entity": null
@@ -3182,50 +2699,8 @@ com.qmino.miredot.projectWarnings = [
 		"entity": null
 	},
 	{
-		"category": "JAVADOC_MISSING_SUMMARY",
-		"description": "Missing summary tag",
-		"failedBuild": false,
-		"interface": null,
-		"entity": null
-	},
-	{
-		"category": "JAVADOC_MISSING_INTERFACEDOCUMENTATION",
-		"description": "Missing interface documentation",
-		"failedBuild": false,
-		"interface": null,
-		"entity": null
-	},
-	{
-		"category": "JAVADOC_MISSING_PARAMETER_DOCUMENTATION",
-		"description": "Missing parameter documentation",
-		"failedBuild": false,
-		"interface": null,
-		"entity": null
-	},
-	{
-		"category": "JAVADOC_MISSING_PARAMETER_DOCUMENTATION",
-		"description": "Missing return type documentation",
-		"failedBuild": false,
-		"interface": null,
-		"entity": null
-	},
-	{
 		"category": "JAVADOC_MISSING_EXCEPTION_DOCUMENTATION",
 		"description": "Exception thrown by method has no comment",
-		"failedBuild": false,
-		"interface": null,
-		"entity": null
-	},
-	{
-		"category": "JAVADOC_MISSING_AUTHORS",
-		"description": "No author(s) specified for interface.",
-		"failedBuild": false,
-		"interface": null,
-		"entity": null
-	},
-	{
-		"category": "JAXRS_MISSING_PRODUCES",
-		"description": "Interface returns a result, but does not specify a Produces value.",
 		"failedBuild": false,
 		"interface": null,
 		"entity": null
@@ -3238,57 +2713,8 @@ com.qmino.miredot.projectWarnings = [
 		"entity": null
 	},
 	{
-		"category": "JAVADOC_MISSING_SUMMARY",
-		"description": "Missing summary tag",
-		"failedBuild": false,
-		"interface": null,
-		"entity": null
-	},
-	{
-		"category": "JAVADOC_MISSING_INTERFACEDOCUMENTATION",
-		"description": "Missing interface documentation",
-		"failedBuild": false,
-		"interface": null,
-		"entity": null
-	},
-	{
-		"category": "JAVADOC_MISSING_PARAMETER_DOCUMENTATION",
-		"description": "Missing parameter documentation",
-		"failedBuild": false,
-		"interface": null,
-		"entity": null
-	},
-	{
-		"category": "JAVADOC_MISSING_PARAMETER_DOCUMENTATION",
-		"description": "Missing parameter documentation",
-		"failedBuild": false,
-		"interface": null,
-		"entity": null
-	},
-	{
-		"category": "JAVADOC_MISSING_PARAMETER_DOCUMENTATION",
-		"description": "Missing parameter documentation",
-		"failedBuild": false,
-		"interface": null,
-		"entity": null
-	},
-	{
-		"category": "JAVADOC_MISSING_PARAMETER_DOCUMENTATION",
-		"description": "Missing return type documentation",
-		"failedBuild": false,
-		"interface": null,
-		"entity": null
-	},
-	{
 		"category": "JAVADOC_MISSING_EXCEPTION_DOCUMENTATION",
 		"description": "Exception thrown by method has no comment",
-		"failedBuild": false,
-		"interface": null,
-		"entity": null
-	},
-	{
-		"category": "JAVADOC_MISSING_AUTHORS",
-		"description": "No author(s) specified for interface.",
 		"failedBuild": false,
 		"interface": null,
 		"entity": null

@@ -1,8 +1,6 @@
 package com.grndctl.controllers;
 
 import org.apache.commons.lang3.math.Fraction;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,36 +8,59 @@ import org.springframework.web.bind.annotation.RestController;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 /**
- * Created by michael on 10/16/15.
+ * Simple conversion functions.
+ *
+ * @author Michael Di Salvo
  */
 @RestController
 @RequestMapping("/conversions")
 public class ConversionsController {
 
-    private static Logger LOG = LogManager.getLogger(ConversionsController.class);
+    public ConversionsController() { }
 
-    public ConversionsController() {
-    }
-
-    @RequestMapping(value = "/FtoC", method = GET)
+    /**
+     * Convert Fahrenheit to Centigrade.
+     *
+     * @param tempF Temp. Fahrenheit
+     * @return F converted to Temp. Centigrade as a <code>double</code>
+     */
+    @RequestMapping(value = "/FtoC", method = GET, produces = "application/json")
     public double getFtoC(
             @RequestParam(value = "tempF", defaultValue = "75") double tempF) {
         return (tempF - 32) * (Fraction.getFraction(5, 9).doubleValue());
     }
 
-    @RequestMapping(value = "/CtoF", method = GET)
+    /**
+     * Convert Centigrade to Fahrenheit.
+     *
+     * @param tempC Temp. Centigrade
+     * @return C converted to Temp. Fahrenheit as a <code>double</code>
+     */
+    @RequestMapping(value = "/CtoF", method = GET, produces = "application/json")
     public double getCtoF(
             @RequestParam(value = "tempC", defaultValue = "24") double tempC) {
         return (tempC * 1.8 + 32);
     }
 
-    @RequestMapping(value = "/inchesToMillibars", method = GET)
+    /**
+     * Convert inHg to mb.
+     *
+     * @param pressureInches Pressure in inHg to convert
+     * @return inHg converted to mb as a <code>double</code>
+     */
+    @RequestMapping(value = "/inchesToMillibars", method = GET, produces = "application/json")
     public double inchesToMillibars(
             @RequestParam(value = "pressInches", defaultValue = "29.92") double pressureInches) {
         return (33.8639 * pressureInches);
     }
 
-    @RequestMapping(value = "/millibarsToInches", method = GET)
+    /**
+     * Convert mb to inHg.
+     *
+     * @param pressureMillibars Pressure in mb to conver
+     * @return mg converted to inHg as a <code>double</code>
+     */
+    @RequestMapping(value = "/millibarsToInches", method = GET, produces = "application/json")
     public double millibarsToInches(
             @RequestParam(value = "pressMillibars", defaultValue = "1013.2") final double pressureMillibars) {
         return (pressureMillibars / 33.8639);

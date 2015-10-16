@@ -2,8 +2,6 @@ package com.grndctl.controllers;
 
 import com.grndctl.model.airsigmet.AIRSIGMET;
 import com.grndctl.services.AirsigmetSvc;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -13,13 +11,14 @@ import java.util.List;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 /**
- * Created by michael on 10/16/15.
+ * Retrieve AIRSIGMETs from the NWS.
+ *
+ * @author Michael Di Salvo
  */
 @RestController
 @RequestMapping("/airsigmet")
 public class AirsigmetController {
 
-    private static final Logger LOG = LogManager.getLogger(AirsigmetController.class);
     private static final String HRS_BEFORE = "hrsBefore";
     private static final String MAX_ALT_FT = "maxAltitudeFt";
     private static final String MIN_ALT_FT = "minAltitudeFt";
@@ -35,12 +34,27 @@ public class AirsigmetController {
         this.svc = svc;
     }
 
-    @RequestMapping(value = "", method = GET, consumes = "application/json", produces = "application/json")
+    /**
+     * Retrieve all of the active <code>AIRSIGMET</code>s currently issued by the NWS.
+     *
+     * @return <code>List</code> of <code>AIRSIGMET</code>s
+     * @throws Exception
+     */
+    @RequestMapping(value = "", method = GET, produces = "application/json")
     public List<AIRSIGMET> getAirsigmets() throws Exception{
         return svc.getAirsigmets();
     }
 
-    @RequestMapping(value = "/altLimited", method = GET, consumes = "application/json", produces = "application/json")
+    /**
+     * Retrieve <code>AIRSIGMET</code>s by altitude range, with an additional parameter for hours before now.
+     *
+     * @param hoursBefore Hours before now (Default -> 1.0)
+     * @param minAltFt Minimum altitude (Default -> 5000)
+     * @param maxAltFt Maximum altitude (Default -> 30000)
+     * @return <code>List</code> of filtered <code>AIRSIGMET</code>s
+     * @throws Exception
+     */
+    @RequestMapping(value = "/altLimited", method = GET, produces = "application/json")
     public List<AIRSIGMET> getAirsigmetsByAlt(
             @RequestParam(value = HRS_BEFORE, required = true, defaultValue = "1.0") double hoursBefore,
             @RequestParam(value = MIN_ALT_FT, required = true, defaultValue = "5000") int minAltFt,
@@ -48,9 +62,20 @@ public class AirsigmetController {
         return svc.getAirsigmetsInAltitudeRange(minAltFt, maxAltFt, hoursBefore);
     }
 
-    @RequestMapping(value = "/latLonLimited", method = GET, consumes = "application/json", produces = "application/json")
+    /**
+     * Retreive <code>AIRSIGMET</code>s by lat/lon box, with an additional parameter for hours before now.
+     *
+     * @param hrsBeforeNow Hours before now (Default -> 1.0)
+     * @param minLat Minimum latitude (Default -> 25)
+     * @param maxLat Maximum latitude (Default -> 65)
+     * @param minLon Minimum longitude (Default -> -130)
+     * @param maxLon Maximum longitude (Default -> -40)
+     * @return <code>List</code> of filtered <code>AIRSIGMET</code>s
+     * @throws Exception
+     */
+    @RequestMapping(value = "/latLonLimited", method = GET, produces = "application/json")
     public List<AIRSIGMET> getAirsimetsByLatLon(
-            @RequestParam(value = HRS_BEFORE, required = true, defaultValue = "1") double hrsBeforeNow,
+            @RequestParam(value = HRS_BEFORE, required = true, defaultValue = "1.0") double hrsBeforeNow,
             @RequestParam(value = MIN_LAT, required = true, defaultValue = "25") int minLat,
             @RequestParam(value = MAX_LAT, required = true, defaultValue = "65") int maxLat,
             @RequestParam(value = MIN_LON, required = true, defaultValue = "-130") int minLon,

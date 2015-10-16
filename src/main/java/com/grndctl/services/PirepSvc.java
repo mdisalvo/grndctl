@@ -2,6 +2,8 @@ package com.grndctl.services;
 
 import com.grndctl.model.pirep.PIREP;
 import com.grndctl.model.pirep.Response;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import javax.xml.bind.JAXBException;
@@ -15,6 +17,8 @@ import java.util.List;
  */
 @Service
 public class PirepSvc {
+
+    private static final Logger LOG = LogManager.getLogger(PirepSvc.class);
 
     private static final String RQST_URL = "https://aviationweather.gov/adds/" +
             "dataserver_current/httpparam?datasource=pireps&" +
@@ -39,6 +43,8 @@ public class PirepSvc {
                     .append(HRS_BEFORE)
                     .append(hoursBefore)
                     .toString());
+        LOG.info(url.toString());
+
         return unmarshall(url.openConnection().getInputStream()).getData().getPIREP();
     }
 
