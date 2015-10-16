@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.grndctl</groupId>
+    <artifactId>grndctl</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>miredot</id>
+            <name>MireDot Releases</name>
+            <url>http://nexus.qmino.com/content/repositories/miredot</url>
+        </pluginRepository>
+    </pluginRepositories>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <java.version>1.8</java.version>
+        <start-class>com.grndctl.GrndCtl</start-class>
+        <guava.version>16.0.1</guava.version>
+    </properties>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.2.6.RELEASE</version>
+    </parent>
+
+    <dependencies>
+        <!-- Logging -->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+        </dependency>
+
+        <!-- tag::jetty[] -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-tomcat</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jetty</artifactId>
+            <exclusions>
+            </exclusions>
+        </dependency>
+        <!-- end::jetty[] -->
+
+        <!-- tag::actuator[] -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+            <exclusions>
+            </exclusions>
+        </dependency>
+
+        <!-- jUnit -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Jsoup -->
+        <dependency>
+            <groupId>org.jsoup</groupId>
+            <artifactId>jsoup</artifactId>
+            <version>1.8.1</version>
+        </dependency>
+
+        <!-- Guava -->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>${guava.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.1</version>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.qmino</groupId>
+                <artifactId>miredot-plugin</artifactId>
+                <version>1.6.0</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>restdoc</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <licence>
+                        UHJvamVjdHxjb20uZ3JuZGN0bC5ncm5kY3RsfDIwMTYtMTAtMTZ8dHJ1ZSNNQ3dDRkExNEo5ZnRvbm5RVkJUOU56QW9QaElreEJ4OEFoUVRPU2xOc2NnSmJMQnQwUGZScUxVdmoybTB2QT09                    </licence>
+                    <output>
+                        <title>GrndCtl/AvWx ${project.version}</title>
+                        <html>
+                            <sections>
+                                <strategy>singlepage</strategy>
+                            </sections>
+                        </html>
+                    </output>
+                    <restModel>
+                        <restFramework>
+                            <name>spring-mvc</name>
+                        </restFramework>
+                        <fieldVisibility>
+                            <ALL>NON_PRIVATE</ALL>
+                            <FIELD>ANY</FIELD>
+                        </fieldVisibility>
+                        <httpStatusCodes>
+                            <httpStatusCode>
+                                <httpCode>200</httpCode>
+                                <document>always</document>
+                                <defaultMessage>The service call has completed successfully.</defaultMessage>
+                            </httpStatusCode>
+                            <httpStatusCode>
+                                <httpCode>401</httpCode>
+                                <document>explicit: com.acme.exceptions.AuthorizationException</document>
+                                <defaultMessage>The user is not authorized to use this service.</defaultMessage>
+                            </httpStatusCode>
+                            <httpStatusCode>
+                                <httpCode>412</httpCode>
+                                <document>put,post</document>
+                                <defaultMessage>Invalid JSON input.</defaultMessage>
+                            </httpStatusCode>
+                            <httpStatusCode>
+                                <httpCode>500</httpCode>
+                                <document>always</document>
+                                <defaultMessage>The service call has not succeeded.</defaultMessage>
+                            </httpStatusCode>
+                        </httpStatusCodes>
+                    </restModel>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </build>
+
+</project>
