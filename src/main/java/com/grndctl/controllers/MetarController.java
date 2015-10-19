@@ -44,10 +44,10 @@ public class MetarController {
     public List<METAR> getMetar(
             @RequestParam(value = STATION, defaultValue = "KIAD") String station,
             @RequestParam(value = HRS_BEFORE, required = false, defaultValue = "1.0") Double hrsBefore) throws Exception {
-            if (hrsBefore == null)
-                return svc.getCurrentMetar(station);
-            else
-                return svc.getMetars(station, hrsBefore);
+        if (hrsBefore == null)
+            return svc.getCurrentMetar(station);
+        else
+            return svc.getMetars(station, hrsBefore);
     }
 
 }

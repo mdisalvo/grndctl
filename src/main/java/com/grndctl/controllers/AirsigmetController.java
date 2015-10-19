@@ -58,7 +58,7 @@ public class AirsigmetController {
     public List<AIRSIGMET> getAirsigmetsByAlt(
             @RequestParam(value = HRS_BEFORE, required = true, defaultValue = "1.0") double hoursBefore,
             @RequestParam(value = MIN_ALT_FT, required = true, defaultValue = "5000") int minAltFt,
-            @RequestParam(value = MAX_ALT_FT, required = true, defaultValue = "30000") int maxAltFt) throws  Exception {
+            @RequestParam(value = MAX_ALT_FT, required = true, defaultValue = "30000") int maxAltFt) throws Exception {
         return svc.getAirsigmetsInAltitudeRange(minAltFt, maxAltFt, hoursBefore);
     }
 
@@ -79,7 +79,7 @@ public class AirsigmetController {
             @RequestParam(value = MIN_LAT, required = true, defaultValue = "25") int minLat,
             @RequestParam(value = MAX_LAT, required = true, defaultValue = "65") int maxLat,
             @RequestParam(value = MIN_LON, required = true, defaultValue = "-130") int minLon,
-            @RequestParam(value = MAX_LON, required = true, defaultValue = "-40") int maxLon) throws Exception{
+            @RequestParam(value = MAX_LON, required = true, defaultValue = "-40") int maxLon) throws Exception {
         return svc.getAirsigmetsInLatLongRectangle(minLat, minLon, maxLat, maxLon, hrsBeforeNow);
     }
 

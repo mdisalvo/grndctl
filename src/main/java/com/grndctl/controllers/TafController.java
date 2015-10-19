@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.ServletException;
+import javax.xml.ws.WebServiceException;
 import java.util.List;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
@@ -35,7 +37,8 @@ public class TafController {
     }
 
     /**
-     * Retrieve <code>TAF</code>s hours before now for a station by either issue time or validity.
+     * Retrieve <code>TAF</code>s hours before now for a station by either issue time or validity.  If
+     * <code>timeType</code> is null, then <code>TimeType.VALID</code> will be passed to the service.
      *
      * @param code Station string
      * @param hoursBefore Hours before now
@@ -48,7 +51,10 @@ public class TafController {
             @RequestParam(value = STATION, defaultValue = "KIAD") String code,
             @RequestParam(value = HRS_BEFORE, defaultValue = "2") Double hoursBefore,
             @RequestParam(value = TIME_TYPE, required = false) TimeType timeType) throws Exception {
-            return svc.getTafs(code, hoursBefore, timeType.valueOf());
+        if (timeType == null) {
+            timeType = TimeType.VALID;
+        }
+        return svc.getTafs(code, hoursBefore, timeType.valueOf());
     }
 
 }

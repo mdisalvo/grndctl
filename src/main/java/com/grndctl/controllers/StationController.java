@@ -39,7 +39,7 @@ public class StationController {
     @RequestMapping(value = "", method = GET, produces = "application/json")
     public List<Station> getStationInfo(
             @RequestParam(value = STATION, defaultValue = "KIAD") final String station) throws Exception {
-            return svc.getStationInfo(station);
+        return svc.getStationInfo(station);
     }
 
 }
