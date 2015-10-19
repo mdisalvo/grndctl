@@ -7,6 +7,7 @@ import com.grndctl.model.taf.TAF;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import static com.grndctl.model.taf.TimeType.VALID;
 import static org.junit.Assert.*;
 
 /**
@@ -39,7 +40,7 @@ public class BasicServiceTest {
 
     @Test
     public void testTafSvc() throws Exception {
-        TAF currentTAF = tafSvc.getCurrentTaf("KIAD").get(0);
+        TAF currentTAF = tafSvc.getTafs("KIAD", 1.0, VALID.valueOf()).get(0);
         assertNotNull(currentTAF);
         assertEquals("KIAD", currentTAF.getStationId());
     }
