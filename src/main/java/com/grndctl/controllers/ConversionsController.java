@@ -1,5 +1,6 @@
 package com.grndctl.controllers;
 
+import com.grndctl.model.aggregates.WindComponent;
 import org.apache.commons.lang3.math.Fraction;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -57,7 +58,7 @@ public class ConversionsController {
     /**
      * Convert mb to inHg.
      *
-     * @param pressureMillibars Pressure in mb to conver
+     * @param pressureMillibars Pressure in mb to convert
      * @return mg converted to inHg as a <code>double</code>
      */
     @RequestMapping(value = "/millibarsToInches", method = GET, produces = "application/json")
@@ -66,17 +67,19 @@ public class ConversionsController {
         return (pressureMillibars / 33.8639);
     }
 
-//    @RequestMapping(value = "/windcomponent", method = GET)
-//    public WindComponent getWindComponents(
-//            @RequestParam(value = "windspeed") double windSpeed,
-//            @RequestParam(value = "winddirection") int windDirection,
-//            @RequestParam(value = "heading") double heading) {
-//
-//        LOG.info("GET /grndctl/conversions/windcomponent?windspeed={}" +
-//                "&winddirection={}&heading={}", windSpeed, windDirection, heading);
-//
-//        WindComponent results = new WindComponent(windSpeed, windDirection, heading);
-//
-//        return results;
-//    }
+    /**
+     * Get wind components (Negative HW is a tailwind component, and Negative XW from left).
+     *
+     * @param windSpeed Windspeed in KTS
+     * @param windDirection Wind direction (from)
+     * @param heading Current heading
+     * @return <code>WindComponent</code> entity that contains calculated components
+     */
+    @RequestMapping(value = "/windcomponent", method = GET, produces = "application/json")
+    public WindComponent getWindComponents(
+            @RequestParam(value = "windspeed", defaultValue = "15.0") double windSpeed,
+            @RequestParam(value = "winddirection", defaultValue = "240.0") double windDirection,
+            @RequestParam(value = "heading", defaultValue = "180.0") double heading) {
+        return new WindComponent(windSpeed, windDirection, heading);
+    }
 }

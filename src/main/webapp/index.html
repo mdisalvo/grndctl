@@ -219,26 +219,12 @@
                             <!--<li>-->
                                 <!--<a href="#interfaces" target="_self" ng-class="{activeView: view=='interfaces'}">Interfaces</a>-->
                             <!--</li>-->
-                            <li set-if="processErrors.length > 0 || projectWarnings.length > 0">
-                                <a href="#home" target="_self" ng-class="{hidden: view!='warnings'}">
-                                    <span class="icon-circle-arrow-left"></span> Back
-                                </a>
-                            </li>
                         </ul>
 
                         <div class="pull-right" style="margin-right: 20px;" ng-if="licenceType == 'FREE' || !hideLogoOnTop">
                             <a href="http://www.github.com/mdisalvo/grndctl" target="_blank"><img src="img/IMG_1032.png"></a>
-                            <i class="icon-exclamation-sign failedIcon" set-if="!validLicence && !!licenceErrorMessage" set-title="licenceErrorMessage"></i>
                         </div>
 
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="notice invalidlicence" set-if="!validLicence">
-                            <i class="icon-exclamation-sign" title="Invalid key"></i>
-                            <span set-html="licenceErrorMessage"></span>
-                        </div>
                     </div>
                 </div>
 
