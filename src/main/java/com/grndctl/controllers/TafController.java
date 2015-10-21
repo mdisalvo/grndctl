@@ -27,7 +27,7 @@ public class TafController {
 
     private static final String TIME_TYPE = "timetype";
 
-    private static final String HRS_BEFORE = "hrsbefore";
+    private static final String HRS_BEFORE = "hrsBefore";
 
     private final TafSvc svc;
 
@@ -40,21 +40,21 @@ public class TafController {
      * Retrieve <code>TAF</code>s hours before now for a station by either issue time or validity.  If
      * <code>timeType</code> is null, then <code>TimeType.VALID</code> will be passed to the service.
      *
-     * @param code Station string
-     * @param hoursBefore Hours before now
-     * @param timeType <code>ISSUE</code> or <code>VALID</code>
+     * @param code Station string (Default -> KIAD)
+     * @param hrsBefore Hours before now (Default -> 2.0)
+     * @param timeType <code>ISSUE</code> or (Default)<code>VALID</code>
      * @return
      * @throws Exception
      */
     @RequestMapping(value = "", method = GET, produces = "application/json")
     public List<TAF> getTafs(
             @RequestParam(value = STATION, defaultValue = "KIAD") String code,
-            @RequestParam(value = HRS_BEFORE, defaultValue = "2") Double hoursBefore,
+            @RequestParam(value = HRS_BEFORE, defaultValue = "2.0") Double hrsBefore,
             @RequestParam(value = TIME_TYPE, required = false) TimeType timeType) throws Exception {
         if (timeType == null) {
             timeType = TimeType.VALID;
         }
-        return svc.getTafs(code, hoursBefore, timeType.valueOf());
+        return svc.getTafs(code, hrsBefore, timeType.valueOf());
     }
 
 }

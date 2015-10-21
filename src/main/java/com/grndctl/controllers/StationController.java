@@ -32,7 +32,7 @@ public class StationController {
     /**
      * Get information for a field such as latest <code>METAR</code> latest <code>TAF</code>, forecasts, etc.
      *
-     * @param station Station string
+     * @param station Station string (Default -> KIAD)
      * @return <code>List</code> of filtered <code>Station</code>s
      * @throws Exception
      */

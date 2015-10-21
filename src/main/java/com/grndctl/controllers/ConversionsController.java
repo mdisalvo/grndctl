@@ -22,7 +22,7 @@ public class ConversionsController {
     /**
      * Convert Fahrenheit to Centigrade.
      *
-     * @param tempF Temp. Fahrenheit
+     * @param tempF Temp. Fahrenheit (Default -> 75)
      * @return F converted to Temp. Centigrade as a <code>double</code>
      */
     @RequestMapping(value = "/FtoC", method = GET, produces = "application/json")
@@ -34,7 +34,7 @@ public class ConversionsController {
     /**
      * Convert Centigrade to Fahrenheit.
      *
-     * @param tempC Temp. Centigrade
+     * @param tempC Temp. Centigrade (Default -> 24)
      * @return C converted to Temp. Fahrenheit as a <code>double</code>
      */
     @RequestMapping(value = "/CtoF", method = GET, produces = "application/json")
@@ -46,7 +46,7 @@ public class ConversionsController {
     /**
      * Convert inHg to mb.
      *
-     * @param pressureInches Pressure in inHg to convert
+     * @param pressureInches Pressure in inHg to convert (Default -> 29.92)
      * @return inHg converted to mb as a <code>double</code>
      */
     @RequestMapping(value = "/inchesToMillibars", method = GET, produces = "application/json")
@@ -58,7 +58,7 @@ public class ConversionsController {
     /**
      * Convert mb to inHg.
      *
-     * @param pressureMillibars Pressure in mb to convert
+     * @param pressureMillibars Pressure in mb to convert (Default -> 1013.2)
      * @return mg converted to inHg as a <code>double</code>
      */
     @RequestMapping(value = "/millibarsToInches", method = GET, produces = "application/json")
@@ -70,9 +70,9 @@ public class ConversionsController {
     /**
      * Get wind components (Negative HW is a tailwind component, and Negative XW from left).
      *
-     * @param windSpeed Windspeed in KTS
-     * @param windDirection Wind direction (from)
-     * @param heading Current heading
+     * @param windSpeed Windspeed in KTS (Default -> 15.0)
+     * @param windDirection Wind direction (from) (Default -> 240.0)
+     * @param heading Current heading (Default -> 180.0)
      * @return <code>WindComponent</code> entity that contains calculated components
      */
     @RequestMapping(value = "/windcomponent", method = GET, produces = "application/json")

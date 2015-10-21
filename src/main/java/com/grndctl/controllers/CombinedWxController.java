@@ -21,7 +21,7 @@ public class CombinedWxController {
 
     private static final String STATION = "station";
 
-    private static final String HOURS_BEFORE = "hoursbefore";
+    private static final String HRS_BEFORE = "hrsBefore";
 
     private MetarSvc metarSvc;
     private TafSvc tafSvc;
@@ -35,18 +35,18 @@ public class CombinedWxController {
     /**
      * The combined conditions for a field. Takes a string parameter for the field to retrieve, and hours before now.
      *
-     * @param station Station string (Ex & Default -> KIAD)
-     * @param hoursBefore Hours before now (Default -> 1.0)
+     * @param station Station string (Default -> KIAD)
+     * @param hrsBefore Hours before now (Default -> 1.0)
      * @return <code>CombinedWx</code> entity
      * @throws Exception
      */
     @RequestMapping(value = "", method = GET, produces = "application/json")
     public CombinedWx getCombinedWx(
             @RequestParam(value = STATION, defaultValue = "KIAD") String station,
-            @RequestParam(value = HOURS_BEFORE, required = false, defaultValue = "1.0") Double hoursBefore) throws Exception {
+            @RequestParam(value = HRS_BEFORE, required = false, defaultValue = "1.0") Double hrsBefore) throws Exception {
 
         CombinedWx resp = new CombinedWx();
-        resp.setMetars(metarSvc.getMetars(station, (hoursBefore == null || hoursBefore < 1.0 ? 1.0 : hoursBefore)));
+        resp.setMetars(metarSvc.getMetars(station, (hrsBefore == null || hrsBefore < 1.0 ? 1.0 : hrsBefore)));
         resp.setTafs(tafSvc.getCurrentTaf(station));
 
         return resp;

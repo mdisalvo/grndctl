@@ -30,7 +30,6 @@ public class IntlFPValidationController {
      * Accepts an ICAO flight plan as a <code>String</code> to validate.
      *
      * <pre>
-     * Ex.
      *
      * (FPL-DLH560_IS
      * -1A319/M-SHWY/S
@@ -40,7 +39,7 @@ public class IntlFPValidationController {
      *
      * </pre>
      *
-     * @param flightPlan ICAO flight plan to validate
+     * @param flightPlan ICAO flight plan to validate (Default ^)
      * @return <code>ValidationResults</code> object that holds the original flight plan, and the returned messages.
      * @throws Exception
      */

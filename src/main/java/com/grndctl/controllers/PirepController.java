@@ -32,13 +32,13 @@ public class PirepController {
     /**
      * Get the reps.  The <code>PIREP</code>s.
      *
-     * @param hrsBefore Hours before now
+     * @param hrsBefore Hours before now (Default -> 1.0)
      * @return <code>List</code> of filtered <code>PIREP</code>s
      * @throws Exception
      */
     @RequestMapping(value = "", method = GET, produces = "application/json")
     public List<PIREP> getPireps(
-            @RequestParam(value = HRS_BEFORE, defaultValue = "1") Double hrsBefore) throws Exception {
+            @RequestParam(value = HRS_BEFORE, defaultValue = "1.0") Double hrsBefore) throws Exception {
         return svc.getPireps(hrsBefore);
     }
 }
