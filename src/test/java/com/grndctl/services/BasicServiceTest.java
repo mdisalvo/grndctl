@@ -50,6 +50,11 @@ public class BasicServiceTest {
         Station station = stationSvc.getStationInfo("KIAD").get(0);
         assertNotNull(station);
         assertEquals("KIAD", station.getStationId());
+
+        String faaStatus = stationSvc.getFAAStationStatus("IAD");
+        assertTrue(faaStatus.contains("IAD"));
+        assertTrue(faaStatus.contains("KIAD"));
+        assertTrue(faaStatus.contains("Washington Dulles International"));
     }
 
     @Test

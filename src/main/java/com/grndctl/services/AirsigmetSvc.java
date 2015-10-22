@@ -69,7 +69,7 @@ public class AirsigmetSvc {
                 .toString());
         LOG.info(url.toString());
 
-        return unmarshall(url.openConnection().getInputStream()).getData().getAIRSIGMET();
+        return unmarshall(url.openStream()).getData().getAIRSIGMET();
     }
 
     public List<AIRSIGMET> getAirsigmetsHoursBeforeNow(double hoursBeforeNow) throws Exception {
@@ -80,7 +80,7 @@ public class AirsigmetSvc {
                 .toString());
         LOG.info(url.toString());
 
-        return unmarshall(url.openConnection().getInputStream()).getData().getAIRSIGMET();
+        return unmarshall(url.openStream()).getData().getAIRSIGMET();
     }
 
     public List<AIRSIGMET> getAirsigmetsInAltitudeRange(int minAltFt, int maxAltFt, double hrsBeforeNow)
@@ -96,7 +96,7 @@ public class AirsigmetSvc {
                 .toString());
         LOG.info(url.toString());
 
-        return unmarshall(url.openConnection().getInputStream()).getData().getAIRSIGMET();
+        return unmarshall(url.openStream()).getData().getAIRSIGMET();
     }
 
     public List<AIRSIGMET> getAirsigmetsInLatLongRectangle(int minLat, int minLong, int maxLat, int maxLong,
@@ -116,7 +116,7 @@ public class AirsigmetSvc {
                 .toString());
         LOG.info(url.toString());
 
-        return unmarshall(url.openConnection().getInputStream()).getData().getAIRSIGMET();
+        return unmarshall(url.openStream()).getData().getAIRSIGMET();
     }
 
     private static String[] startAndEndTimes() {

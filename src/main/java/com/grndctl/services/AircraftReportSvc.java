@@ -1,7 +1,7 @@
 package com.grndctl.services;
 
-import com.grndctl.model.pirep.PIREP;
-import com.grndctl.model.pirep.Response;
+import com.grndctl.model.aircraftrep.AircraftReport;
+import com.grndctl.model.aircraftrep.Response;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
@@ -13,21 +13,20 @@ import java.net.URL;
 import java.util.List;
 
 /**
- * Created by michael on 10/16/15.
+ * Created by michael on 10/21/15.
  */
 @Service
-@Deprecated
-public class PirepSvc {
+public class AircraftReportSvc {
 
-    private static final Logger LOG = LogManager.getLogger(PirepSvc.class);
+    private static final Logger LOG = LogManager.getLogger(AircraftReportSvc.class);
 
     private static final String RQST_URL = "https://aviationweather.gov/adds/" +
-            "dataserver_current/httpparam?datasource=pireps&" +
+            "dataserver_current/httpparam?datasource=aircraftreports&" +
             "requesttype=retrieve&format=xml";
 
     private static final String HRS_BEFORE = "&hoursBeforeNow=";
 
-    private static Response unmarshall(final InputStream is) throws Exception {
+    private static Response unmarshall(final InputStream is ) throws Exception {
         Unmarshaller<Response> unmarshaller = new Unmarshaller<>(Response.class);
         try {
             return unmarshaller.unmarshall(is);
@@ -36,8 +35,7 @@ public class PirepSvc {
         }
     }
 
-    @Deprecated
-    public List<PIREP> getPireps(final double hrsBefore) throws Exception {
+    public List<AircraftReport> getAircraftReports(final double hrsBefore) throws Exception {
         URL url = new URL(new StringBuilder()
                     .append(RQST_URL)
                     .append(HRS_BEFORE)
@@ -45,7 +43,7 @@ public class PirepSvc {
                     .toString());
         LOG.info(url.toString());
 
-        return unmarshall(url.openStream()).getData().getPIREP();
+        return unmarshall(url.openStream()).getData().getAircraftReport();
     }
 
 }

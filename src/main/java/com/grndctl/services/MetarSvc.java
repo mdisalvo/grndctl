@@ -51,7 +51,7 @@ public class MetarSvc {
                 .toString());
         LOG.info(url.toString());
 
-        return unmarshall(url.openConnection().getInputStream()).getData().getMETAR();
+        return unmarshall(url.openStream()).getData().getMETAR();
     }
 
     public List<METAR> getMetars(String station, double hrsBefore) throws Exception {
@@ -64,7 +64,7 @@ public class MetarSvc {
                 .toString());
         LOG.info(url.toString());
 
-        return unmarshall(url.openConnection().getInputStream()).getData().getMETAR();
+        return unmarshall(url.openStream()).getData().getMETAR();
     }
 
 }
