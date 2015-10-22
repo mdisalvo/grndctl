@@ -52,7 +52,7 @@ public class TafSvc {
                 .toString());
         LOG.info(url.toString());
 
-        return unmarshall(url.openConnection().getInputStream()).getData().getTAF();
+        return unmarshall(url.openStream()).getData().getTAF();
     }
 
     public List<TAF> getTafs(String station, double hrsBefore, String timeType) throws Exception {
@@ -67,7 +67,7 @@ public class TafSvc {
                 .toString());
         LOG.info(url.toString());
 
-        return unmarshall(url.openConnection().getInputStream()).getData().getTAF();
+        return unmarshall(url.openStream()).getData().getTAF();
     }
 
 }

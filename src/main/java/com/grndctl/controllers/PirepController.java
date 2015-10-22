@@ -16,6 +16,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
  *
  * @author Michael Di Salvo
  */
+@Deprecated
 @RestController
 @RequestMapping(value = "/pirep")
 public class PirepController {
@@ -30,15 +31,16 @@ public class PirepController {
     }
 
     /**
-     * Get the reps.  The <code>PIREP</code>s.
+     * [DEPRECATED] Get the reps.  The <code>PIREP</code>s.
      *
      * @param hrsBefore Hours before now (Default -> 1.0)
      * @return <code>List</code> of filtered <code>PIREP</code>s
      * @throws Exception
      */
+    @Deprecated
     @RequestMapping(value = "", method = GET, produces = "application/json")
     public List<PIREP> getPireps(
-            @RequestParam(value = HRS_BEFORE, defaultValue = "1.0") Double hrsBefore) throws Exception {
+            @RequestParam(value = HRS_BEFORE, defaultValue = "1.0") double hrsBefore) throws Exception {
         return svc.getPireps(hrsBefore);
     }
 }
