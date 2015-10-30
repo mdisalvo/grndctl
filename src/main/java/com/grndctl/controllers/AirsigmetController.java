@@ -48,7 +48,7 @@ public class AirsigmetController {
     /**
      * Retrieve <code>AIRSIGMET</code>s by altitude range, with an additional parameter for hours before now.
      *
-     * @param hoursBefore Hours before now (Default -> 1.0)
+     * @param hrsBefore Hours before now (Default -> 1.0)
      * @param minAltFt Minimum altitude (Default -> 5000)
      * @param maxAltFt Maximum altitude (Default -> 30000)
      * @return <code>List</code> of filtered <code>AIRSIGMET</code>s
@@ -56,16 +56,16 @@ public class AirsigmetController {
      */
     @RequestMapping(value = "/altLimited", method = GET, produces = "application/json")
     public List<AIRSIGMET> getAirsigmetsByAlt(
-            @RequestParam(value = HRS_BEFORE, required = true, defaultValue = "1.0") double hoursBefore,
+            @RequestParam(value = HRS_BEFORE, required = true, defaultValue = "1.0") double hrsBefore,
             @RequestParam(value = MIN_ALT_FT, required = true, defaultValue = "5000") int minAltFt,
             @RequestParam(value = MAX_ALT_FT, required = true, defaultValue = "30000") int maxAltFt) throws Exception {
-        return svc.getAirsigmetsInAltitudeRange(minAltFt, maxAltFt, hoursBefore);
+        return svc.getAirsigmetsInAltitudeRange(minAltFt, maxAltFt, hrsBefore);
     }
 
     /**
      * Retreive <code>AIRSIGMET</code>s by lat/lon box, with an additional parameter for hours before now.
      *
-     * @param hrsBeforeNow Hours before now (Default -> 1.0)
+     * @param hrsBefore Hours before now (Default -> 1.0)
      * @param minLat Minimum latitude (Default -> 25)
      * @param maxLat Maximum latitude (Default -> 65)
      * @param minLon Minimum longitude (Default -> -130)
@@ -75,12 +75,12 @@ public class AirsigmetController {
      */
     @RequestMapping(value = "/latLonLimited", method = GET, produces = "application/json")
     public List<AIRSIGMET> getAirsimetsByLatLon(
-            @RequestParam(value = HRS_BEFORE, required = true, defaultValue = "1.0") double hrsBeforeNow,
+            @RequestParam(value = HRS_BEFORE, required = true, defaultValue = "1.0") double hrsBefore,
             @RequestParam(value = MIN_LAT, required = true, defaultValue = "25") int minLat,
             @RequestParam(value = MAX_LAT, required = true, defaultValue = "65") int maxLat,
             @RequestParam(value = MIN_LON, required = true, defaultValue = "-130") int minLon,
             @RequestParam(value = MAX_LON, required = true, defaultValue = "-40") int maxLon) throws Exception {
-        return svc.getAirsigmetsInLatLongRectangle(minLat, minLon, maxLat, maxLon, hrsBeforeNow);
+        return svc.getAirsigmetsInLatLongRectangle(minLat, minLon, maxLat, maxLon, hrsBefore);
     }
 
 }

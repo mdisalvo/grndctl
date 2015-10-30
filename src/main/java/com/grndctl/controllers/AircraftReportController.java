@@ -21,7 +21,7 @@ import java.util.List;
 @RequestMapping(value = "/aircraftrep")
 public class AircraftReportController  {
 
-    private static final String HRS_BEFORE = "hrsbefore";
+    private static final String HRS_BEFORE = "hrsBefore";
 
     private final AircraftReportSvc svc;
 

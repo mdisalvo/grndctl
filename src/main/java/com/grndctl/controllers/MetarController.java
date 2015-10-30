@@ -23,7 +23,7 @@ public class MetarController {
 
     private static final String STATION = "station";
 
-    private static final String HRS_BEFORE = "hrsbefore";
+    private static final String HRS_BEFORE = "hrsBefore";
 
     private final MetarSvc svc;
 

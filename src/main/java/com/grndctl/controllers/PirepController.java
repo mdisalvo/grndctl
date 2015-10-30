@@ -21,7 +21,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 @RequestMapping(value = "/pirep")
 public class PirepController {
 
-    private static final String HRS_BEFORE = "hrsbefore";
+    private static final String HRS_BEFORE = "hrsBefore";
 
     private final PirepSvc svc;
 

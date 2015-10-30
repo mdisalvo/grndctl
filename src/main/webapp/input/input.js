@@ -1,5 +1,5 @@
 var com = { qmino : { miredot : {}}};
-com.qmino.miredot.restApiSource = {"validLicence":true,"buildSystem":"maven 3","allowUsageTracking":true,"singlePage":true,"licenceErrorMessage":null,"miredotRevision":"780bc70fd738","jsonDocHidden":true,"licenceHash":"224558982392553513","miredotVersion":"1.6.0","jsonDocEnabled":false,"dateOfGeneration":"2015-10-22 00:41:38","licenceType":"FREE","hideLogoOnTop":false,"projectName":"grndctl","projectVersion":"1.0-SNAPSHOT","projectTitle":"GrndCtl\/AvWx 1.0-SNAPSHOT"};
+com.qmino.miredot.restApiSource = {"validLicence":true,"buildSystem":"maven 3","allowUsageTracking":true,"singlePage":true,"licenceErrorMessage":null,"miredotRevision":"780bc70fd738","jsonDocHidden":true,"licenceHash":"224558982392553513","miredotVersion":"1.6.0","jsonDocEnabled":false,"dateOfGeneration":"2015-10-29 23:48:37","licenceType":"FREE","hideLogoOnTop":false,"projectName":"grndctl","projectVersion":"1.0-SNAPSHOT","projectTitle":"GrndCtl\/AvWx 1.0-SNAPSHOT"};
 com.qmino.miredot.restApiSource.tos = {
 	com_grndctl_model_aircraftrep_IcingCondition_in: { "type": "complex", "name": "com_grndctl_model_aircraftrep_IcingCondition_in", "content": [] },
 	com_grndctl_model_aircraftrep_IcingCondition_out: { "type": "complex", "name": "com_grndctl_model_aircraftrep_IcingCondition_out", "content": [] },
@@ -154,6 +154,12 @@ com.qmino.miredot.restApiSource.tos["com_grndctl_model_aggregates_WindComponent_
 com.qmino.miredot.restApiSource.tos["com_grndctl_model_aggregates_WindComponent_out"].comment = null;
 com.qmino.miredot.restApiSource.tos["com_grndctl_model_taf_Temperature_in"].content = [ 
 	{
+		"name": "validTime",
+		"comment": null,
+		"typeValue": { "type": "simple", "typeValue": "string" },
+		"deprecated": false
+	},
+	{
 		"name": "sfcTempC",
 		"comment": null,
 		"typeValue": { "type": "simple", "typeValue": "number" },
@@ -167,12 +173,6 @@ com.qmino.miredot.restApiSource.tos["com_grndctl_model_taf_Temperature_in"].cont
 	},
 	{
 		"name": "minTempC",
-		"comment": null,
-		"typeValue": { "type": "simple", "typeValue": "string" },
-		"deprecated": false
-	},
-	{
-		"name": "validTime",
 		"comment": null,
 		"typeValue": { "type": "simple", "typeValue": "string" },
 		"deprecated": false
@@ -182,6 +182,12 @@ com.qmino.miredot.restApiSource.tos["com_grndctl_model_taf_Temperature_in"].orde
 com.qmino.miredot.restApiSource.tos["com_grndctl_model_taf_Temperature_in"].comment = null;
 com.qmino.miredot.restApiSource.tos["com_grndctl_model_taf_Temperature_out"].content = [ 
 	{
+		"name": "validTime",
+		"comment": null,
+		"typeValue": { "type": "simple", "typeValue": "string" },
+		"deprecated": false
+	},
+	{
 		"name": "sfcTempC",
 		"comment": null,
 		"typeValue": { "type": "simple", "typeValue": "number" },
@@ -195,12 +201,6 @@ com.qmino.miredot.restApiSource.tos["com_grndctl_model_taf_Temperature_out"].con
 	},
 	{
 		"name": "minTempC",
-		"comment": null,
-		"typeValue": { "type": "simple", "typeValue": "string" },
-		"deprecated": false
-	},
-	{
-		"name": "validTime",
 		"comment": null,
 		"typeValue": { "type": "simple", "typeValue": "string" },
 		"deprecated": false
@@ -442,12 +442,6 @@ com.qmino.miredot.restApiSource.tos["com_grndctl_model_aggregates_CombinedWx_out
 com.qmino.miredot.restApiSource.tos["com_grndctl_model_aggregates_CombinedWx_out"].comment = null;
 com.qmino.miredot.restApiSource.tos["com_grndctl_model_airsigmet_AIRSIGMET_in"].content = [ 
 	{
-		"name": "rawText",
-		"comment": null,
-		"typeValue": { "type": "simple", "typeValue": "string" },
-		"deprecated": false
-	},
-	{
 		"name": "validTimeFrom",
 		"comment": null,
 		"typeValue": { "type": "simple", "typeValue": "string" },
@@ -490,6 +484,12 @@ com.qmino.miredot.restApiSource.tos["com_grndctl_model_airsigmet_AIRSIGMET_in"].
 		"deprecated": false
 	},
 	{
+		"name": "rawText",
+		"comment": null,
+		"typeValue": { "type": "simple", "typeValue": "string" },
+		"deprecated": false
+	},
+	{
 		"name": "area",
 		"comment": null,
 		"typeValue": { "type": "collection", "typeValue":com.qmino.miredot.restApiSource.tos["com_grndctl_model_airsigmet_Area_in"] },
@@ -499,12 +499,6 @@ com.qmino.miredot.restApiSource.tos["com_grndctl_model_airsigmet_AIRSIGMET_in"].
 com.qmino.miredot.restApiSource.tos["com_grndctl_model_airsigmet_AIRSIGMET_in"].ordered = false;
 com.qmino.miredot.restApiSource.tos["com_grndctl_model_airsigmet_AIRSIGMET_in"].comment = null;
 com.qmino.miredot.restApiSource.tos["com_grndctl_model_airsigmet_AIRSIGMET_out"].content = [ 
-	{
-		"name": "rawText",
-		"comment": null,
-		"typeValue": { "type": "simple", "typeValue": "string" },
-		"deprecated": false
-	},
 	{
 		"name": "validTimeFrom",
 		"comment": null,
@@ -552,21 +546,27 @@ com.qmino.miredot.restApiSource.tos["com_grndctl_model_airsigmet_AIRSIGMET_out"]
 		"comment": null,
 		"typeValue": { "type": "collection", "typeValue":com.qmino.miredot.restApiSource.tos["com_grndctl_model_airsigmet_Area_out"] },
 		"deprecated": false
+	},
+	{
+		"name": "rawText",
+		"comment": null,
+		"typeValue": { "type": "simple", "typeValue": "string" },
+		"deprecated": false
 	}
 ];
 com.qmino.miredot.restApiSource.tos["com_grndctl_model_airsigmet_AIRSIGMET_out"].ordered = false;
 com.qmino.miredot.restApiSource.tos["com_grndctl_model_airsigmet_AIRSIGMET_out"].comment = null;
 com.qmino.miredot.restApiSource.tos["com_grndctl_model_metar_SkyCondition_in"].content = [ 
 	{
-		"name": "cloudBaseFtAgl",
-		"comment": null,
-		"typeValue": { "type": "simple", "typeValue": "number" },
-		"deprecated": false
-	},
-	{
 		"name": "skyCover",
 		"comment": null,
 		"typeValue": { "type": "simple", "typeValue": "string" },
+		"deprecated": false
+	},
+	{
+		"name": "cloudBaseFtAgl",
+		"comment": null,
+		"typeValue": { "type": "simple", "typeValue": "number" },
 		"deprecated": false
 	}
 ];
@@ -574,15 +574,15 @@ com.qmino.miredot.restApiSource.tos["com_grndctl_model_metar_SkyCondition_in"].o
 com.qmino.miredot.restApiSource.tos["com_grndctl_model_metar_SkyCondition_in"].comment = null;
 com.qmino.miredot.restApiSource.tos["com_grndctl_model_metar_SkyCondition_out"].content = [ 
 	{
-		"name": "cloudBaseFtAgl",
-		"comment": null,
-		"typeValue": { "type": "simple", "typeValue": "number" },
-		"deprecated": false
-	},
-	{
 		"name": "skyCover",
 		"comment": null,
 		"typeValue": { "type": "simple", "typeValue": "string" },
+		"deprecated": false
+	},
+	{
+		"name": "cloudBaseFtAgl",
+		"comment": null,
+		"typeValue": { "type": "simple", "typeValue": "number" },
 		"deprecated": false
 	}
 ];
@@ -790,6 +790,12 @@ com.qmino.miredot.restApiSource.tos["com_grndctl_model_station_SiteType_in"].ord
 com.qmino.miredot.restApiSource.tos["com_grndctl_model_station_SiteType_in"].comment = null;
 com.qmino.miredot.restApiSource.tos["com_grndctl_model_station_SiteType_out"].content = [ 
 	{
+		"name": "mETAR",
+		"comment": null,
+		"typeValue": { "type": "simple", "typeValue": "object" },
+		"deprecated": false
+	},
+	{
 		"name": "nEXRAD",
 		"comment": null,
 		"typeValue": { "type": "simple", "typeValue": "object" },
@@ -797,6 +803,12 @@ com.qmino.miredot.restApiSource.tos["com_grndctl_model_station_SiteType_out"].co
 	},
 	{
 		"name": "rawinsonde",
+		"comment": null,
+		"typeValue": { "type": "simple", "typeValue": "object" },
+		"deprecated": false
+	},
+	{
+		"name": "tAF",
 		"comment": null,
 		"typeValue": { "type": "simple", "typeValue": "object" },
 		"deprecated": false
@@ -814,19 +826,7 @@ com.qmino.miredot.restApiSource.tos["com_grndctl_model_station_SiteType_out"].co
 		"deprecated": false
 	},
 	{
-		"name": "tAF",
-		"comment": null,
-		"typeValue": { "type": "simple", "typeValue": "object" },
-		"deprecated": false
-	},
-	{
 		"name": "sYNOPS",
-		"comment": null,
-		"typeValue": { "type": "simple", "typeValue": "object" },
-		"deprecated": false
-	},
-	{
-		"name": "mETAR",
 		"comment": null,
 		"typeValue": { "type": "simple", "typeValue": "object" },
 		"deprecated": false
@@ -866,6 +866,12 @@ com.qmino.miredot.restApiSource.tos["com_grndctl_model_station_SiteType_out"].or
 com.qmino.miredot.restApiSource.tos["com_grndctl_model_station_SiteType_out"].comment = null;
 com.qmino.miredot.restApiSource.tos["com_grndctl_model_taf_TAF_in"].content = [ 
 	{
+		"name": "issueTime",
+		"comment": null,
+		"typeValue": { "type": "simple", "typeValue": "string" },
+		"deprecated": false
+	},
+	{
 		"name": "stationId",
 		"comment": null,
 		"typeValue": { "type": "simple", "typeValue": "string" },
@@ -875,6 +881,18 @@ com.qmino.miredot.restApiSource.tos["com_grndctl_model_taf_TAF_in"].content = [
 		"name": "elevationM",
 		"comment": null,
 		"typeValue": { "type": "simple", "typeValue": "number" },
+		"deprecated": false
+	},
+	{
+		"name": "validTimeFrom",
+		"comment": null,
+		"typeValue": { "type": "simple", "typeValue": "string" },
+		"deprecated": false
+	},
+	{
+		"name": "validTimeTo",
+		"comment": null,
+		"typeValue": { "type": "simple", "typeValue": "string" },
 		"deprecated": false
 	},
 	{
@@ -908,24 +926,6 @@ com.qmino.miredot.restApiSource.tos["com_grndctl_model_taf_TAF_in"].content = [
 		"deprecated": false
 	},
 	{
-		"name": "validTimeFrom",
-		"comment": null,
-		"typeValue": { "type": "simple", "typeValue": "string" },
-		"deprecated": false
-	},
-	{
-		"name": "validTimeTo",
-		"comment": null,
-		"typeValue": { "type": "simple", "typeValue": "string" },
-		"deprecated": false
-	},
-	{
-		"name": "issueTime",
-		"comment": null,
-		"typeValue": { "type": "simple", "typeValue": "string" },
-		"deprecated": false
-	},
-	{
 		"name": "forecast",
 		"comment": null,
 		"typeValue": { "type": "collection", "typeValue":com.qmino.miredot.restApiSource.tos["com_grndctl_model_taf_Forecast_in"] },
@@ -936,6 +936,12 @@ com.qmino.miredot.restApiSource.tos["com_grndctl_model_taf_TAF_in"].ordered = fa
 com.qmino.miredot.restApiSource.tos["com_grndctl_model_taf_TAF_in"].comment = null;
 com.qmino.miredot.restApiSource.tos["com_grndctl_model_taf_TAF_out"].content = [ 
 	{
+		"name": "issueTime",
+		"comment": null,
+		"typeValue": { "type": "simple", "typeValue": "string" },
+		"deprecated": false
+	},
+	{
 		"name": "stationId",
 		"comment": null,
 		"typeValue": { "type": "simple", "typeValue": "string" },
@@ -945,6 +951,18 @@ com.qmino.miredot.restApiSource.tos["com_grndctl_model_taf_TAF_out"].content = [
 		"name": "elevationM",
 		"comment": null,
 		"typeValue": { "type": "simple", "typeValue": "number" },
+		"deprecated": false
+	},
+	{
+		"name": "validTimeFrom",
+		"comment": null,
+		"typeValue": { "type": "simple", "typeValue": "string" },
+		"deprecated": false
+	},
+	{
+		"name": "validTimeTo",
+		"comment": null,
+		"typeValue": { "type": "simple", "typeValue": "string" },
 		"deprecated": false
 	},
 	{
@@ -979,24 +997,6 @@ com.qmino.miredot.restApiSource.tos["com_grndctl_model_taf_TAF_out"].content = [
 	},
 	{
 		"name": "rawText",
-		"comment": null,
-		"typeValue": { "type": "simple", "typeValue": "string" },
-		"deprecated": false
-	},
-	{
-		"name": "validTimeFrom",
-		"comment": null,
-		"typeValue": { "type": "simple", "typeValue": "string" },
-		"deprecated": false
-	},
-	{
-		"name": "validTimeTo",
-		"comment": null,
-		"typeValue": { "type": "simple", "typeValue": "string" },
-		"deprecated": false
-	},
-	{
-		"name": "issueTime",
 		"comment": null,
 		"typeValue": { "type": "simple", "typeValue": "string" },
 		"deprecated": false
@@ -1226,6 +1226,12 @@ com.qmino.miredot.restApiSource.tos["com_grndctl_model_metar_METAR_in"].content 
 		"deprecated": false
 	},
 	{
+		"name": "tempC",
+		"comment": null,
+		"typeValue": { "type": "simple", "typeValue": "number" },
+		"deprecated": false
+	},
+	{
 		"name": "observationTime",
 		"comment": null,
 		"typeValue": { "type": "simple", "typeValue": "string" },
@@ -1259,12 +1265,6 @@ com.qmino.miredot.restApiSource.tos["com_grndctl_model_metar_METAR_in"].content 
 		"name": "wxString",
 		"comment": null,
 		"typeValue": { "type": "simple", "typeValue": "string" },
-		"deprecated": false
-	},
-	{
-		"name": "tempC",
-		"comment": null,
-		"typeValue": { "type": "simple", "typeValue": "number" },
 		"deprecated": false
 	},
 	{
@@ -1404,6 +1404,12 @@ com.qmino.miredot.restApiSource.tos["com_grndctl_model_metar_METAR_out"].content
 		"deprecated": false
 	},
 	{
+		"name": "tempC",
+		"comment": null,
+		"typeValue": { "type": "simple", "typeValue": "number" },
+		"deprecated": false
+	},
+	{
 		"name": "observationTime",
 		"comment": null,
 		"typeValue": { "type": "simple", "typeValue": "string" },
@@ -1446,12 +1452,6 @@ com.qmino.miredot.restApiSource.tos["com_grndctl_model_metar_METAR_out"].content
 		"deprecated": false
 	},
 	{
-		"name": "tempC",
-		"comment": null,
-		"typeValue": { "type": "simple", "typeValue": "number" },
-		"deprecated": false
-	},
-	{
 		"name": "windDirDegrees",
 		"comment": null,
 		"typeValue": { "type": "simple", "typeValue": "number" },
@@ -1474,9 +1474,9 @@ com.qmino.miredot.restApiSource.tos["com_grndctl_model_metar_METAR_out"].ordered
 com.qmino.miredot.restApiSource.tos["com_grndctl_model_metar_METAR_out"].comment = null;
 com.qmino.miredot.restApiSource.tos["com_grndctl_model_pirep_PIREP_in"].content = [ 
 	{
-		"name": "pirepType",
+		"name": "tempC",
 		"comment": null,
-		"typeValue": { "type": "simple", "typeValue": "string" },
+		"typeValue": { "type": "simple", "typeValue": "number" },
 		"deprecated": false
 	},
 	{
@@ -1534,12 +1534,6 @@ com.qmino.miredot.restApiSource.tos["com_grndctl_model_pirep_PIREP_in"].content 
 		"deprecated": false
 	},
 	{
-		"name": "tempC",
-		"comment": null,
-		"typeValue": { "type": "simple", "typeValue": "number" },
-		"deprecated": false
-	},
-	{
 		"name": "windDirDegrees",
 		"comment": null,
 		"typeValue": { "type": "simple", "typeValue": "number" },
@@ -1559,6 +1553,12 @@ com.qmino.miredot.restApiSource.tos["com_grndctl_model_pirep_PIREP_in"].content 
 	},
 	{
 		"name": "rawText",
+		"comment": null,
+		"typeValue": { "type": "simple", "typeValue": "string" },
+		"deprecated": false
+	},
+	{
+		"name": "pirepType",
 		"comment": null,
 		"typeValue": { "type": "simple", "typeValue": "string" },
 		"deprecated": false
@@ -1586,9 +1586,9 @@ com.qmino.miredot.restApiSource.tos["com_grndctl_model_pirep_PIREP_in"].ordered 
 com.qmino.miredot.restApiSource.tos["com_grndctl_model_pirep_PIREP_in"].comment = null;
 com.qmino.miredot.restApiSource.tos["com_grndctl_model_pirep_PIREP_out"].content = [ 
 	{
-		"name": "pirepType",
+		"name": "tempC",
 		"comment": null,
-		"typeValue": { "type": "simple", "typeValue": "string" },
+		"typeValue": { "type": "simple", "typeValue": "number" },
 		"deprecated": false
 	},
 	{
@@ -1664,12 +1664,6 @@ com.qmino.miredot.restApiSource.tos["com_grndctl_model_pirep_PIREP_out"].content
 		"deprecated": false
 	},
 	{
-		"name": "tempC",
-		"comment": null,
-		"typeValue": { "type": "simple", "typeValue": "number" },
-		"deprecated": false
-	},
-	{
 		"name": "windDirDegrees",
 		"comment": null,
 		"typeValue": { "type": "simple", "typeValue": "number" },
@@ -1689,6 +1683,12 @@ com.qmino.miredot.restApiSource.tos["com_grndctl_model_pirep_PIREP_out"].content
 	},
 	{
 		"name": "rawText",
+		"comment": null,
+		"typeValue": { "type": "simple", "typeValue": "string" },
+		"deprecated": false
+	},
+	{
+		"name": "pirepType",
 		"comment": null,
 		"typeValue": { "type": "simple", "typeValue": "string" },
 		"deprecated": false
@@ -2150,6 +2150,12 @@ com.qmino.miredot.restApiSource.tos["com_grndctl_model_aircraftrep_TurbulenceCon
 com.qmino.miredot.restApiSource.tos["com_grndctl_model_aircraftrep_TurbulenceCondition_out"].comment = null;
 com.qmino.miredot.restApiSource.tos["com_grndctl_model_aircraftrep_AircraftReport_in"].content = [ 
 	{
+		"name": "tempC",
+		"comment": null,
+		"typeValue": { "type": "simple", "typeValue": "number" },
+		"deprecated": false
+	},
+	{
 		"name": "receiptTime",
 		"comment": null,
 		"typeValue": { "type": "simple", "typeValue": "string" },
@@ -2204,12 +2210,6 @@ com.qmino.miredot.restApiSource.tos["com_grndctl_model_aircraftrep_AircraftRepor
 		"deprecated": false
 	},
 	{
-		"name": "tempC",
-		"comment": null,
-		"typeValue": { "type": "simple", "typeValue": "number" },
-		"deprecated": false
-	},
-	{
 		"name": "windDirDegrees",
 		"comment": null,
 		"typeValue": { "type": "simple", "typeValue": "number" },
@@ -2261,6 +2261,12 @@ com.qmino.miredot.restApiSource.tos["com_grndctl_model_aircraftrep_AircraftRepor
 com.qmino.miredot.restApiSource.tos["com_grndctl_model_aircraftrep_AircraftReport_in"].ordered = false;
 com.qmino.miredot.restApiSource.tos["com_grndctl_model_aircraftrep_AircraftReport_in"].comment = null;
 com.qmino.miredot.restApiSource.tos["com_grndctl_model_aircraftrep_AircraftReport_out"].content = [ 
+	{
+		"name": "tempC",
+		"comment": null,
+		"typeValue": { "type": "simple", "typeValue": "number" },
+		"deprecated": false
+	},
 	{
 		"name": "receiptTime",
 		"comment": null,
@@ -2331,12 +2337,6 @@ com.qmino.miredot.restApiSource.tos["com_grndctl_model_aircraftrep_AircraftRepor
 		"name": "wxString",
 		"comment": null,
 		"typeValue": { "type": "simple", "typeValue": "string" },
-		"deprecated": false
-	},
-	{
-		"name": "tempC",
-		"comment": null,
-		"typeValue": { "type": "simple", "typeValue": "number" },
 		"deprecated": false
 	},
 	{
@@ -2418,9 +2418,9 @@ com.qmino.miredot.restApiSource.tos["com_grndctl_model_taf_IcingCondition_out"].
 com.qmino.miredot.restApiSource.tos["com_grndctl_model_taf_IcingCondition_out"].comment = null;
 com.qmino.miredot.restApiSource.tos["com_grndctl_model_taf_SkyCondition_in"].content = [ 
 	{
-		"name": "cloudBaseFtAgl",
+		"name": "skyCover",
 		"comment": null,
-		"typeValue": { "type": "simple", "typeValue": "number" },
+		"typeValue": { "type": "simple", "typeValue": "string" },
 		"deprecated": false
 	},
 	{
@@ -2430,9 +2430,9 @@ com.qmino.miredot.restApiSource.tos["com_grndctl_model_taf_SkyCondition_in"].con
 		"deprecated": false
 	},
 	{
-		"name": "skyCover",
+		"name": "cloudBaseFtAgl",
 		"comment": null,
-		"typeValue": { "type": "simple", "typeValue": "string" },
+		"typeValue": { "type": "simple", "typeValue": "number" },
 		"deprecated": false
 	}
 ];
@@ -2440,9 +2440,9 @@ com.qmino.miredot.restApiSource.tos["com_grndctl_model_taf_SkyCondition_in"].ord
 com.qmino.miredot.restApiSource.tos["com_grndctl_model_taf_SkyCondition_in"].comment = null;
 com.qmino.miredot.restApiSource.tos["com_grndctl_model_taf_SkyCondition_out"].content = [ 
 	{
-		"name": "cloudBaseFtAgl",
+		"name": "skyCover",
 		"comment": null,
-		"typeValue": { "type": "simple", "typeValue": "number" },
+		"typeValue": { "type": "simple", "typeValue": "string" },
 		"deprecated": false
 	},
 	{
@@ -2452,9 +2452,9 @@ com.qmino.miredot.restApiSource.tos["com_grndctl_model_taf_SkyCondition_out"].co
 		"deprecated": false
 	},
 	{
-		"name": "skyCover",
+		"name": "cloudBaseFtAgl",
 		"comment": null,
-		"typeValue": { "type": "simple", "typeValue": "string" },
+		"typeValue": { "type": "simple", "typeValue": "number" },
 		"deprecated": false
 	}
 ];
@@ -2500,6 +2500,18 @@ com.qmino.miredot.restApiSource.tos["com_grndctl_model_station_Station_in"].cont
 		"deprecated": false
 	},
 	{
+		"name": "stationId",
+		"comment": null,
+		"typeValue": { "type": "simple", "typeValue": "string" },
+		"deprecated": false
+	},
+	{
+		"name": "elevationM",
+		"comment": null,
+		"typeValue": { "type": "simple", "typeValue": "number" },
+		"deprecated": false
+	},
+	{
 		"name": "wmoId",
 		"comment": null,
 		"typeValue": { "type": "simple", "typeValue": "string" },
@@ -2515,18 +2527,6 @@ com.qmino.miredot.restApiSource.tos["com_grndctl_model_station_Station_in"].cont
 		"name": "siteType",
 		"comment": null,
 		"typeValue": com.qmino.miredot.restApiSource.tos["com_grndctl_model_station_SiteType_in"],
-		"deprecated": false
-	},
-	{
-		"name": "stationId",
-		"comment": null,
-		"typeValue": { "type": "simple", "typeValue": "string" },
-		"deprecated": false
-	},
-	{
-		"name": "elevationM",
-		"comment": null,
-		"typeValue": { "type": "simple", "typeValue": "number" },
 		"deprecated": false
 	},
 	{
@@ -2570,18 +2570,6 @@ com.qmino.miredot.restApiSource.tos["com_grndctl_model_station_Station_out"].con
 		"deprecated": false
 	},
 	{
-		"name": "wmoId",
-		"comment": null,
-		"typeValue": { "type": "simple", "typeValue": "string" },
-		"deprecated": false
-	},
-	{
-		"name": "siteType",
-		"comment": null,
-		"typeValue": com.qmino.miredot.restApiSource.tos["com_grndctl_model_station_SiteType_out"],
-		"deprecated": false
-	},
-	{
 		"name": "stationId",
 		"comment": null,
 		"typeValue": { "type": "simple", "typeValue": "string" },
@@ -2591,6 +2579,18 @@ com.qmino.miredot.restApiSource.tos["com_grndctl_model_station_Station_out"].con
 		"name": "elevationM",
 		"comment": null,
 		"typeValue": { "type": "simple", "typeValue": "number" },
+		"deprecated": false
+	},
+	{
+		"name": "wmoId",
+		"comment": null,
+		"typeValue": { "type": "simple", "typeValue": "string" },
+		"deprecated": false
+	},
+	{
+		"name": "siteType",
+		"comment": null,
+		"typeValue": com.qmino.miredot.restApiSource.tos["com_grndctl_model_station_SiteType_out"],
 		"deprecated": false
 	},
 	{
@@ -2969,7 +2969,7 @@ com.qmino.miredot.restApiSource.interfaces = [
 		"hash": "-859230654",
 		"inputs": {
                 "PATH": [],
-                "QUERY": [{"name": "hrsbefore", "typeValue": { "type": "simple", "typeValue": "number" }, "comment": "Hours before now (Default -> 1.0)", "jaxrs": "QUERY"}],
+                "QUERY": [{"name": "hrsBefore", "typeValue": { "type": "simple", "typeValue": "number" }, "comment": "Hours before now (Default -> 1.0)", "jaxrs": "QUERY"}],
                 "BODY": [],
                 "HEADER": [],
                 "COOKIE": [],
@@ -3001,7 +3001,7 @@ com.qmino.miredot.restApiSource.interfaces = [
                 "PATH": [],
                 "QUERY": [
                     {"name": "station", "typeValue": { "type": "simple", "typeValue": "string" }, "comment": "Station string (Default -> KIAD)", "jaxrs": "QUERY"},
-                    {"name": "hrsbefore", "typeValue": { "type": "simple", "typeValue": "number" }, "comment": "Hours before now (Default -> 1.0)", "jaxrs": "QUERY"}
+                    {"name": "hrsBefore", "typeValue": { "type": "simple", "typeValue": "number" }, "comment": "Hours before now (Default -> 1.0)", "jaxrs": "QUERY"}
                 ],
                 "BODY": [],
                 "HEADER": [],
@@ -3126,7 +3126,7 @@ com.qmino.miredot.restApiSource.interfaces = [
 		"hash": "884432686",
 		"inputs": {
                 "PATH": [],
-                "QUERY": [{"name": "hrsbefore", "typeValue": { "type": "simple", "typeValue": "number" }, "comment": "Hours before now (Default -> 1.0)", "jaxrs": "QUERY"}],
+                "QUERY": [{"name": "hrsBefore", "typeValue": { "type": "simple", "typeValue": "number" }, "comment": "Hours before now (Default -> 1.0)", "jaxrs": "QUERY"}],
                 "BODY": [],
                 "HEADER": [],
                 "COOKIE": [],
