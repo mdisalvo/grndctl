@@ -1,3 +1,19 @@
+/**
+ * This file is part of grndctl.
+ *
+ * grndctl is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * grndctl is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with grndctl.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package com.grndctl.services;
 
 import com.grndctl.model.pirep.PIREP;
@@ -6,18 +22,17 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
-import javax.xml.bind.JAXBException;
-import java.io.IOException;
-import java.io.InputStream;
 import java.net.URL;
 import java.util.List;
 
 /**
- * Created by michael on 10/16/15.
+ * @author Michael Di Salvo
  */
 @Service
 @Deprecated
-public class PirepSvc {
+public class PirepSvc extends AbstractSvc<Response> {
+    
+    private static final String NAME = PirepSvc.class.getSimpleName();
 
     private static final Logger LOG = LogManager.getLogger(PirepSvc.class);
 
@@ -27,22 +42,13 @@ public class PirepSvc {
 
     private static final String HRS_BEFORE = "&hoursBeforeNow=";
 
-    private static Response unmarshall(final InputStream is) throws Exception {
-        Unmarshaller<Response> unmarshaller = new Unmarshaller<>(Response.class);
-        try {
-            return unmarshaller.unmarshall(is);
-        } catch (JAXBException | IOException e) {
-            throw new Exception(e);
-        }
+    public PirepSvc() {
+        super(Response.class, NAME);
     }
 
     @Deprecated
     public List<PIREP> getPireps(final double hrsBefore) throws Exception {
-        URL url = new URL(new StringBuilder()
-                    .append(RQST_URL)
-                    .append(HRS_BEFORE)
-                    .append(hrsBefore)
-                    .toString());
+        URL url = new URL(RQST_URL + HRS_BEFORE + hrsBefore);
         LOG.info(url.toString());
 
         return unmarshall(url.openStream()).getData().getPIREP();

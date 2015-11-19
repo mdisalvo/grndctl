@@ -1,0 +1,1407 @@
+[
+    {
+        "receiptTime": "2015-11-05T00:15:04Z",
+        "observationTime": "2015-11-05T00:09:00Z",
+        "qualityControlFlags": null,
+        "aircraftRef": "C182",
+        "latitude": 45.3444,
+        "longitude": -119.4411,
+        "altitudeFtMsl": 12500,
+        "skyCondition": [],
+        "turbulenceCondition": [
+            {
+                "turbulenceType": null,
+                "turbulenceIntensity": "NEG",
+                "turbulenceBaseFtMsl": null,
+                "turbulenceTopFtMsl": null,
+                "turbulenceFreq": null
+            }
+        ],
+        "icingCondition": [],
+        "visibilityStatuteMi": null,
+        "wxString": null,
+        "tempC": -7,
+        "windDirDegrees": 45,
+        "windSpeedKt": 10,
+        "vertGustKt": null,
+        "reportType": "PIREP",
+        "rawText": "HRI UA /OV PDT225030 /TM 0009 /FL125 /TP C182 /TA M07 /WV 04510KT /TB NEG /RM BKN CI"
+    },
+    {
+        "receiptTime": "2015-11-05T00:15:04Z",
+        "observationTime": "2015-11-05T00:07:00Z",
+        "qualityControlFlags": null,
+        "aircraftRef": "AA1",
+        "latitude": 30.5513,
+        "longitude": -83.7831,
+        "altitudeFtMsl": 3000,
+        "skyCondition": [],
+        "turbulenceCondition": [
+            {
+                "turbulenceType": null,
+                "turbulenceIntensity": "NEG",
+                "turbulenceBaseFtMsl": null,
+                "turbulenceTopFtMsl": null,
+                "turbulenceFreq": null
+            }
+        ],
+        "icingCondition": [],
+        "visibilityStatuteMi": null,
+        "wxString": null,
+        "tempC": null,
+        "windDirDegrees": null,
+        "windSpeedKt": null,
+        "vertGustKt": null,
+        "reportType": "PIREP",
+        "rawText": "TVI UA /OV GEF /TM 0007 /FL030 /TP AA1 /TB NEG /RM SKC ABV SMOOTH"
+    },
+    {
+        "receiptTime": "2015-11-05T00:15:07Z",
+        "observationTime": "2015-11-05T00:05:00Z",
+        "qualityControlFlags": null,
+        "aircraftRef": "CRJ7",
+        "latitude": 40.7051,
+        "longitude": -112.1681,
+        "altitudeFtMsl": 12500,
+        "skyCondition": [],
+        "turbulenceCondition": [],
+        "icingCondition": [
+            {
+                "icingType": "RIME",
+                "icingIntensity": "MOD",
+                "icingBaseFtMsl": 10000,
+                "icingTopFtMsl": 12500
+            }
+        ],
+        "visibilityStatuteMi": null,
+        "wxString": null,
+        "tempC": -14,
+        "windDirDegrees": null,
+        "windSpeedKt": null,
+        "vertGustKt": null,
+        "reportType": "PIREP",
+        "rawText": "SLC UA /OV SLC240010 /TM 0005 /FL125 /TP CRJ7 /TA M14 /IC MOD RIME 100-125 /RM DURC"
+    },
+    {
+        "receiptTime": "2015-11-05T00:15:07Z",
+        "observationTime": "2015-11-05T00:05:00Z",
+        "qualityControlFlags": null,
+        "aircraftRef": "PA28",
+        "latitude": 28.1053,
+        "longitude": -80.6353,
+        "altitudeFtMsl": 1700,
+        "skyCondition": [],
+        "turbulenceCondition": [],
+        "icingCondition": [],
+        "visibilityStatuteMi": null,
+        "wxString": null,
+        "tempC": null,
+        "windDirDegrees": null,
+        "windSpeedKt": null,
+        "vertGustKt": null,
+        "reportType": "PIREP",
+        "rawText": "MLB UA /OV MLB 270/07/TM 0005/FL017/TP PA28/RM BASES 017, 3 MILES WEST BKN012"
+    },
+    {
+        "receiptTime": "2015-11-05T00:15:07Z",
+        "observationTime": "2015-11-05T00:02:00Z",
+        "qualityControlFlags": {
+            "midPointAssumed": null,
+            "noTimeStamp": null,
+            "fltLvlRange": null,
+            "aboveGroundLevelIndicated": null,
+            "noFltLvl": "TRUE",
+            "badLocation": null
+        },
+        "aircraftRef": "B712",
+        "latitude": 33.6291,
+        "longitude": -84.535,
+        "altitudeFtMsl": 2200,
+        "skyCondition": [
+            {
+                "skyCover": "OVC",
+                "cloudBaseFtMsl": 1300,
+                "cloudTopFtMsl": 3000
+            }
+        ],
+        "turbulenceCondition": [],
+        "icingCondition": [],
+        "visibilityStatuteMi": null,
+        "wxString": null,
+        "tempC": null,
+        "windDirDegrees": null,
+        "windSpeedKt": null,
+        "vertGustKt": null,
+        "reportType": "PIREP",
+        "rawText": "ATL UA /OV ATL270005 /TM 0002 /FLUNKN /TP B712 /SK OVC013-TOP030 /RM FA ILS10"
+    },
+    {
+        "receiptTime": "2015-11-05T00:15:07Z",
+        "observationTime": "2015-11-05T00:00:00Z",
+        "qualityControlFlags": null,
+        "aircraftRef": "C27J",
+        "latitude": 38.0538,
+        "longitude": -103.1843,
+        "altitudeFtMsl": 24000,
+        "skyCondition": [],
+        "turbulenceCondition": [],
+        "icingCondition": [
+            {
+                "icingType": "RIME",
+                "icingIntensity": "LGT",
+                "icingBaseFtMsl": null,
+                "icingTopFtMsl": null
+            }
+        ],
+        "visibilityStatuteMi": null,
+        "wxString": null,
+        "tempC": -16,
+        "windDirDegrees": null,
+        "windSpeedKt": null,
+        "vertGustKt": null,
+        "reportType": "PIREP",
+        "rawText": "LAA UA /OV LAA250025/TM 0000/FL240/TP C27J/TA M16/IC LGT RIME/RM ZDV"
+    },
+    {
+        "receiptTime": "2015-11-05T00:01:41Z",
+        "observationTime": "2015-11-05T00:00:00Z",
+        "qualityControlFlags": {
+            "midPointAssumed": null,
+            "noTimeStamp": null,
+            "fltLvlRange": null,
+            "aboveGroundLevelIndicated": null,
+            "noFltLvl": "TRUE",
+            "badLocation": null
+        },
+        "aircraftRef": "DH8D",
+        "latitude": 50.4041,
+        "longitude": -104.4099,
+        "altitudeFtMsl": 9500,
+        "skyCondition": [],
+        "turbulenceCondition": [],
+        "icingCondition": [
+            {
+                "icingType": "RIME",
+                "icingIntensity": "MOD",
+                "icingBaseFtMsl": 7500,
+                "icingTopFtMsl": 11500
+            }
+        ],
+        "visibilityStatuteMi": null,
+        "wxString": null,
+        "tempC": null,
+        "windDirDegrees": null,
+        "windSpeedKt": null,
+        "vertGustKt": null,
+        "reportType": "PIREP",
+        "rawText": "WG UA /OV CYQR 100010 /TM 0000 /FLDURD /TP DH8D /IC MDT RIME 075-115"
+    },
+    {
+        "receiptTime": "2015-11-05T00:10:24Z",
+        "observationTime": "2015-11-04T23:59:00Z",
+        "qualityControlFlags": {
+            "midPointAssumed": null,
+            "noTimeStamp": null,
+            "fltLvlRange": null,
+            "aboveGroundLevelIndicated": null,
+            "noFltLvl": "TRUE",
+            "badLocation": null
+        },
+        "aircraftRef": "E145",
+        "latitude": 32.814,
+        "longitude": -97.0377,
+        "altitudeFtMsl": 4800,
+        "skyCondition": [
+            {
+                "skyCover": "OVC",
+                "cloudBaseFtMsl": 4500,
+                "cloudTopFtMsl": 5100
+            }
+        ],
+        "turbulenceCondition": [],
+        "icingCondition": [],
+        "visibilityStatuteMi": null,
+        "wxString": null,
+        "tempC": null,
+        "windDirDegrees": null,
+        "windSpeedKt": null,
+        "vertGustKt": null,
+        "reportType": "PIREP",
+        "rawText": "DFW UA /OV DFW180005/TM 2359/FLUNKN/TP E145/SK OVC045-TOP051/RM SCT LYR ABV"
+    },
+    {
+        "receiptTime": "2015-11-05T00:10:24Z",
+        "observationTime": "2015-11-04T23:57:00Z",
+        "qualityControlFlags": null,
+        "aircraftRef": "DH8C",
+        "latitude": 39.2219,
+        "longitude": -106.868,
+        "altitudeFtMsl": 21000,
+        "skyCondition": [],
+        "turbulenceCondition": [
+            {
+                "turbulenceType": null,
+                "turbulenceIntensity": "LGT",
+                "turbulenceBaseFtMsl": 16000,
+                "turbulenceTopFtMsl": 21000,
+                "turbulenceFreq": "CONT"
+            }
+        ],
+        "icingCondition": [
+            {
+                "icingType": "RIME",
+                "icingIntensity": "LGT",
+                "icingBaseFtMsl": null,
+                "icingTopFtMsl": null
+            }
+        ],
+        "visibilityStatuteMi": null,
+        "wxString": null,
+        "tempC": -19,
+        "windDirDegrees": null,
+        "windSpeedKt": null,
+        "vertGustKt": null,
+        "reportType": "PIREP",
+        "rawText": "ASE UA /OV ASE/TM 2357/FL210/TP DH8C/TA M19/TB CONS LGT 210-160/IC LGT RIME/RM DURD"
+    },
+    {
+        "receiptTime": "2015-11-05T00:04:36Z",
+        "observationTime": "2015-11-04T23:52:00Z",
+        "qualityControlFlags": null,
+        "aircraftRef": "B747",
+        "latitude": 61.478,
+        "longitude": -159.4302,
+        "altitudeFtMsl": 20000,
+        "skyCondition": [],
+        "turbulenceCondition": [
+            {
+                "turbulenceType": null,
+                "turbulenceIntensity": "MOD",
+                "turbulenceBaseFtMsl": null,
+                "turbulenceTopFtMsl": null,
+                "turbulenceFreq": null
+            }
+        ],
+        "icingCondition": [],
+        "visibilityStatuteMi": null,
+        "wxString": null,
+        "tempC": null,
+        "windDirDegrees": null,
+        "windSpeedKt": null,
+        "vertGustKt": null,
+        "reportType": "PIREP",
+        "rawText": "BET UA /OV BET058081/TM 2352/FL200/TP B747/TB MOD/RM ZAN"
+    },
+    {
+        "receiptTime": "2015-11-05T00:04:36Z",
+        "observationTime": "2015-11-04T23:51:00Z",
+        "qualityControlFlags": null,
+        "aircraftRef": "C210",
+        "latitude": 45.4086,
+        "longitude": -99.7906,
+        "altitudeFtMsl": 6800,
+        "skyCondition": [
+            {
+                "skyCover": null,
+                "cloudBaseFtMsl": null,
+                "cloudTopFtMsl": 6800
+            }
+        ],
+        "turbulenceCondition": [
+            {
+                "turbulenceType": null,
+                "turbulenceIntensity": "NEG",
+                "turbulenceBaseFtMsl": null,
+                "turbulenceTopFtMsl": null,
+                "turbulenceFreq": null
+            }
+        ],
+        "icingCondition": [
+            {
+                "icingType": null,
+                "icingIntensity": "NEG",
+                "icingBaseFtMsl": null,
+                "icingTopFtMsl": null
+            }
+        ],
+        "visibilityStatuteMi": null,
+        "wxString": null,
+        "tempC": null,
+        "windDirDegrees": null,
+        "windSpeedKt": null,
+        "vertGustKt": null,
+        "reportType": "PIREP",
+        "rawText": "ABR UA /OV ABR270060/TM 2351/FL068/TP C210/SK UNKN-TOP068/TA UNKN/TB NEG/IC NEG"
+    },
+    {
+        "receiptTime": "2015-11-05T00:04:36Z",
+        "observationTime": "2015-11-04T23:51:00Z",
+        "qualityControlFlags": null,
+        "aircraftRef": "F2TH",
+        "latitude": 40.178,
+        "longitude": -103.6144,
+        "altitudeFtMsl": 27000,
+        "skyCondition": [],
+        "turbulenceCondition": [
+            {
+                "turbulenceType": null,
+                "turbulenceIntensity": "LGT-MOD",
+                "turbulenceBaseFtMsl": null,
+                "turbulenceTopFtMsl": null,
+                "turbulenceFreq": null
+            }
+        ],
+        "icingCondition": [],
+        "visibilityStatuteMi": null,
+        "wxString": null,
+        "tempC": null,
+        "windDirDegrees": null,
+        "windSpeedKt": null,
+        "vertGustKt": null,
+        "reportType": "PIREP",
+        "rawText": "AKO UA /OV AKO274020/TM 2351/FL270/TP F2TH/TB LGT TO MOD/RM DURD PUFFR4 ARRIVAL FL270-310 ZDV"
+    },
+    {
+        "receiptTime": "2015-11-04T23:58:36Z",
+        "observationTime": "2015-11-04T23:47:00Z",
+        "qualityControlFlags": null,
+        "aircraftRef": "BE58",
+        "latitude": 32.6912,
+        "longitude": -83.6472,
+        "altitudeFtMsl": 700,
+        "skyCondition": [
+            {
+                "skyCover": "OVC",
+                "cloudBaseFtMsl": 700,
+                "cloudTopFtMsl": 4000
+            },
+            {
+                "skyCover": "SCT",
+                "cloudBaseFtMsl": null,
+                "cloudTopFtMsl": null
+            }
+        ],
+        "turbulenceCondition": [],
+        "icingCondition": [],
+        "visibilityStatuteMi": null,
+        "wxString": null,
+        "tempC": null,
+        "windDirDegrees": null,
+        "windSpeedKt": null,
+        "vertGustKt": null,
+        "reportType": "PIREP",
+        "rawText": "MCN UA /OV MCN/TM 2347/FL007/TP BE58/SK OVC007-TOP040/SCT LYR ABV/RM DURGD"
+    },
+    {
+        "receiptTime": "2015-11-04T23:51:35Z",
+        "observationTime": "2015-11-04T23:46:00Z",
+        "qualityControlFlags": null,
+        "aircraftRef": "SF34",
+        "latitude": 55.2674,
+        "longitude": -162.774,
+        "altitudeFtMsl": 16000,
+        "skyCondition": [],
+        "turbulenceCondition": [
+            {
+                "turbulenceType": "CHOP",
+                "turbulenceIntensity": null,
+                "turbulenceBaseFtMsl": null,
+                "turbulenceTopFtMsl": null,
+                "turbulenceFreq": null
+            }
+        ],
+        "icingCondition": [],
+        "visibilityStatuteMi": null,
+        "wxString": null,
+        "tempC": null,
+        "windDirDegrees": null,
+        "windSpeedKt": null,
+        "vertGustKt": null,
+        "reportType": "PIREP",
+        "rawText": "CDB UA /OV CDB/TM 2346/FLUNKN/TP SF34/RM LGT CHOP NO ICG 160-SFC DURD"
+    },
+    {
+        "receiptTime": "2015-11-04T23:51:35Z",
+        "observationTime": "2015-11-04T23:46:00Z",
+        "qualityControlFlags": null,
+        "aircraftRef": "LJ35",
+        "latitude": 39.7463,
+        "longitude": -104.6195,
+        "altitudeFtMsl": 10000,
+        "skyCondition": [
+            {
+                "skyCover": "OVC",
+                "cloudBaseFtMsl": 10000,
+                "cloudTopFtMsl": null
+            }
+        ],
+        "turbulenceCondition": [
+            {
+                "turbulenceType": null,
+                "turbulenceIntensity": "MOD",
+                "turbulenceBaseFtMsl": 8500,
+                "turbulenceTopFtMsl": 10000,
+                "turbulenceFreq": null
+            }
+        ],
+        "icingCondition": [],
+        "visibilityStatuteMi": null,
+        "wxString": null,
+        "tempC": null,
+        "windDirDegrees": null,
+        "windSpeedKt": null,
+        "vertGustKt": null,
+        "reportType": "PIREP",
+        "rawText": "FTG UA /OV APA045015/TM 2346/FL100/TP LJ35/SK OVC100/TB MOD 100-085"
+    },
+    {
+        "receiptTime": "2015-11-04T23:58:36Z",
+        "observationTime": "2015-11-04T23:45:00Z",
+        "qualityControlFlags": null,
+        "aircraftRef": "A321",
+        "latitude": 34.1809,
+        "longitude": -111.3356,
+        "altitudeFtMsl": 15000,
+        "skyCondition": [],
+        "turbulenceCondition": [
+            {
+                "turbulenceType": null,
+                "turbulenceIntensity": "MOD",
+                "turbulenceBaseFtMsl": null,
+                "turbulenceTopFtMsl": null,
+                "turbulenceFreq": null
+            }
+        ],
+        "icingCondition": [],
+        "visibilityStatuteMi": null,
+        "wxString": null,
+        "tempC": null,
+        "windDirDegrees": null,
+        "windSpeedKt": null,
+        "vertGustKt": null,
+        "reportType": "PIREP",
+        "rawText": "PHX UA /OV PXR035055/TM 2345/FL150/TP A321/TB MOD/RM ZAB - FL150 CLIMBING THROUGH FL180"
+    },
+    {
+        "receiptTime": "2015-11-04T23:51:35Z",
+        "observationTime": "2015-11-04T23:45:00Z",
+        "qualityControlFlags": null,
+        "aircraftRef": "B737",
+        "latitude": 29.7948,
+        "longitude": -98.3803,
+        "altitudeFtMsl": 7500,
+        "skyCondition": [
+            {
+                "skyCover": "OVC",
+                "cloudBaseFtMsl": 3000,
+                "cloudTopFtMsl": 7500
+            }
+        ],
+        "turbulenceCondition": [],
+        "icingCondition": [],
+        "visibilityStatuteMi": null,
+        "wxString": null,
+        "tempC": null,
+        "windDirDegrees": null,
+        "windSpeedKt": null,
+        "vertGustKt": null,
+        "reportType": "PIREP",
+        "rawText": "RND UA /OV SAT025010/TM 2345/FL075/TP B737/SK OVC030-TOP075"
+    },
+    {
+        "receiptTime": "2015-11-04T23:51:35Z",
+        "observationTime": "2015-11-04T23:45:00Z",
+        "qualityControlFlags": null,
+        "aircraftRef": "TBM8",
+        "latitude": 36.256,
+        "longitude": -114.9412,
+        "altitudeFtMsl": 7500,
+        "skyCondition": [],
+        "turbulenceCondition": [],
+        "icingCondition": [
+            {
+                "icingType": "MIXED",
+                "icingIntensity": "MOD",
+                "icingBaseFtMsl": null,
+                "icingTopFtMsl": null
+            }
+        ],
+        "visibilityStatuteMi": null,
+        "wxString": null,
+        "tempC": -3,
+        "windDirDegrees": null,
+        "windSpeedKt": null,
+        "vertGustKt": null,
+        "reportType": "PIREP",
+        "rawText": "LSV UA /OV LAS045015/TM 2345/FL075/TP TBM8/TA M03/IC MOD MX"
+    },
+    {
+        "receiptTime": "2015-11-04T23:51:35Z",
+        "observationTime": "2015-11-04T23:44:00Z",
+        "qualityControlFlags": null,
+        "aircraftRef": "C525",
+        "latitude": 43.5137,
+        "longitude": -112.071,
+        "altitudeFtMsl": 10000,
+        "skyCondition": [
+            {
+                "skyCover": "BKN",
+                "cloudBaseFtMsl": 5800,
+                "cloudTopFtMsl": 8000
+            }
+        ],
+        "turbulenceCondition": [],
+        "icingCondition": [
+            {
+                "icingType": "RIME",
+                "icingIntensity": "LGT",
+                "icingBaseFtMsl": 9000,
+                "icingTopFtMsl": 10000
+            }
+        ],
+        "visibilityStatuteMi": null,
+        "wxString": null,
+        "tempC": -10,
+        "windDirDegrees": null,
+        "windSpeedKt": null,
+        "vertGustKt": null,
+        "reportType": "PIREP",
+        "rawText": "KIDA UA /OV KIDA/TM 2344/FL100/TP C525/SK BKN058-TOP080/TA M10-M08/IC LGT RIME 100-090/RM DURGD ILS RY20 KIDA"
+    },
+    {
+        "receiptTime": "2015-11-04T23:51:35Z",
+        "observationTime": "2015-11-04T23:43:00Z",
+        "qualityControlFlags": null,
+        "aircraftRef": "C510",
+        "latitude": 44.4482,
+        "longitude": -95.5918,
+        "altitudeFtMsl": 4100,
+        "skyCondition": [
+            {
+                "skyCover": "OVC",
+                "cloudBaseFtMsl": 4100,
+                "cloudTopFtMsl": null
+            }
+        ],
+        "turbulenceCondition": [],
+        "icingCondition": [
+            {
+                "icingType": null,
+                "icingIntensity": "NEG",
+                "icingBaseFtMsl": null,
+                "icingTopFtMsl": null
+            }
+        ],
+        "visibilityStatuteMi": null,
+        "wxString": null,
+        "tempC": 21,
+        "windDirDegrees": null,
+        "windSpeedKt": null,
+        "vertGustKt": null,
+        "reportType": "PIREP",
+        "rawText": "MML UA /OV MML090010/TM 2343/FL041/TP C510/SK OVC041/TA 21/IC NEG"
+    },
+    {
+        "receiptTime": "2015-11-04T23:51:35Z",
+        "observationTime": "2015-11-04T23:42:00Z",
+        "qualityControlFlags": null,
+        "aircraftRef": "B737",
+        "latitude": 40.1428,
+        "longitude": -105.4149,
+        "altitudeFtMsl": 18000,
+        "skyCondition": [],
+        "turbulenceCondition": [
+            {
+                "turbulenceType": null,
+                "turbulenceIntensity": "LGT-MOD",
+                "turbulenceBaseFtMsl": null,
+                "turbulenceTopFtMsl": 18000,
+                "turbulenceFreq": null
+            }
+        ],
+        "icingCondition": [],
+        "visibilityStatuteMi": null,
+        "wxString": null,
+        "tempC": null,
+        "windDirDegrees": null,
+        "windSpeedKt": null,
+        "vertGustKt": null,
+        "reportType": "PIREP",
+        "rawText": "LMO UA /OV DEN300040/TM 2342/FL180/TP B737/TB LGT OCNL MOD BLO 180"
+    },
+    {
+        "receiptTime": "2015-11-04T23:51:35Z",
+        "observationTime": "2015-11-04T23:42:00Z",
+        "qualityControlFlags": null,
+        "aircraftRef": "B737",
+        "latitude": 40.1428,
+        "longitude": -105.4149,
+        "altitudeFtMsl": 25000,
+        "skyCondition": [],
+        "turbulenceCondition": [
+            {
+                "turbulenceType": null,
+                "turbulenceIntensity": "MOD",
+                "turbulenceBaseFtMsl": 18000,
+                "turbulenceTopFtMsl": 25000,
+                "turbulenceFreq": null
+            }
+        ],
+        "icingCondition": [],
+        "visibilityStatuteMi": null,
+        "wxString": null,
+        "tempC": -25,
+        "windDirDegrees": null,
+        "windSpeedKt": null,
+        "vertGustKt": null,
+        "reportType": "PIREP",
+        "rawText": "LMO UA /OV DEN300040/TM 2342/FL250/TP B737/TA M25/TB MOD 250-180"
+    },
+    {
+        "receiptTime": "2015-11-04T23:51:35Z",
+        "observationTime": "2015-11-04T23:42:00Z",
+        "qualityControlFlags": null,
+        "aircraftRef": "B737",
+        "latitude": 40.1428,
+        "longitude": -105.4149,
+        "altitudeFtMsl": 22000,
+        "skyCondition": [],
+        "turbulenceCondition": [],
+        "icingCondition": [
+            {
+                "icingType": "RIME",
+                "icingIntensity": "MOD",
+                "icingBaseFtMsl": null,
+                "icingTopFtMsl": null
+            }
+        ],
+        "visibilityStatuteMi": null,
+        "wxString": null,
+        "tempC": -25,
+        "windDirDegrees": null,
+        "windSpeedKt": null,
+        "vertGustKt": null,
+        "reportType": "PIREP",
+        "rawText": "LMO UA /OV DEN300040/TM 2342/FL220/TP B737/TA M25/IC MOD RIME"
+    },
+    {
+        "receiptTime": "2015-11-04T23:45:05Z",
+        "observationTime": "2015-11-04T23:39:00Z",
+        "qualityControlFlags": null,
+        "aircraftRef": "O1",
+        "latitude": 59.8034,
+        "longitude": -151.2699,
+        "altitudeFtMsl": 2000,
+        "skyCondition": [],
+        "turbulenceCondition": [
+            {
+                "turbulenceType": null,
+                "turbulenceIntensity": "NEG",
+                "turbulenceBaseFtMsl": null,
+                "turbulenceTopFtMsl": null,
+                "turbulenceFreq": null
+            }
+        ],
+        "icingCondition": [
+            {
+                "icingType": null,
+                "icingIntensity": "NEGclr",
+                "icingBaseFtMsl": 2000,
+                "icingTopFtMsl": null
+            }
+        ],
+        "visibilityStatuteMi": 99,
+        "wxString": null,
+        "tempC": null,
+        "windDirDegrees": null,
+        "windSpeedKt": null,
+        "vertGustKt": null,
+        "reportType": "PIREP",
+        "rawText": "HOM UA /OV HOM045008 /TM 2339 /FL020 /TP O1 /WX FV99SM /TB NEG"
+    },
+    {
+        "receiptTime": "2015-11-04T23:58:36Z",
+        "observationTime": "2015-11-04T23:38:00Z",
+        "qualityControlFlags": null,
+        "aircraftRef": "C206",
+        "latitude": 32.5645,
+        "longitude": -110.3567,
+        "altitudeFtMsl": 10000,
+        "skyCondition": [],
+        "turbulenceCondition": [],
+        "icingCondition": [
+            {
+                "icingType": "CLEAR",
+                "icingIntensity": "LGT",
+                "icingBaseFtMsl": null,
+                "icingTopFtMsl": null
+            }
+        ],
+        "visibilityStatuteMi": null,
+        "wxString": null,
+        "tempC": -4,
+        "windDirDegrees": null,
+        "windSpeedKt": null,
+        "vertGustKt": null,
+        "reportType": "PIREP",
+        "rawText": "TUS UA /OV TUS045040/TM 2338/FL100/TP C206/TA M04/IC LGT CLR/RM ZAB"
+    },
+    {
+        "receiptTime": "2015-11-04T23:52:46Z",
+        "observationTime": "2015-11-04T23:38:00Z",
+        "qualityControlFlags": {
+            "midPointAssumed": null,
+            "noTimeStamp": null,
+            "fltLvlRange": null,
+            "aboveGroundLevelIndicated": null,
+            "noFltLvl": null,
+            "badLocation": "TRUE"
+        },
+        "aircraftRef": "A321",
+        "latitude": 42.7867,
+        "longitude": -85.4971,
+        "altitudeFtMsl": 35000,
+        "skyCondition": [],
+        "turbulenceCondition": [
+            {
+                "turbulenceType": "CHOP",
+                "turbulenceIntensity": "LGT-MOD",
+                "turbulenceBaseFtMsl": null,
+                "turbulenceTopFtMsl": null,
+                "turbulenceFreq": "CONT"
+            }
+        ],
+        "icingCondition": [],
+        "visibilityStatuteMi": null,
+        "wxString": null,
+        "tempC": null,
+        "windDirDegrees": null,
+        "windSpeedKt": null,
+        "vertGustKt": null,
+        "reportType": "PIREP",
+        "rawText": "GRR UA /OV VIO180025/TM 2338/FL350/TP A321/TB CONT LGT TO MOD CHOP"
+    },
+    {
+        "receiptTime": "2015-11-04T23:44:31Z",
+        "observationTime": "2015-11-04T23:38:00Z",
+        "qualityControlFlags": null,
+        "aircraftRef": "PA18",
+        "latitude": 38.9734,
+        "longitude": -104.82,
+        "altitudeFtMsl": 7200,
+        "skyCondition": [],
+        "turbulenceCondition": [
+            {
+                "turbulenceType": null,
+                "turbulenceIntensity": "MOD",
+                "turbulenceBaseFtMsl": null,
+                "turbulenceTopFtMsl": null,
+                "turbulenceFreq": null
+            }
+        ],
+        "icingCondition": [],
+        "visibilityStatuteMi": null,
+        "wxString": null,
+        "tempC": null,
+        "windDirDegrees": null,
+        "windSpeedKt": null,
+        "vertGustKt": null,
+        "reportType": "PIREP",
+        "rawText": "KAFF UA /OV KAFF/TM 2338/FL072/TP PA18/TB MOD"
+    },
+    {
+        "receiptTime": "2015-11-04T23:44:31Z",
+        "observationTime": "2015-11-04T23:38:00Z",
+        "qualityControlFlags": null,
+        "aircraftRef": "LJ45",
+        "latitude": 39.3289,
+        "longitude": -105.4024,
+        "altitudeFtMsl": 23000,
+        "skyCondition": [],
+        "turbulenceCondition": [],
+        "icingCondition": [
+            {
+                "icingType": "RIME",
+                "icingIntensity": "LGT",
+                "icingBaseFtMsl": 15000,
+                "icingTopFtMsl": 23000
+            }
+        ],
+        "visibilityStatuteMi": null,
+        "wxString": null,
+        "tempC": -15,
+        "windDirDegrees": null,
+        "windSpeedKt": null,
+        "vertGustKt": null,
+        "reportType": "PIREP",
+        "rawText": "4BM UA /OV DEN230045/TM 2338/FL230/TP LJ45/TA M15/IC LGT RIME 230-150"
+    },
+    {
+        "receiptTime": "2015-11-04T23:45:05Z",
+        "observationTime": "2015-11-04T23:36:00Z",
+        "qualityControlFlags": null,
+        "aircraftRef": "C402",
+        "latitude": 39.8479,
+        "longitude": -91.2789,
+        "altitudeFtMsl": 4000,
+        "skyCondition": [
+            {
+                "skyCover": "SKC",
+                "cloudBaseFtMsl": 4000,
+                "cloudTopFtMsl": 60000
+            }
+        ],
+        "turbulenceCondition": [],
+        "icingCondition": [
+            {
+                "icingType": null,
+                "icingIntensity": "NEGclr",
+                "icingBaseFtMsl": 4000,
+                "icingTopFtMsl": 60000
+            }
+        ],
+        "visibilityStatuteMi": null,
+        "wxString": null,
+        "tempC": null,
+        "windDirDegrees": null,
+        "windSpeedKt": null,
+        "vertGustKt": null,
+        "reportType": "PIREP",
+        "rawText": "UIN UA /OV UIN/TM 2336/FL040/TP C402/SK SKC/RM /ZKC FDC"
+    },
+    {
+        "receiptTime": "2015-11-04T23:51:35Z",
+        "observationTime": "2015-11-04T23:35:00Z",
+        "qualityControlFlags": null,
+        "aircraftRef": "A320",
+        "latitude": 39.9994,
+        "longitude": -105.5733,
+        "altitudeFtMsl": 25000,
+        "skyCondition": [],
+        "turbulenceCondition": [
+            {
+                "turbulenceType": null,
+                "turbulenceIntensity": "MOD",
+                "turbulenceBaseFtMsl": null,
+                "turbulenceTopFtMsl": null,
+                "turbulenceFreq": "CONT"
+            }
+        ],
+        "icingCondition": [],
+        "visibilityStatuteMi": null,
+        "wxString": null,
+        "tempC": null,
+        "windDirDegrees": null,
+        "windSpeedKt": null,
+        "vertGustKt": null,
+        "reportType": "PIREP",
+        "rawText": "EGE UA /OV RLG090040/TM 2335/FL250/TP A320/TB CONS MOD TURB/RM ZDV"
+    },
+    {
+        "receiptTime": "2015-11-04T23:51:35Z",
+        "observationTime": "2015-11-04T23:34:00Z",
+        "qualityControlFlags": null,
+        "aircraftRef": "SR22",
+        "latitude": 44.184,
+        "longitude": -105.5843,
+        "altitudeFtMsl": 10000,
+        "skyCondition": [],
+        "turbulenceCondition": [],
+        "icingCondition": [
+            {
+                "icingType": "MIXED",
+                "icingIntensity": "LGT",
+                "icingBaseFtMsl": null,
+                "icingTopFtMsl": null
+            }
+        ],
+        "visibilityStatuteMi": null,
+        "wxString": null,
+        "tempC": -6,
+        "windDirDegrees": null,
+        "windSpeedKt": null,
+        "vertGustKt": null,
+        "reportType": "PIREP",
+        "rawText": "GCC UA /OV GCC190010/TM 2334/FL100/TP SR22/TA M06/IC LGT MX/RM ZDV"
+    },
+    {
+        "receiptTime": "2015-11-04T23:45:05Z",
+        "observationTime": "2015-11-04T23:31:00Z",
+        "qualityControlFlags": null,
+        "aircraftRef": "B738",
+        "latitude": 44.2528,
+        "longitude": -121.303,
+        "altitudeFtMsl": 36000,
+        "skyCondition": [],
+        "turbulenceCondition": [
+            {
+                "turbulenceType": null,
+                "turbulenceIntensity": "NEG",
+                "turbulenceBaseFtMsl": null,
+                "turbulenceTopFtMsl": null,
+                "turbulenceFreq": null
+            }
+        ],
+        "icingCondition": [],
+        "visibilityStatuteMi": null,
+        "wxString": null,
+        "tempC": null,
+        "windDirDegrees": null,
+        "windSpeedKt": null,
+        "vertGustKt": null,
+        "reportType": "PIREP",
+        "rawText": "RDM UA /OV DSD/TM 2331/FL360/TP B738/TB NEG/RM AWC-WEBASA"
+    },
+    {
+        "receiptTime": "2015-11-04T23:44:31Z",
+        "observationTime": "2015-11-04T23:31:00Z",
+        "qualityControlFlags": null,
+        "aircraftRef": "BE9L",
+        "latitude": 40.7173,
+        "longitude": -104.8893,
+        "altitudeFtMsl": 22000,
+        "skyCondition": [],
+        "turbulenceCondition": [
+            {
+                "turbulenceType": null,
+                "turbulenceIntensity": "LGT-MOD",
+                "turbulenceBaseFtMsl": null,
+                "turbulenceTopFtMsl": null,
+                "turbulenceFreq": null
+            }
+        ],
+        "icingCondition": [
+            {
+                "icingType": "RIME",
+                "icingIntensity": "LGT",
+                "icingBaseFtMsl": null,
+                "icingTopFtMsl": null
+            }
+        ],
+        "visibilityStatuteMi": null,
+        "wxString": null,
+        "tempC": -27,
+        "windDirDegrees": null,
+        "windSpeedKt": null,
+        "vertGustKt": null,
+        "reportType": "PIREP",
+        "rawText": "GXY UA /OV GLL310020/TM 2331/FL220/TP BE9L/TA M27/TB LGT-MOD/IC LGT RIME/RM ZDV"
+    },
+    {
+        "receiptTime": "2015-11-04T23:51:35Z",
+        "observationTime": "2015-11-04T23:30:00Z",
+        "qualityControlFlags": null,
+        "aircraftRef": "PA46",
+        "latitude": 37.6205,
+        "longitude": -105.6552,
+        "altitudeFtMsl": 17500,
+        "skyCondition": [],
+        "turbulenceCondition": [
+            {
+                "turbulenceType": null,
+                "turbulenceIntensity": "MOD",
+                "turbulenceBaseFtMsl": null,
+                "turbulenceTopFtMsl": null,
+                "turbulenceFreq": null
+            }
+        ],
+        "icingCondition": [],
+        "visibilityStatuteMi": null,
+        "wxString": null,
+        "tempC": null,
+        "windDirDegrees": null,
+        "windSpeedKt": null,
+        "vertGustKt": null,
+        "reportType": "PIREP",
+        "rawText": "ALS UA /OV ALS025018/TM 2330/FL175/TP PA46/TB MOD TURB/RM ZDV"
+    },
+    {
+        "receiptTime": "2015-11-04T23:35:05Z",
+        "observationTime": "2015-11-04T23:30:00Z",
+        "qualityControlFlags": {
+            "midPointAssumed": null,
+            "noTimeStamp": null,
+            "fltLvlRange": null,
+            "aboveGroundLevelIndicated": null,
+            "noFltLvl": "TRUE",
+            "badLocation": null
+        },
+        "aircraftRef": "BE20",
+        "latitude": 46.7727,
+        "longitude": -100.746,
+        "altitudeFtMsl": 4900,
+        "skyCondition": [
+            {
+                "skyCover": "OVC",
+                "cloudBaseFtMsl": 2600,
+                "cloudTopFtMsl": 7200
+            },
+            {
+                "skyCover": "SKC",
+                "cloudBaseFtMsl": 7200,
+                "cloudTopFtMsl": 60000
+            }
+        ],
+        "turbulenceCondition": [],
+        "icingCondition": [
+            {
+                "icingType": null,
+                "icingIntensity": "NEG",
+                "icingBaseFtMsl": null,
+                "icingTopFtMsl": null
+            },
+            {
+                "icingType": null,
+                "icingIntensity": "NEGclr",
+                "icingBaseFtMsl": 7200,
+                "icingTopFtMsl": 60000
+            }
+        ],
+        "visibilityStatuteMi": null,
+        "wxString": null,
+        "tempC": null,
+        "windDirDegrees": null,
+        "windSpeedKt": null,
+        "vertGustKt": null,
+        "reportType": "PIREP",
+        "rawText": "BIS UA /OV KBIS/TM 2330/FLUNKN/TP BE20/SK OVC026-TOP072/IC NEG/RM DURGC. CLEAR ABOVE. AWC-WEBFAAFAR"
+    },
+    {
+        "receiptTime": "2015-11-04T23:31:22Z",
+        "observationTime": "2015-11-04T23:30:00Z",
+        "qualityControlFlags": {
+            "midPointAssumed": null,
+            "noTimeStamp": null,
+            "fltLvlRange": null,
+            "aboveGroundLevelIndicated": null,
+            "noFltLvl": "TRUE",
+            "badLocation": null
+        },
+        "aircraftRef": "PA30",
+        "latitude": 48.7845,
+        "longitude": -122.8691,
+        "altitudeFtMsl": 4800,
+        "skyCondition": [],
+        "turbulenceCondition": [],
+        "icingCondition": [
+            {
+                "icingType": "RIME",
+                "icingIntensity": "LGT",
+                "icingBaseFtMsl": 4500,
+                "icingTopFtMsl": 5000
+            }
+        ],
+        "visibilityStatuteMi": null,
+        "wxString": null,
+        "tempC": null,
+        "windDirDegrees": null,
+        "windSpeedKt": null,
+        "vertGustKt": null,
+        "reportType": "PIREP",
+        "rawText": "VR UA /OV HUH 230015 /TM 2330 /FLDURD /TP PA30 /IC LGT RIME 045-050"
+    },
+    {
+        "receiptTime": "2015-11-04T23:35:05Z",
+        "observationTime": "2015-11-04T23:23:00Z",
+        "qualityControlFlags": null,
+        "aircraftRef": "C208",
+        "latitude": 33.2835,
+        "longitude": -115.8146,
+        "altitudeFtMsl": 10000,
+        "skyCondition": [],
+        "turbulenceCondition": [],
+        "icingCondition": [
+            {
+                "icingType": "MIXED",
+                "icingIntensity": "MOD",
+                "icingBaseFtMsl": 10000,
+                "icingTopFtMsl": null
+            }
+        ],
+        "visibilityStatuteMi": null,
+        "wxString": null,
+        "tempC": -8,
+        "windDirDegrees": null,
+        "windSpeedKt": null,
+        "vertGustKt": null,
+        "reportType": "PIREP",
+        "rawText": "TRM UA /OV TRM140027/TM 2323/FL100/TP C208/TA M08/IC MOD MX 100/RM MOD MIX ICING 080-100-ZLAWC AWC-WEBFAAZLA"
+    },
+    {
+        "receiptTime": "2015-11-04T23:35:05Z",
+        "observationTime": "2015-11-04T23:23:00Z",
+        "qualityControlFlags": null,
+        "aircraftRef": "B737",
+        "latitude": 36.3732,
+        "longitude": -114.7947,
+        "altitudeFtMsl": 9500,
+        "skyCondition": [],
+        "turbulenceCondition": [],
+        "icingCondition": [
+            {
+                "icingType": "RIME",
+                "icingIntensity": "MOD",
+                "icingBaseFtMsl": 9500,
+                "icingTopFtMsl": 12000
+            }
+        ],
+        "visibilityStatuteMi": null,
+        "wxString": null,
+        "tempC": 3,
+        "windDirDegrees": null,
+        "windSpeedKt": null,
+        "vertGustKt": null,
+        "reportType": "PIREP",
+        "rawText": "LSV UA /OV LAS045025 /TM 2323 /FL095 /TP B737 /TA 03 /IC MOD RIME 095-120"
+    },
+    {
+        "receiptTime": "2015-11-04T23:30:39Z",
+        "observationTime": "2015-11-04T23:23:00Z",
+        "qualityControlFlags": {
+            "midPointAssumed": null,
+            "noTimeStamp": null,
+            "fltLvlRange": null,
+            "aboveGroundLevelIndicated": null,
+            "noFltLvl": null,
+            "badLocation": "TRUE"
+        },
+        "aircraftRef": "C206",
+        "latitude": 60.2043,
+        "longitude": -154.319,
+        "altitudeFtMsl": 3500,
+        "skyCondition": [
+            {
+                "skyCover": "BKN",
+                "cloudBaseFtMsl": 1000,
+                "cloudTopFtMsl": 2000
+            }
+        ],
+        "turbulenceCondition": [
+            {
+                "turbulenceType": null,
+                "turbulenceIntensity": "LGT-MOD",
+                "turbulenceBaseFtMsl": null,
+                "turbulenceTopFtMsl": null,
+                "turbulenceFreq": null
+            }
+        ],
+        "icingCondition": [],
+        "visibilityStatuteMi": null,
+        "wxString": null,
+        "tempC": null,
+        "windDirDegrees": null,
+        "windSpeedKt": null,
+        "vertGustKt": null,
+        "reportType": "PIREP",
+        "rawText": "LVR UA /OV TPO-LVR/TM 2323/FL035/TP C206/SK BKN010-TOP020/TB LGT-MOD/RM LGT TO MOD ON THE WEST END SMOOTHED OUT OVER THE EAST RCO"
+    },
+    {
+        "receiptTime": "2015-11-04T23:30:39Z",
+        "observationTime": "2015-11-04T23:21:00Z",
+        "qualityControlFlags": {
+            "midPointAssumed": "TRUE",
+            "noTimeStamp": null,
+            "fltLvlRange": null,
+            "aboveGroundLevelIndicated": null,
+            "noFltLvl": null,
+            "badLocation": null
+        },
+        "aircraftRef": "C172",
+        "latitude": 61.7562,
+        "longitude": -149.9732,
+        "altitudeFtMsl": 2500,
+        "skyCondition": [],
+        "turbulenceCondition": [
+            {
+                "turbulenceType": null,
+                "turbulenceIntensity": "NEG",
+                "turbulenceBaseFtMsl": null,
+                "turbulenceTopFtMsl": null,
+                "turbulenceFreq": null
+            }
+        ],
+        "icingCondition": [],
+        "visibilityStatuteMi": null,
+        "wxString": null,
+        "tempC": null,
+        "windDirDegrees": null,
+        "windSpeedKt": null,
+        "vertGustKt": null,
+        "reportType": "PIREP",
+        "rawText": "TKA UA /OV MRI-TKA/TM 2321/FL025/TP C172/TB NEG"
+    },
+    {
+        "receiptTime": "2015-11-04T23:32:24Z",
+        "observationTime": "2015-11-04T23:21:00Z",
+        "qualityControlFlags": null,
+        "aircraftRef": "BE30",
+        "latitude": 35.2672,
+        "longitude": -77.7025,
+        "altitudeFtMsl": 700,
+        "skyCondition": [
+            {
+                "skyCover": "OVC",
+                "cloudBaseFtMsl": 700,
+                "cloudTopFtMsl": null
+            }
+        ],
+        "turbulenceCondition": [],
+        "icingCondition": [],
+        "visibilityStatuteMi": null,
+        "wxString": null,
+        "tempC": null,
+        "windDirDegrees": null,
+        "windSpeedKt": null,
+        "vertGustKt": null,
+        "reportType": "PIREP",
+        "rawText": "KISO UA /OV KISO230006/TM 2321/FL007/TP BE30/SK OVC007"
+    },
+    {
+        "receiptTime": "2015-11-04T23:32:24Z",
+        "observationTime": "2015-11-04T23:20:00Z",
+        "qualityControlFlags": null,
+        "aircraftRef": "PC12",
+        "latitude": 34.6608,
+        "longitude": -106.426,
+        "altitudeFtMsl": 13000,
+        "skyCondition": [],
+        "turbulenceCondition": [],
+        "icingCondition": [
+            {
+                "icingType": "MIXED",
+                "icingIntensity": "LGT",
+                "icingBaseFtMsl": null,
+                "icingTopFtMsl": null
+            }
+        ],
+        "visibilityStatuteMi": null,
+        "wxString": null,
+        "tempC": -5,
+        "windDirDegrees": null,
+        "windSpeedKt": null,
+        "vertGustKt": null,
+        "reportType": "PIREP",
+        "rawText": "E80 UA /OV ABQ140030/TM 2320/FL130/TP PC12/TA M05/IC LGT MX"
+    },
+    {
+        "receiptTime": "2015-11-04T23:32:24Z",
+        "observationTime": "2015-11-04T23:18:00Z",
+        "qualityControlFlags": {
+            "midPointAssumed": null,
+            "noTimeStamp": null,
+            "fltLvlRange": null,
+            "aboveGroundLevelIndicated": null,
+            "noFltLvl": "TRUE",
+            "badLocation": null
+        },
+        "aircraftRef": "E135",
+        "latitude": 39.3685,
+        "longitude": -94.7371,
+        "altitudeFtMsl": 3000,
+        "skyCondition": [
+            {
+                "skyCover": "OVC",
+                "cloudBaseFtMsl": 2800,
+                "cloudTopFtMsl": 3100
+            }
+        ],
+        "turbulenceCondition": [],
+        "icingCondition": [],
+        "visibilityStatuteMi": null,
+        "wxString": null,
+        "tempC": null,
+        "windDirDegrees": null,
+        "windSpeedKt": null,
+        "vertGustKt": null,
+        "reportType": "PIREP",
+        "rawText": "MCI UA /OV MCI360005/TM 2318/FLUNKN/TP E135/SK OVC028-TOP031"
+    },
+    {
+        "receiptTime": "2015-11-04T23:32:24Z",
+        "observationTime": "2015-11-04T23:17:00Z",
+        "qualityControlFlags": null,
+        "aircraftRef": "B737",
+        "latitude": 33.4339,
+        "longitude": -112.311,
+        "altitudeFtMsl": 13500,
+        "skyCondition": [],
+        "turbulenceCondition": [],
+        "icingCondition": [
+            {
+                "icingType": "RIME",
+                "icingIntensity": "LGT",
+                "icingBaseFtMsl": null,
+                "icingTopFtMsl": null
+            }
+        ],
+        "visibilityStatuteMi": null,
+        "wxString": null,
+        "tempC": 3,
+        "windDirDegrees": null,
+        "windSpeedKt": null,
+        "vertGustKt": null,
+        "reportType": "PIREP",
+        "rawText": "GEU UA /OV PHX270015/TM 2317/FL135/TP B737/TA 03/IC LGT RIME"
+    },
+    {
+        "receiptTime": "2015-11-04T23:23:39Z",
+        "observationTime": "2015-11-04T23:17:00Z",
+        "qualityControlFlags": null,
+        "aircraftRef": "B737",
+        "latitude": 26.1882,
+        "longitude": -92.5087,
+        "altitudeFtMsl": 40000,
+        "skyCondition": [],
+        "turbulenceCondition": [
+            {
+                "turbulenceType": null,
+                "turbulenceIntensity": "NEG",
+                "turbulenceBaseFtMsl": null,
+                "turbulenceTopFtMsl": null,
+                "turbulenceFreq": null
+            }
+        ],
+        "icingCondition": [],
+        "visibilityStatuteMi": null,
+        "wxString": null,
+        "tempC": null,
+        "windDirDegrees": null,
+        "windSpeedKt": null,
+        "vertGustKt": null,
+        "reportType": "PIREP",
+        "rawText": "GLS UA /OV LLA182209/TM 2317/FL400/TP B737/TB NEG/RM AWC-WEB/SWA"
+    },
+    {
+        "receiptTime": "2015-11-04T23:35:05Z",
+        "observationTime": "2015-11-04T23:16:00Z",
+        "qualityControlFlags": {
+            "midPointAssumed": null,
+            "noTimeStamp": null,
+            "fltLvlRange": null,
+            "aboveGroundLevelIndicated": null,
+            "noFltLvl": null,
+            "badLocation": "TRUE"
+        },
+        "aircraftRef": "SR20",
+        "latitude": 28.777,
+        "longitude": -81.2349,
+        "altitudeFtMsl": 4000,
+        "skyCondition": [
+            {
+                "skyCover": "BKN",
+                "cloudBaseFtMsl": null,
+                "cloudTopFtMsl": null
+            }
+        ],
+        "turbulenceCondition": [],
+        "icingCondition": [],
+        "visibilityStatuteMi": null,
+        "wxString": null,
+        "tempC": null,
+        "windDirDegrees": null,
+        "windSpeedKt": null,
+        "vertGustKt": null,
+        "reportType": "PIREP",
+        "rawText": "SFB UA /OV UMATILLA/TM 2316/FL040/TP SR20/SK BKN/RM LIGHTNING"
+    }
+]
