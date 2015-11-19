@@ -14,27 +14,38 @@
  * You should have received a copy of the GNU General Public License
  * along with grndctl.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.grndctl.controllers;
-
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+package com.grndctl.model.aircraftrep;
 
 /**
  *
- * @author Michael Di Salvo
  */
-@RestController
-public class ErrorController implements org.springframework.boot.autoconfigure.web.ErrorController {
+public enum IcingType {
+    
+    RIME("RIME"), CLR("CLR"), MX("MX"), MIXED("MIXED");
+    
+    private String val;
 
-    private static final String PATH = "/error";
-
-    @RequestMapping(value = PATH)
-    public String handleError() {
-        return "<img src=\"img/404-bg_2x.gif\" width=\"100%\" height=\"100%\"\">";
+    private IcingType(String val) {
+        this.val = val;
     }
 
     @Override
-    public String getErrorPath() {
-        return PATH;
+    public String toString() {
+        return val;
     }
+
+    public static IcingType fromString(String val) {
+        IcingType[] types = IcingType.values();
+
+        IcingType it = null;
+        for (IcingType type : types) {
+            if (type.toString().equals(val)) {
+                it = type;
+                break;
+            }
+        }
+
+        return it;
+    }
+
 }

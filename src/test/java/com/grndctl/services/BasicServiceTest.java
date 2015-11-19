@@ -1,3 +1,19 @@
+/**
+ * This file is part of grndctl.
+ *
+ * grndctl is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * grndctl is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with grndctl.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package com.grndctl.services;
 
 import com.grndctl.model.flightplan.ValidationResults;
@@ -40,7 +56,7 @@ public class BasicServiceTest {
 
     @Test
     public void testTafSvc() throws Exception {
-        TAF currentTAF = tafSvc.getTafs("KIAD", 1.0, VALID.valueOf()).get(0);
+        TAF currentTAF = tafSvc.getTafs("KIAD", 1.0, VALID).get(0);
         assertNotNull(currentTAF);
         assertEquals("KIAD", currentTAF.getStationId());
     }

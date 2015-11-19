@@ -1,3 +1,19 @@
+/**
+ * This file is part of grndctl.
+ *
+ * grndctl is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * grndctl is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with grndctl.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package com.grndctl.services;
 
 import com.grndctl.model.metar.METAR;
@@ -6,17 +22,17 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
-import javax.xml.bind.JAXBException;
-import java.io.IOException;
-import java.io.InputStream;
 import java.net.URL;
 import java.util.List;
 
 /**
- * Created by michael on 10/16/15.
+ * 
+ * @author Michael Di Salvo
  */
 @Service
-public class MetarSvc {
+public class MetarSvc extends AbstractSvc<Response> {
+    
+    private static final String NAME = MetarSvc.class.getSimpleName();
 
     private static final Logger LOG = LogManager.getLogger(MetarSvc.class);
 
@@ -31,37 +47,20 @@ public class MetarSvc {
 
     private static final double ONE_HR = 1.0;
 
-    private static Response unmarshall(final InputStream is) throws Exception {
-        Unmarshaller<Response> unmarshaller = new Unmarshaller<>(Response.class);
-        try {
-            return unmarshaller.unmarshall(is);
-        } catch (JAXBException | IOException e) {
-            throw new Exception(e);
-        }
+    public MetarSvc() {
+        super(Response.class, NAME);
     }
 
     public List<METAR> getCurrentMetar(String station) throws Exception {
-        URL url = new URL(new StringBuilder()
-                .append(RQST_URL)
-                .append(MOST_RECENT_CONSTRAINT)
-                .append(STATION_STRING)
-                .append(station)
-                .append(HRS_BEFORE)
-                .append(ONE_HR)
-                .toString());
+
+        URL url = new URL(RQST_URL + MOST_RECENT_CONSTRAINT + STATION_STRING + station + HRS_BEFORE + ONE_HR);
         LOG.info(url.toString());
 
         return unmarshall(url.openStream()).getData().getMETAR();
     }
 
     public List<METAR> getMetars(String station, double hrsBefore) throws Exception {
-        URL url = new URL(new StringBuilder()
-                .append(RQST_URL)
-                .append(HRS_BEFORE)
-                .append(hrsBefore)
-                .append(STATION_STRING)
-                .append(station)
-                .toString());
+        URL url = new URL(RQST_URL + HRS_BEFORE + hrsBefore + STATION_STRING + station);
         LOG.info(url.toString());
 
         return unmarshall(url.openStream()).getData().getMETAR();

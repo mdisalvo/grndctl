@@ -20,7 +20,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>1.8</java.version>
         <start-class>com.grndctl.GrndCtl</start-class>
-        <guava.version>16.0.1</guava.version>
+        <guava.version>18.0</guava.version>
     </properties>
 
     <parent>
@@ -101,6 +101,43 @@
     <build>
         <plugins>
             <plugin>
+                <groupId>com.mycila</groupId>
+                <artifactId>license-maven-plugin</artifactId>
+                <version>2.11</version>
+                <configuration>
+                    <header>${project.basedir}/GPL-3.txt</header>
+                    <excludes>
+                        <exclude>**/**.yml</exclude>
+                        <exclude>**/**.yaml</exclude>
+                        <exclude>**/**.json</exclude>
+                        <exclude>**/**.txt</exclude>
+                        <exclude>**/**.pdf</exclude>
+                        <exclude>**/**.log</exclude>
+                        <exclude>**/**.md</exclude>
+                        <exclude>**/**.properties</exclude>
+                        <exclude>**/**.xml</exclude>
+                        <exclude>**/**.html</exclude>
+                        <exclude>**/**.css</exclude>
+                        <exclude>**/**.woff</exclude>
+                        <exclude>**/**.gif</exclude>
+                        <exclude>**/**.png</exclude>
+                        <exclude>**/**.js</exclude>
+                        <exclude>**/**.otf</exclude>
+                        <exclude>**/**.eot</exclude>
+                        <exclude>**/**.svg</exclude>
+                        <exclude>**/**.ttf</exclude>
+                    </excludes>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>format</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
                 <groupId>com.qmino</groupId>
                 <artifactId>miredot-plugin</artifactId>
                 <version>1.6.0</version>
@@ -113,7 +150,8 @@
                 </executions>
                 <configuration>
                     <licence>
-                        UHJvamVjdHxjb20uZ3JuZGN0bC5ncm5kY3RsfDIwMTYtMTAtMTZ8dHJ1ZSNNQ3dDRkExNEo5ZnRvbm5RVkJUOU56QW9QaElreEJ4OEFoUVRPU2xOc2NnSmJMQnQwUGZScUxVdmoybTB2QT09                    </licence>
+                        UHJvamVjdHxjb20uZ3JuZGN0bC5ncm5kY3RsfDIwMTYtMTAtMTZ8dHJ1ZSNNQ3dDRkExNEo5ZnRvbm5RVkJUOU56QW9QaElreEJ4OEFoUVRPU2xOc2NnSmJMQnQwUGZScUxVdmoybTB2QT09
+                    </licence>
                     <output>
                         <title>GrndCtl/AvWx ${project.version}</title>
                         <html>
@@ -135,6 +173,11 @@
                                 <httpCode>200</httpCode>
                                 <document>always</document>
                                 <defaultMessage>The service call has completed successfully.</defaultMessage>
+                            </httpStatusCode>
+                            <httpStatusCode>
+                                <httpCode>404</httpCode>
+                                <document>always</document>
+                                <defaultMessage>Resource Not Found</defaultMessage>
                             </httpStatusCode>
                             <httpStatusCode>
                                 <httpCode>401</httpCode>

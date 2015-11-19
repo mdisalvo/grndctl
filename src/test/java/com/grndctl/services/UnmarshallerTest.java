@@ -1,36 +1,60 @@
+/**
+ * This file is part of grndctl.
+ *
+ * grndctl is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * grndctl is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with grndctl.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package com.grndctl.services;
 
 import com.grndctl.model.metar.METAR;
 import com.grndctl.model.metar.QualityControlFlags;
 import com.grndctl.model.metar.SkyCondition;
+import java.io.ByteArrayInputStream;
+import java.io.StringWriter;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.junit.Assert.assertEquals;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Marshaller;
+import org.junit.Assert;
 
 /**
  * Validate that the unmarshaller correctly creates and translates objects.
- *
  * @author Michael Di Salvo
  */
 public class UnmarshallerTest {
 
-    private Unmarshaller<com.grndctl.model.metar.Response> unmarshaller;
     private METAR expected;
+    
+    private Marshaller m;
+    
+    private AbstractSvc svc;
 
     @Before
     public void setup() throws Exception {
-        unmarshaller = new Unmarshaller<>(com.grndctl.model.metar.Response.class);
+        svc = new AbstractSvc<METAR>(METAR.class, "MetarTestSvc") {};
+        m = JAXBContext.newInstance(METAR.class).createMarshaller();
         buildExpectedMetar();
     }
 
     @Test
     public void testUnmarshaller() throws Exception {
-        METAR actual = unmarshaller.unmarshall(UnmarshallerTest.class.getResourceAsStream("/KIAD.xml")).getData().getMETAR().get(0);
-        assertEquals(expected, actual);
+        StringWriter sw = new StringWriter();
+        m.marshal(expected, sw);
+        METAR actual = (METAR)svc.unmarshall(new ByteArrayInputStream(sw.toString().getBytes()));
+        Assert.assertEquals(expected, actual);
     }
 
     private METAR buildExpectedMetar() {

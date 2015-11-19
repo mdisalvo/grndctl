@@ -1,3 +1,19 @@
+/**
+ * This file is part of grndctl.
+ *
+ * grndctl is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * grndctl is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with grndctl.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package com.grndctl.services;
 
 import com.google.common.io.CharStreams;
@@ -7,18 +23,18 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
-import javax.xml.bind.JAXBException;
-import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.List;
 
 /**
- * Created by michael on 10/16/15.
+ * 
+ * @author Michael Di Salvo
  */
 @Service
-public class StationSvc {
+public class StationSvc extends AbstractSvc<Response> {
+    
+    private static final String NAME = StationSvc.class.getSimpleName();
 
     private static final Logger LOG = LogManager.getLogger(StationSvc.class);
 
@@ -32,32 +48,19 @@ public class StationSvc {
 
     private static final String STATION_STRING = "&stationString=";
 
-    private static Response unmarshall(final InputStream is) throws Exception {
-        Unmarshaller<Response> unmarshaller = new Unmarshaller<>(Response.class);
-        try {
-            return unmarshaller.unmarshall(is);
-        } catch (JAXBException | IOException e) {
-            throw new Exception(e);
-        }
+    public StationSvc() {
+        super(Response.class, NAME);
     }
-
+    
     public List<Station> getStationInfo(String code) throws Exception {
-        URL url = new URL(new StringBuilder()
-                .append(ADDS_RQST_URL)
-                .append(STATION_STRING)
-                .append(code.toUpperCase())
-                .toString());
+        URL url = new URL(ADDS_RQST_URL + STATION_STRING + code.toUpperCase());
         LOG.info(url.toString());
 
         return unmarshall(url.openStream()).getData().getStation();
     }
 
     public String getFAAStationStatus(String iataCode) throws Exception {
-        URL url = new URL(new StringBuilder()
-                .append(FAA_RQST_URL)
-                .append(iataCode)
-                .append(RQST_FORMAT_JSON)
-                .toString());
+        URL url = new URL(FAA_RQST_URL + iataCode + RQST_FORMAT_JSON);
         LOG.info(url.toString());
 
         return CharStreams.toString(new InputStreamReader(url.openStream()));
