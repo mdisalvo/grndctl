@@ -16,11 +16,14 @@
  */
 package com.grndctl.controllers;
 
+import com.grndctl.ServiceException;
 import com.grndctl.model.aircraftrep.AircraftReport;
 import com.grndctl.model.aircraftrep.ReportType;
 import com.grndctl.services.AircraftReportSvc;
-import com.grndctl.ServiceException;
+import com.qmino.miredot.annotations.ReturnType;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -55,18 +58,19 @@ public class AircraftReportController extends AbstractController {
      *
      * @param hrsBefore Hours before now (Default -> 1.0)
      * @param reportType The {@link com.grndctl.model.aircraftrep.ReportType} to return (Default -> AIREP)
-     * @return <code>List</code> of filtered <code>PIREP</code>s
-     * @throws Exception
+     * @return <code>List</code> of filtered <code>AircraftReport</code>s
+     * @throws com.grndctl.ServiceException
      */
     @RequestMapping(value = "", method = RequestMethod.GET, produces = "application/json")
-    public List<AircraftReport> getAircraftReports(
+    @ReturnType(value = "java.util.List<com.grndctl.model.aircraftrep.AircraftReport>")
+    public ResponseEntity<List<AircraftReport>> getAircraftReports(
             @RequestParam(value = HRS_BEFORE, defaultValue = "1.0") double hrsBefore,
             @RequestParam(value = REPORT_TYPE, required = false) ReportType reportType) throws ServiceException {
         if (reportType == null) {
             reportType = ReportType.AIREP;
         }
 
-        return svc.getAircraftReports(hrsBefore, reportType);
+        return new ResponseEntity<>(svc.getAircraftReports(hrsBefore, reportType), HttpStatus.OK);
     }
 
 }

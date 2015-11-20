@@ -96,6 +96,13 @@
             <version>3.1</version>
         </dependency>
 
+        <!-- MireDot Annotations -->
+        <dependency>
+            <groupId>com.qmino</groupId>
+            <artifactId>miredot-annotations</artifactId>
+            <version>1.4.0</version>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -139,57 +146,58 @@
                 <!--</executions>-->
             <!--</plugin>-->
 
-            <!--<plugin>-->
-                <!--<groupId>com.qmino</groupId>-->
-                <!--<artifactId>miredot-plugin</artifactId>-->
-                <!--<version>1.6.0</version>-->
-                <!--<executions>-->
-                    <!--<execution>-->
-                        <!--<goals>-->
-                            <!--<goal>restdoc</goal>-->
-                        <!--</goals>-->
-                    <!--</execution>-->
-                <!--</executions>-->
-                <!--<configuration>-->
-                    <!--<licence>-->
-                        <!--UHJvamVjdHxjb20uZ3JuZGN0bC5ncm5kY3RsfDIwMTYtMTAtMTZ8dHJ1ZSNNQ3dDRkExNEo5ZnRvbm5RVkJUOU56QW9QaElreEJ4OEFoUVRPU2xOc2NnSmJMQnQwUGZScUxVdmoybTB2QT09-->
-                    <!--</licence>-->
-                    <!--<output>-->
-                        <!--<title>GrndCtl/AvWx ${project.version}</title>-->
-                        <!--<html>-->
-                            <!--<sections>-->
-                                <!--<strategy>singlepage</strategy>-->
-                            <!--</sections>-->
-                        <!--</html>-->
-                    <!--</output>-->
-                    <!--<restModel>-->
-                        <!--<restFramework>-->
-                            <!--<name>spring-mvc</name>-->
-                        <!--</restFramework>-->
-                        <!--<fieldVisibility>-->
-                            <!--<ALL>NON_PRIVATE</ALL>-->
-                            <!--<FIELD>ANY</FIELD>-->
-                        <!--</fieldVisibility>-->
-                        <!--<httpStatusCodes>-->
-                            <!--<httpStatusCode>-->
-                                <!--<httpCode>200</httpCode>-->
-                                <!--<document>always</document>-->
-                                <!--<defaultMessage>The service call has completed successfully</defaultMessage>-->
-                            <!--</httpStatusCode>-->
-                            <!--<httpStatusCode>-->
-                                <!--<httpCode>401</httpCode>-->
-                                <!--<document>explicit: com.acme.exceptions.AuthorizationException</document>-->
-                                <!--<defaultMessage>The user is not authorized to use this service.</defaultMessage>-->
-                            <!--</httpStatusCode>-->
-                            <!--<httpStatusCode>-->
-                                <!--<httpCode>412</httpCode>-->
-                                <!--<document>put,post</document>-->
-                                <!--<defaultMessage>Invalid JSON input.</defaultMessage>-->
-                            <!--</httpStatusCode>-->
-                        <!--</httpStatusCodes>-->
-                    <!--</restModel>-->
-                <!--</configuration>-->
-            <!--</plugin>-->
+            <plugin>
+                <groupId>com.qmino</groupId>
+                <artifactId>miredot-plugin</artifactId>
+                <version>1.6.2</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>restdoc</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <baseUrl>grndctl.herokuapp.com</baseUrl>
+                    <licence>
+                        UHJvamVjdHxjb20uZ3JuZGN0bC5ncm5kY3RsfDIwMTYtMTAtMTZ8dHJ1ZSNNQ3dDRkExNEo5ZnRvbm5RVkJUOU56QW9QaElreEJ4OEFoUVRPU2xOc2NnSmJMQnQwUGZScUxVdmoybTB2QT09
+                    </licence>
+                    <output>
+                        <title>GrndCtl/AvWx ${project.version}</title>
+                        <html>
+                            <sections>
+                                <strategy>singlepage</strategy>
+                            </sections>
+                        </html>
+                    </output>
+                    <restModel>
+                        <restFramework>
+                            <name>spring-mvc</name>
+                        </restFramework>
+                        <fieldVisibility>
+                            <ALL>NON_PRIVATE</ALL>
+                            <FIELD>ANY</FIELD>
+                        </fieldVisibility>
+                        <httpStatusCodes>
+                            <httpStatusCode>
+                                <httpCode>200</httpCode>
+                                <document>always</document>
+                                <defaultMessage>The service call has completed successfully</defaultMessage>
+                            </httpStatusCode>
+                            <httpStatusCode>
+                                <httpCode>401</httpCode>
+                                <document>explicit: com.acme.exceptions.AuthorizationException</document>
+                                <defaultMessage>The user is not authorized to use this service.</defaultMessage>
+                            </httpStatusCode>
+                            <httpStatusCode>
+                                <httpCode>412</httpCode>
+                                <document>put,post</document>
+                                <defaultMessage>Invalid JSON input.</defaultMessage>
+                            </httpStatusCode>
+                        </httpStatusCodes>
+                    </restModel>
+                </configuration>
+            </plugin>
 
             <plugin>
                 <groupId>org.springframework.boot</groupId>

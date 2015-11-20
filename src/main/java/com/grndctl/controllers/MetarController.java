@@ -22,7 +22,10 @@ import com.grndctl.model.metar.METAR;
 import com.grndctl.model.station.StationCodeType;
 import com.grndctl.services.MetarSvc;
 import com.grndctl.services.StationSvc;
+import com.qmino.miredot.annotations.ReturnType;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -61,10 +64,12 @@ public class MetarController extends AbstractController {
      * @param station Station string (Default -> KIAD)
      * @param hrsBefore Hours before now (Default -> 1.0)
      * @return <code>List</code> of filtered <code>METAR</code>s
-     * @throws Exception
+     * @throws com.grndctl.ServiceException
+     * @throws com.grndctl.ResourceNotFoundException
      */
     @RequestMapping(value = "", method = GET, produces = "application/json")
-    public List<METAR> getMetar(
+    @ReturnType(value = "java.util.List<com.grndctl.model.metar.METAR>")
+    public ResponseEntity<List<METAR>> getMetar(
             @RequestParam(value = STATION, defaultValue = "KIAD") String station,
             @RequestParam(value = HRS_BEFORE, required = false, defaultValue = "1.0") Double hrsBefore) throws
             ServiceException, ResourceNotFoundException {
@@ -74,9 +79,9 @@ public class MetarController extends AbstractController {
         }
 
         if (hrsBefore == null)
-            return svc.getCurrentMetar(station);
+            return new ResponseEntity<>(svc.getCurrentMetar(station), HttpStatus.OK);
         else
-            return svc.getMetars(station, hrsBefore);
+            return new ResponseEntity<>(svc.getMetars(station, hrsBefore), HttpStatus.OK);
     }
 
 }

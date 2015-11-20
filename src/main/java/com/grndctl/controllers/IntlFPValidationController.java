@@ -19,7 +19,10 @@ package com.grndctl.controllers;
 import com.grndctl.model.flightplan.ValidationResults;
 import com.grndctl.services.IntlFPValidationSvc;
 import com.grndctl.ServiceException;
+import com.qmino.miredot.annotations.ReturnType;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -58,12 +61,13 @@ public class IntlFPValidationController extends AbstractController {
      *
      * @param flightPlan ICAO flight plan to validate (Default ^)
      * @return <code>ValidationResults</code> object that holds the original flight plan, and the returned messages.
-     * @throws Exception
+     * @throws com.grndctl.ServiceException
      */
     @RequestMapping(value = "/validate", method = POST, consumes = "application/json", produces = "application/json")
-    public ValidationResults validateFlightPlan(
+    @ReturnType(value = "com.grndctl.model.flightplan.ValidationResults")
+    public ResponseEntity<ValidationResults> validateFlightPlan(
             @RequestBody(required = true) String flightPlan) throws ServiceException {
-        return svc.validateFlightPlan(flightPlan);
+        return new ResponseEntity<>(svc.validateFlightPlan(flightPlan), HttpStatus.OK);
     }
 
 }

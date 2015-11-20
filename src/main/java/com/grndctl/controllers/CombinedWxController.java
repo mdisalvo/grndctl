@@ -23,7 +23,10 @@ import com.grndctl.services.MetarSvc;
 import com.grndctl.ServiceException;
 import com.grndctl.services.StationSvc;
 import com.grndctl.services.TafSvc;
+import com.qmino.miredot.annotations.ReturnType;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -60,10 +63,12 @@ public class CombinedWxController extends AbstractController {
      * @param station Station string (Default -> KIAD)
      * @param hrsBefore Hours before now (Default -> 1.0)
      * @return <code>CombinedWx</code> entity
-     * @throws Exception
+     * @throws com.grndctl.ServiceException
+     * @throws com.grndctl.ResourceNotFoundException
      */
     @RequestMapping(value = "", method = GET, produces = "application/json")
-    public CombinedWx getCombinedWx(
+    @ReturnType(value = "com.grndctl.model.aggregates.CombinedWx")
+    public ResponseEntity<CombinedWx> getCombinedWx(
             @RequestParam(value = STATION, defaultValue = "KIAD") String station,
             @RequestParam(value = HRS_BEFORE, required = false, defaultValue = "1.0") Double hrsBefore) throws
             ServiceException, ResourceNotFoundException {
@@ -76,7 +81,7 @@ public class CombinedWxController extends AbstractController {
         resp.setMetars(metarSvc.getMetars(station, (hrsBefore == null || hrsBefore < 1.0 ? 1.0 : hrsBefore)));
         resp.setTafs(tafSvc.getCurrentTaf(station));
 
-        return resp;
+        return new ResponseEntity<>(resp, HttpStatus.OK);
     }
 
 }

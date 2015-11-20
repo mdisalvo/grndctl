@@ -23,7 +23,10 @@ import com.grndctl.model.taf.TimeType;
 import com.grndctl.ServiceException;
 import com.grndctl.services.StationSvc;
 import com.grndctl.services.TafSvc;
+import com.qmino.miredot.annotations.ReturnType;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -64,11 +67,13 @@ public class TafController extends AbstractController {
      * @param code Station string (Default -> KIAD)
      * @param hrsBefore Hours before now (Default -> 2.0)
      * @param timeType <code>ISSUE</code> or (Default)<code>VALID</code>
-     * @return
-     * @throws Exception
+     * @return <code>List</code> of filtered <code>TAF</code>s
+     * @throws com.grndctl.ServiceException
+     * @throws com.grndctl.ResourceNotFoundException
      */
     @RequestMapping(value = "", method = GET, produces = "application/json")
-    public List<TAF> getTafs(
+    @ReturnType(value = "java.util.List<com.grndctl.model.taf.TAF>")
+    public ResponseEntity<List<TAF>> getTafs(
             @RequestParam(value = STATION, defaultValue = "KIAD") String code,
             @RequestParam(value = HRS_BEFORE, defaultValue = "2.0") Double hrsBefore,
             @RequestParam(value = TIME_TYPE, required = false) TimeType timeType) throws ServiceException, ResourceNotFoundException {
@@ -80,7 +85,8 @@ public class TafController extends AbstractController {
         if (timeType == null) {
             timeType = TimeType.VALID;
         }
-        return svc.getTafs(code, hrsBefore, timeType);
+
+        return new ResponseEntity<>(svc.getTafs(code, hrsBefore, timeType), HttpStatus.OK);
     }
 
 }
