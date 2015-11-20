@@ -100,6 +100,7 @@
 
     <build>
         <plugins>
+
             <!--<plugin>-->
                 <!--<groupId>com.mycila</groupId>-->
                 <!--<artifactId>license-maven-plugin</artifactId>-->
@@ -137,6 +138,7 @@
                     <!--</execution>-->
                 <!--</executions>-->
             <!--</plugin>-->
+
             <!--<plugin>-->
                 <!--<groupId>com.qmino</groupId>-->
                 <!--<artifactId>miredot-plugin</artifactId>-->
@@ -172,12 +174,7 @@
                             <!--<httpStatusCode>-->
                                 <!--<httpCode>200</httpCode>-->
                                 <!--<document>always</document>-->
-                                <!--<defaultMessage>The service call has completed successfully.</defaultMessage>-->
-                            <!--</httpStatusCode>-->
-                            <!--<httpStatusCode>-->
-                                <!--<httpCode>404</httpCode>-->
-                                <!--<document>always</document>-->
-                                <!--<defaultMessage>Resource Not Found</defaultMessage>-->
+                                <!--<defaultMessage>The service call has completed successfully</defaultMessage>-->
                             <!--</httpStatusCode>-->
                             <!--<httpStatusCode>-->
                                 <!--<httpCode>401</httpCode>-->
@@ -188,11 +185,6 @@
                                 <!--<httpCode>412</httpCode>-->
                                 <!--<document>put,post</document>-->
                                 <!--<defaultMessage>Invalid JSON input.</defaultMessage>-->
-                            <!--</httpStatusCode>-->
-                            <!--<httpStatusCode>-->
-                                <!--<httpCode>500</httpCode>-->
-                                <!--<document>always</document>-->
-                                <!--<defaultMessage>The service call has not succeeded.</defaultMessage>-->
                             <!--</httpStatusCode>-->
                         <!--</httpStatusCodes>-->
                     <!--</restModel>-->

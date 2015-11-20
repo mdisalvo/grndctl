@@ -16,12 +16,14 @@
  */
 package com.grndctl.services;
 
+import com.grndctl.ServiceException;
 import com.grndctl.model.pirep.PIREP;
 import com.grndctl.model.pirep.Response;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 
@@ -47,11 +49,15 @@ public class PirepSvc extends AbstractSvc<Response> {
     }
 
     @Deprecated
-    public List<PIREP> getPireps(final double hrsBefore) throws Exception {
-        URL url = new URL(RQST_URL + HRS_BEFORE + hrsBefore);
-        LOG.info(url.toString());
+    public List<PIREP> getPireps(final double hrsBefore) throws ServiceException {
+        try {
+            URL url = new URL(RQST_URL + HRS_BEFORE + hrsBefore);
+            LOG.info(url.toString());
 
-        return unmarshall(url.openStream()).getData().getPIREP();
+            return unmarshall(url.openStream()).getData().getPIREP();
+        } catch (IOException e) {
+            throw new ServiceException(e);
+        }
     }
 
 }

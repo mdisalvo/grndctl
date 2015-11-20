@@ -16,8 +16,12 @@
  */
 package com.grndctl.controllers;
 
+import com.grndctl.ResourceNotFoundException;
 import com.grndctl.model.aggregates.CombinedWx;
+import com.grndctl.model.station.StationCodeType;
 import com.grndctl.services.MetarSvc;
+import com.grndctl.ServiceException;
+import com.grndctl.services.StationSvc;
 import com.grndctl.services.TafSvc;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,7 +37,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
  */
 @RestController
 @RequestMapping("/combinedwx")
-public class CombinedWxController {
+public class CombinedWxController extends AbstractController {
 
     private static final String STATION = "station";
 
@@ -41,11 +45,13 @@ public class CombinedWxController {
 
     private MetarSvc metarSvc;
     private TafSvc tafSvc;
+    private StationSvc stationSvc;
 
     @Autowired
-    public CombinedWxController(final MetarSvc metarSvc, final TafSvc tafSvc) {
+    public CombinedWxController(final MetarSvc metarSvc, final TafSvc tafSvc, final StationSvc stationSvc) {
         this.metarSvc = metarSvc;
         this.tafSvc = tafSvc;
+        this.stationSvc = stationSvc;
     }
 
     /**
@@ -59,7 +65,12 @@ public class CombinedWxController {
     @RequestMapping(value = "", method = GET, produces = "application/json")
     public CombinedWx getCombinedWx(
             @RequestParam(value = STATION, defaultValue = "KIAD") String station,
-            @RequestParam(value = HRS_BEFORE, required = false, defaultValue = "1.0") Double hrsBefore) throws Exception {
+            @RequestParam(value = HRS_BEFORE, required = false, defaultValue = "1.0") Double hrsBefore) throws
+            ServiceException, ResourceNotFoundException {
+
+        if (!stationSvc.stationExists(station, StationCodeType.ICAO)) {
+            throw new ResourceNotFoundException(String.format("Station with code %s does not exist.", station));
+        }
 
         CombinedWx resp = new CombinedWx();
         resp.setMetars(metarSvc.getMetars(station, (hrsBefore == null || hrsBefore < 1.0 ? 1.0 : hrsBefore)));

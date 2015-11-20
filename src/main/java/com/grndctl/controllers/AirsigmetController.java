@@ -18,6 +18,7 @@ package com.grndctl.controllers;
 
 import com.grndctl.model.airsigmet.AIRSIGMET;
 import com.grndctl.services.AirsigmetSvc;
+import com.grndctl.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -33,7 +34,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
  */
 @RestController
 @RequestMapping("/airsigmet")
-public class AirsigmetController {
+public class AirsigmetController extends AbstractController {
 
     private static final String HRS_BEFORE = "hrsBefore";
     private static final String MAX_ALT_FT = "maxAltitudeFt";
@@ -57,7 +58,7 @@ public class AirsigmetController {
      * @throws Exception
      */
     @RequestMapping(value = "", method = GET, produces = "application/json")
-    public List<AIRSIGMET> getAirsigmets() throws Exception{
+    public List<AIRSIGMET> getAirsigmets() throws ServiceException {
         return svc.getAirsigmets();
     }
 
@@ -74,7 +75,7 @@ public class AirsigmetController {
     public List<AIRSIGMET> getAirsigmetsByAlt(
             @RequestParam(value = HRS_BEFORE, required = true, defaultValue = "1.0") double hrsBefore,
             @RequestParam(value = MIN_ALT_FT, required = true, defaultValue = "5000") int minAltFt,
-            @RequestParam(value = MAX_ALT_FT, required = true, defaultValue = "30000") int maxAltFt) throws Exception {
+            @RequestParam(value = MAX_ALT_FT, required = true, defaultValue = "30000") int maxAltFt) throws ServiceException {
         return svc.getAirsigmetsInAltitudeRange(minAltFt, maxAltFt, hrsBefore);
     }
 
@@ -95,7 +96,7 @@ public class AirsigmetController {
             @RequestParam(value = MIN_LAT, required = true, defaultValue = "25") int minLat,
             @RequestParam(value = MAX_LAT, required = true, defaultValue = "65") int maxLat,
             @RequestParam(value = MIN_LON, required = true, defaultValue = "-130") int minLon,
-            @RequestParam(value = MAX_LON, required = true, defaultValue = "-40") int maxLon) throws Exception {
+            @RequestParam(value = MAX_LON, required = true, defaultValue = "-40") int maxLon) throws ServiceException {
         return svc.getAirsigmetsInLatLongRectangle(minLat, minLon, maxLat, maxLon, hrsBefore);
     }
 

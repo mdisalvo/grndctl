@@ -18,6 +18,7 @@ package com.grndctl.controllers;
 
 import com.grndctl.model.flightplan.ValidationResults;
 import com.grndctl.services.IntlFPValidationSvc;
+import com.grndctl.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,7 +34,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
  */
 @RestController
 @RequestMapping("/intlfpvalidator")
-public class IntlFPValidationController {
+public class IntlFPValidationController extends AbstractController {
 
     private final IntlFPValidationSvc svc;
 
@@ -61,7 +62,7 @@ public class IntlFPValidationController {
      */
     @RequestMapping(value = "/validate", method = POST, consumes = "application/json", produces = "application/json")
     public ValidationResults validateFlightPlan(
-            @RequestBody(required = true) String flightPlan) throws Exception {
+            @RequestBody(required = true) String flightPlan) throws ServiceException {
         return svc.validateFlightPlan(flightPlan);
     }
 

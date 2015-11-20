@@ -16,8 +16,12 @@
  */
 package com.grndctl.controllers;
 
+import com.grndctl.ResourceNotFoundException;
+import com.grndctl.ServiceException;
 import com.grndctl.model.metar.METAR;
+import com.grndctl.model.station.StationCodeType;
 import com.grndctl.services.MetarSvc;
+import com.grndctl.services.StationSvc;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -35,7 +39,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
  */
 @RestController
 @RequestMapping("/metar")
-public class MetarController {
+public class MetarController extends AbstractController {
 
     private static final String STATION = "station";
 
@@ -43,9 +47,12 @@ public class MetarController {
 
     private final MetarSvc svc;
 
+    private final StationSvc stationSvc;
+
     @Autowired
-    public MetarController(final MetarSvc svc) {
+    public MetarController(final MetarSvc svc, final StationSvc stationSvc) {
         this.svc = svc;
+        this.stationSvc = stationSvc;
     }
 
     /**
@@ -59,7 +66,13 @@ public class MetarController {
     @RequestMapping(value = "", method = GET, produces = "application/json")
     public List<METAR> getMetar(
             @RequestParam(value = STATION, defaultValue = "KIAD") String station,
-            @RequestParam(value = HRS_BEFORE, required = false, defaultValue = "1.0") Double hrsBefore) throws Exception {
+            @RequestParam(value = HRS_BEFORE, required = false, defaultValue = "1.0") Double hrsBefore) throws
+            ServiceException, ResourceNotFoundException {
+
+        if (!stationSvc.stationExists(station, StationCodeType.ICAO)) {
+            throw new ResourceNotFoundException(String.format("Station with ICAO code %s does not exist.", station));
+        }
+
         if (hrsBefore == null)
             return svc.getCurrentMetar(station);
         else

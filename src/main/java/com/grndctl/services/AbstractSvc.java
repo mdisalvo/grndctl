@@ -16,10 +16,12 @@
  */
 package com.grndctl.services;
 
-import java.io.IOException;
-import java.io.InputStream;
+import com.grndctl.ServiceException;
+
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
+import java.io.IOException;
+import java.io.InputStream;
 
 /**
  *
@@ -45,7 +47,7 @@ public abstract class AbstractSvc<T> {
      * @throws Exception 
      */
     @SuppressWarnings({"unchecked"})
-    public final T unmarshall(final InputStream is) throws Exception {
+    public final T unmarshall(final InputStream is) throws ServiceException {
         try {
             T resp = responseType.newInstance();
             JAXBContext context = JAXBContext.newInstance(resp.getClass());
@@ -53,11 +55,12 @@ public abstract class AbstractSvc<T> {
             is.close();
             return resp;
         } catch (IOException | JAXBException | InstantiationException | IllegalAccessException e) {
-            throw new Exception(e);
+            throw new ServiceException(e);
         }
     }
     
     public String getName() {
         return this.svcName;
     }
+
 }

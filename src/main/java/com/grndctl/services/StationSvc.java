@@ -17,12 +17,15 @@
 package com.grndctl.services;
 
 import com.google.common.io.CharStreams;
+import com.grndctl.ServiceException;
 import com.grndctl.model.station.Response;
 import com.grndctl.model.station.Station;
+import com.grndctl.model.station.StationCodeType;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.List;
@@ -52,18 +55,43 @@ public class StationSvc extends AbstractSvc<Response> {
         super(Response.class, NAME);
     }
     
-    public List<Station> getStationInfo(String code) throws Exception {
-        URL url = new URL(ADDS_RQST_URL + STATION_STRING + code.toUpperCase());
-        LOG.info(url.toString());
+    public List<Station> getStationInfo(String code) throws ServiceException {
+        try {
+            URL url = new URL(ADDS_RQST_URL + STATION_STRING + code.toUpperCase());
+            LOG.info(url.toString());
 
-        return unmarshall(url.openStream()).getData().getStation();
+            return unmarshall(url.openStream()).getData().getStation();
+        } catch (IOException e) {
+            throw new ServiceException(e);
+        }
     }
 
-    public String getFAAStationStatus(String iataCode) throws Exception {
-        URL url = new URL(FAA_RQST_URL + iataCode + RQST_FORMAT_JSON);
-        LOG.info(url.toString());
+    public String getFAAStationStatus(String iataCode) throws ServiceException {
+        try {
+            URL url = new URL(FAA_RQST_URL + iataCode + RQST_FORMAT_JSON);
+            LOG.info(url.toString());
 
-        return CharStreams.toString(new InputStreamReader(url.openStream()));
+            return CharStreams.toString(new InputStreamReader(url.openStream()));
+        } catch (IOException e) {
+            throw new ServiceException(e);
+        }
+    }
+
+    public boolean stationExists(String code, StationCodeType codeType) throws ServiceException {
+        if (codeType.equals(StationCodeType.ICAO)) {
+            return (!getStationInfo(code).isEmpty());
+        }
+
+        if (codeType.equals(StationCodeType.IATA)) {
+            try {
+                getFAAStationStatus(code);
+            } catch (ServiceException e) {
+                return false;
+            }
+            return true;
+        }
+
+        return false;
     }
 
 }

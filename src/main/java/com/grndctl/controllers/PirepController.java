@@ -18,6 +18,7 @@ package com.grndctl.controllers;
 
 import com.grndctl.model.pirep.PIREP;
 import com.grndctl.services.PirepSvc;
+import com.grndctl.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -35,7 +36,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 @Deprecated
 @RestController
 @RequestMapping(value = "/pirep")
-public class PirepController {
+public class PirepController extends AbstractController {
 
     private static final String HRS_BEFORE = "hrsBefore";
 
@@ -56,7 +57,7 @@ public class PirepController {
     @Deprecated
     @RequestMapping(value = "", method = GET, produces = "application/json")
     public List<PIREP> getPireps(
-            @RequestParam(value = HRS_BEFORE, defaultValue = "1.0") double hrsBefore) throws Exception {
+            @RequestParam(value = HRS_BEFORE, defaultValue = "1.0") double hrsBefore) throws ServiceException {
         return svc.getPireps(hrsBefore);
     }
 }

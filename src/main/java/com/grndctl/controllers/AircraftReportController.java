@@ -19,6 +19,7 @@ package com.grndctl.controllers;
 import com.grndctl.model.aircraftrep.AircraftReport;
 import com.grndctl.model.aircraftrep.ReportType;
 import com.grndctl.services.AircraftReportSvc;
+import com.grndctl.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -36,7 +37,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping(value = "/aircraftrep")
-public class AircraftReportController  {
+public class AircraftReportController extends AbstractController {
 
     private static final String HRS_BEFORE = "hrsBefore";
 
@@ -53,14 +54,17 @@ public class AircraftReportController  {
      * Get the reports.  The <code>AircraftReport</code>s.
      *
      * @param hrsBefore Hours before now (Default -> 1.0)
-     * @param reportType The {@link com.grndctl.model.aircraftrep.ReportType} to return.
+     * @param reportType The {@link com.grndctl.model.aircraftrep.ReportType} to return (Default -> AIREP)
      * @return <code>List</code> of filtered <code>PIREP</code>s
      * @throws Exception
      */
     @RequestMapping(value = "", method = RequestMethod.GET, produces = "application/json")
     public List<AircraftReport> getAircraftReports(
             @RequestParam(value = HRS_BEFORE, defaultValue = "1.0") double hrsBefore,
-            @RequestParam(value = REPORT_TYPE, required = false) ReportType reportType) throws Exception {
+            @RequestParam(value = REPORT_TYPE, required = false) ReportType reportType) throws ServiceException {
+        if (reportType == null) {
+            reportType = ReportType.AIREP;
+        }
 
         return svc.getAircraftReports(hrsBefore, reportType);
     }

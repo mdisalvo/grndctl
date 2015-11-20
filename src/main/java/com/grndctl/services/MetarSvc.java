@@ -16,12 +16,14 @@
  */
 package com.grndctl.services;
 
+import com.grndctl.ServiceException;
 import com.grndctl.model.metar.METAR;
 import com.grndctl.model.metar.Response;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 
@@ -51,19 +53,26 @@ public class MetarSvc extends AbstractSvc<Response> {
         super(Response.class, NAME);
     }
 
-    public List<METAR> getCurrentMetar(String station) throws Exception {
+    public List<METAR> getCurrentMetar(String station) throws ServiceException {
+        try {
+            URL url = new URL(RQST_URL + MOST_RECENT_CONSTRAINT + STATION_STRING + station + HRS_BEFORE + ONE_HR);
+            LOG.info(url.toString());
 
-        URL url = new URL(RQST_URL + MOST_RECENT_CONSTRAINT + STATION_STRING + station + HRS_BEFORE + ONE_HR);
-        LOG.info(url.toString());
-
-        return unmarshall(url.openStream()).getData().getMETAR();
+            return unmarshall(url.openStream()).getData().getMETAR();
+        } catch (IOException e) {
+            throw new ServiceException(e);
+        }
     }
 
-    public List<METAR> getMetars(String station, double hrsBefore) throws Exception {
-        URL url = new URL(RQST_URL + HRS_BEFORE + hrsBefore + STATION_STRING + station);
-        LOG.info(url.toString());
+    public List<METAR> getMetars(String station, double hrsBefore) throws ServiceException {
+        try {
+            URL url = new URL(RQST_URL + HRS_BEFORE + hrsBefore + STATION_STRING + station);
+            LOG.info(url.toString());
 
-        return unmarshall(url.openStream()).getData().getMETAR();
+            return unmarshall(url.openStream()).getData().getMETAR();
+        } catch (IOException e) {
+            throw new ServiceException(e);
+        }
     }
 
 }
