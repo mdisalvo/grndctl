@@ -14,27 +14,27 @@
  * You should have received a copy of the GNU General Public License
  * along with grndctl.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.grndctl.controllers;
+package com.grndctl;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 /**
  *
- * @author Michael Di Salvo
  */
-@RestController
-public class ErrorController implements org.springframework.boot.autoconfigure.web.ErrorController {
+@ResponseStatus(value = HttpStatus.NOT_FOUND, reason = "Resource Not Found")
+public class ResourceNotFoundException extends Exception {
 
-    private static final String PATH = "/error";
-
-    @RequestMapping(value = PATH)
-    public String handleError() {
-        return "<img src=\"img/404-bg_2x.gif\" width=\"100%\" height=\"100%\"\">";
+    public ResourceNotFoundException(String message, Throwable cause) {
+        super(message, cause);
     }
 
-    @Override
-    public String getErrorPath() {
-        return PATH;
+    public ResourceNotFoundException(Throwable cause) {
+        super(cause);
     }
+
+    public ResourceNotFoundException(String message) {
+        super(message);
+    }
+
 }

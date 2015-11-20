@@ -18,7 +18,11 @@ package com.grndctl.controllers;
 
 import com.grndctl.model.airsigmet.AIRSIGMET;
 import com.grndctl.services.AirsigmetSvc;
+import com.grndctl.ServiceException;
+import com.qmino.miredot.annotations.ReturnType;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -33,7 +37,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
  */
 @RestController
 @RequestMapping("/airsigmet")
-public class AirsigmetController {
+public class AirsigmetController extends AbstractController {
 
     private static final String HRS_BEFORE = "hrsBefore";
     private static final String MAX_ALT_FT = "maxAltitudeFt";
@@ -54,11 +58,12 @@ public class AirsigmetController {
      * Retrieve all of the active <code>AIRSIGMET</code>s currently issued by the NWS.
      *
      * @return <code>List</code> of <code>AIRSIGMET</code>s
-     * @throws Exception
+     * @throws com.grndctl.ServiceException
      */
     @RequestMapping(value = "", method = GET, produces = "application/json")
-    public List<AIRSIGMET> getAirsigmets() throws Exception{
-        return svc.getAirsigmets();
+    @ReturnType(value = "java.util.List<com.grndctl.model.airsigmet.AIRSIGMET>")
+    public ResponseEntity<List<AIRSIGMET>> getAirsigmets() throws ServiceException {
+        return new ResponseEntity<>(svc.getAirsigmets(), HttpStatus.OK);
     }
 
     /**
@@ -68,14 +73,15 @@ public class AirsigmetController {
      * @param minAltFt Minimum altitude (Default -> 5000)
      * @param maxAltFt Maximum altitude (Default -> 30000)
      * @return <code>List</code> of filtered <code>AIRSIGMET</code>s
-     * @throws Exception
+     * @throws com.grndctl.ServiceException
      */
     @RequestMapping(value = "/altLimited", method = GET, produces = "application/json")
-    public List<AIRSIGMET> getAirsigmetsByAlt(
+    @ReturnType(value = "java.util.List<com.grndctl.model.airsigmet.AIRSIGMET>")
+    public ResponseEntity<List<AIRSIGMET>> getAirsigmetsByAlt(
             @RequestParam(value = HRS_BEFORE, required = true, defaultValue = "1.0") double hrsBefore,
             @RequestParam(value = MIN_ALT_FT, required = true, defaultValue = "5000") int minAltFt,
-            @RequestParam(value = MAX_ALT_FT, required = true, defaultValue = "30000") int maxAltFt) throws Exception {
-        return svc.getAirsigmetsInAltitudeRange(minAltFt, maxAltFt, hrsBefore);
+            @RequestParam(value = MAX_ALT_FT, required = true, defaultValue = "30000") int maxAltFt) throws ServiceException {
+        return new ResponseEntity<>(svc.getAirsigmetsInAltitudeRange(minAltFt, maxAltFt, hrsBefore), HttpStatus.OK);
     }
 
     /**
@@ -87,16 +93,17 @@ public class AirsigmetController {
      * @param minLon Minimum longitude (Default -> -130)
      * @param maxLon Maximum longitude (Default -> -40)
      * @return <code>List</code> of filtered <code>AIRSIGMET</code>s
-     * @throws Exception
+     * @throws com.grndctl.ServiceException
      */
     @RequestMapping(value = "/latLonLimited", method = GET, produces = "application/json")
-    public List<AIRSIGMET> getAirsimetsByLatLon(
+    @ReturnType(value = "java.util.List<com.grndctl.model.airsigmet.AIRSIGMET>")
+    public ResponseEntity<List<AIRSIGMET>> getAirsimetsByLatLon(
             @RequestParam(value = HRS_BEFORE, required = true, defaultValue = "1.0") double hrsBefore,
             @RequestParam(value = MIN_LAT, required = true, defaultValue = "25") int minLat,
             @RequestParam(value = MAX_LAT, required = true, defaultValue = "65") int maxLat,
             @RequestParam(value = MIN_LON, required = true, defaultValue = "-130") int minLon,
-            @RequestParam(value = MAX_LON, required = true, defaultValue = "-40") int maxLon) throws Exception {
-        return svc.getAirsigmetsInLatLongRectangle(minLat, minLon, maxLat, maxLon, hrsBefore);
+            @RequestParam(value = MAX_LON, required = true, defaultValue = "-40") int maxLon) throws ServiceException {
+        return new ResponseEntity<>(svc.getAirsigmetsInLatLongRectangle(minLat, minLon, maxLat, maxLon, hrsBefore), HttpStatus.OK);
     }
 
 }

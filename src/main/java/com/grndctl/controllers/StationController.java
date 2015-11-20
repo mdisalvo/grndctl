@@ -16,13 +16,20 @@
  */
 package com.grndctl.controllers;
 
+import com.grndctl.ResourceNotFoundException;
 import com.grndctl.model.station.Station;
+import com.grndctl.ServiceException;
+import com.grndctl.model.station.StationCodeType;
 import com.grndctl.services.StationSvc;
+import com.qmino.miredot.annotations.ReturnType;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.FileNotFoundException;
 import java.util.List;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
@@ -34,17 +41,17 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
  */
 @RestController
 @RequestMapping("/station")
-public class StationController {
+public class StationController extends AbstractController {
 
     private static final String STATION = "station";
 
     private static final String IATA_CODE = "iatacode";
 
-    private final StationSvc svc;
+    private final StationSvc stationSvc;
 
     @Autowired
-    public StationController(final StationSvc svc) {
-        this.svc = svc;
+    public StationController(final StationSvc stationSvc) {
+        this.stationSvc = stationSvc;
     }
 
     /**
@@ -52,25 +59,73 @@ public class StationController {
      *
      * @param station Station string (Default -> KIAD)
      * @return <code>List</code> of filtered <code>Station</code>s
-     * @throws Exception
+     * @throws com.grndctl.ServiceException
+     * @throws com.grndctl.ResourceNotFoundException
      */
     @RequestMapping(value = "/adds", method = GET, produces = "application/json")
-    public List<Station> getStationInfo(
-            @RequestParam(value = STATION, defaultValue = "KIAD") final String station) throws Exception {
-        return svc.getStationInfo(station);
+    @ReturnType(value = "java.util.List<com.grndctl.model.station.Station>")
+    public ResponseEntity<List<Station>> getStationInfo(
+            @RequestParam(value = STATION, defaultValue = "KIAD") final String station) throws ServiceException,
+            ResourceNotFoundException {
+        if (!stationSvc.stationExists(station, StationCodeType.ICAO)) {
+            throw new ResourceNotFoundException(String.format("Station with ICAO code %s does not exist.", station));
+        }
+
+        return new ResponseEntity<>(stationSvc.getStationInfo(station), HttpStatus.OK);
     }
 
     /**
      * Get FAA station status which includes basic wx, and delay information.
      *
+     * Response Entity:
+     * <pre>
+     *     {
+     *         "delay": "false",
+     *         "IATA": "IAD",
+     *         "state": "District of Columbia",
+     *         "name": "Washington Dulles International",
+     *         "weather": {
+     *             "visibility": 10,
+     *             "weather": "Mostly Cloudy",
+     *             "meta": {
+     *                 "credit": "NOAA's National Weather Service",
+     *                 "updated": "9:52 PM Local",
+     *                 "url": "http://weather.gov/"
+     *             },
+     *             "temp": "60.0 F (15.6 C)",
+     *             "wind": "Northwest at 8.1mph"
+     *         },
+     *         "ICAO": "KIAD",
+     *         "city" "Washington",
+     *         "status": {
+     *             "reason": "No known delays for this airport.",
+     *             "closureBegin": "",
+     *             "endTime": "",
+     *             "minDelay": "",
+     *             "avgDelay": "",
+     *             "maxDelay": "",
+     *             "closureEnd": "",
+     *             "trend": "",
+     *             "type": ""
+     *         }
+     *     }
+     * </pre>
+     *
      * @param iatacode IATA code for the aerodrome (Default -> IAD)
      * @return A JSON <code>String</code> that is the FAA Airport Status Response
-     * @throws Exception
+     * @throws com.grndctl.ServiceException
+     * @throws com.grndctl.ResourceNotFoundException
      */
     @RequestMapping(value = "/faa", method = GET, produces = "application/json")
-    public String getFAAStationStatus(
-            @RequestParam(value = IATA_CODE, defaultValue = "IAD") final String iatacode) throws Exception {
-        return svc.getFAAStationStatus(iatacode);
+    @ReturnType(value = "java.lang.String")
+    public ResponseEntity<String> getFAAStationStatus(
+            @RequestParam(value = IATA_CODE, defaultValue = "IAD") final String iatacode) throws ServiceException, ResourceNotFoundException {
+
+        if (!stationSvc.stationExists(iatacode, StationCodeType.IATA)) {
+            throw new ResourceNotFoundException(String.format("Station with IATA code %s does not exist.", iatacode));
+        }
+
+        return new ResponseEntity<>(stationSvc.getFAAStationStatus(iatacode), HttpStatus.OK);
     }
 
 }

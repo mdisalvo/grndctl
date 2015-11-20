@@ -16,6 +16,7 @@
  */
 package com.grndctl.services;
 
+import com.grndctl.ServiceException;
 import com.grndctl.model.taf.Response;
 import com.grndctl.model.taf.TAF;
 import com.grndctl.model.taf.TimeType;
@@ -23,6 +24,7 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 
@@ -53,18 +55,26 @@ public class TafSvc extends AbstractSvc<Response> {
         super(Response.class, NAME);
     }
     
-    public List<TAF> getCurrentTaf(String station) throws Exception {
-        URL url = new URL(RQST_URL + MOST_RECENT_CONSTRAINT + STATION_STRING + station + HRS_BEFORE + 1);
-        LOG.info(url.toString());
+    public List<TAF> getCurrentTaf(String station) throws ServiceException {
+        try {
+            URL url = new URL(RQST_URL + MOST_RECENT_CONSTRAINT + STATION_STRING + station + HRS_BEFORE + 1);
+            LOG.info(url.toString());
 
-        return unmarshall(url.openStream()).getData().getTAF();
+            return unmarshall(url.openStream()).getData().getTAF();
+        } catch (IOException e) {
+            throw new ServiceException(e);
+        }
     }
 
-    public List<TAF> getTafs(String station, double hrsBefore, TimeType timeType) throws Exception {
-        URL url = new URL(RQST_URL + STATION_STRING + station + HRS_BEFORE + hrsBefore + TIME_TYPE + timeType.valueOf());
-        LOG.info(url.toString());
+    public List<TAF> getTafs(String station, double hrsBefore, TimeType timeType) throws ServiceException {
+        try {
+            URL url = new URL(RQST_URL + STATION_STRING + station + HRS_BEFORE + hrsBefore + TIME_TYPE + timeType.valueOf());
+            LOG.info(url.toString());
 
-        return unmarshall(url.openStream()).getData().getTAF();
+            return unmarshall(url.openStream()).getData().getTAF();
+        } catch (IOException e) {
+            throw new ServiceException(e);
+        }
     }
 
 }

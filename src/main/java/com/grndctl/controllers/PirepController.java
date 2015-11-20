@@ -18,7 +18,11 @@ package com.grndctl.controllers;
 
 import com.grndctl.model.pirep.PIREP;
 import com.grndctl.services.PirepSvc;
+import com.grndctl.ServiceException;
+import com.qmino.miredot.annotations.ReturnType;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -35,7 +39,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 @Deprecated
 @RestController
 @RequestMapping(value = "/pirep")
-public class PirepController {
+public class PirepController extends AbstractController {
 
     private static final String HRS_BEFORE = "hrsBefore";
 
@@ -51,12 +55,13 @@ public class PirepController {
      *
      * @param hrsBefore Hours before now (Default -> 1.0)
      * @return <code>List</code> of filtered <code>PIREP</code>s
-     * @throws Exception
+     * @throws com.grndctl.ServiceException
      */
     @Deprecated
     @RequestMapping(value = "", method = GET, produces = "application/json")
-    public List<PIREP> getPireps(
-            @RequestParam(value = HRS_BEFORE, defaultValue = "1.0") double hrsBefore) throws Exception {
-        return svc.getPireps(hrsBefore);
+    @ReturnType(value = "java.util.List<com.grndctl.model.pirep.PIREP>")
+    public ResponseEntity<List<PIREP>> getPireps(
+            @RequestParam(value = HRS_BEFORE, defaultValue = "1.0") double hrsBefore) throws ServiceException {
+        return new ResponseEntity<>(svc.getPireps(hrsBefore), HttpStatus.OK);
     }
 }

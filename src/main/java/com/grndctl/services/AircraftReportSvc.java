@@ -16,6 +16,7 @@
  */
 package com.grndctl.services;
 
+import com.grndctl.ServiceException;
 import com.grndctl.model.aircraftrep.AircraftReport;
 import com.grndctl.model.aircraftrep.ReportType;
 import com.grndctl.model.aircraftrep.Response;
@@ -23,6 +24,7 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -48,16 +50,22 @@ public class AircraftReportSvc extends AbstractSvc<Response> {
         super(Response.class, NAME);
     }
 
-    public List<AircraftReport> getAircraftReports(final double hrsBefore, final ReportType reportType) throws Exception {
-        URL url = new URL(RQST_URL + HRS_BEFORE + hrsBefore);
-        LOG.info(url.toString());
+    public List<AircraftReport> getAircraftReports(final double hrsBefore, final ReportType reportType) throws ServiceException {
+        try {
 
-        return unmarshall(url.openStream())
-                .getData()
-                .getAircraftReport()
-                .stream()
-                .filter(airep -> airep.getReportType().equals(reportType.toString()))
-                .collect(Collectors.toList());
+            URL url = new URL(RQST_URL + HRS_BEFORE + hrsBefore);
+            LOG.info(url.toString());
+
+            return unmarshall(url.openStream())
+                    .getData()
+                    .getAircraftReport()
+                    .stream()
+                    .filter(airep -> airep.getReportType().equals(reportType.toString()))
+                    .collect(Collectors.toList());
+
+        } catch (IOException e) {
+            throw new ServiceException(e);
+        }
     }
     
 }

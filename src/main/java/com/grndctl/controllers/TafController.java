@@ -16,16 +16,21 @@
  */
 package com.grndctl.controllers;
 
+import com.grndctl.ResourceNotFoundException;
+import com.grndctl.model.station.StationCodeType;
 import com.grndctl.model.taf.TAF;
 import com.grndctl.model.taf.TimeType;
+import com.grndctl.ServiceException;
+import com.grndctl.services.StationSvc;
 import com.grndctl.services.TafSvc;
+import com.qmino.miredot.annotations.ReturnType;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.ServletException;
-import javax.xml.ws.WebServiceException;
 import java.util.List;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
@@ -37,7 +42,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
  */
 @RestController
 @RequestMapping("/taf")
-public class TafController {
+public class TafController extends AbstractController {
 
     private static final String STATION = "station";
 
@@ -47,9 +52,12 @@ public class TafController {
 
     private final TafSvc svc;
 
+    private final StationSvc stationSvc;
+
     @Autowired
-    public TafController(final TafSvc svc) {
+    public TafController(final TafSvc svc, final StationSvc stationSvc) {
         this.svc = svc;
+        this.stationSvc = stationSvc;
     }
 
     /**
@@ -59,18 +67,26 @@ public class TafController {
      * @param code Station string (Default -> KIAD)
      * @param hrsBefore Hours before now (Default -> 2.0)
      * @param timeType <code>ISSUE</code> or (Default)<code>VALID</code>
-     * @return
-     * @throws Exception
+     * @return <code>List</code> of filtered <code>TAF</code>s
+     * @throws com.grndctl.ServiceException
+     * @throws com.grndctl.ResourceNotFoundException
      */
     @RequestMapping(value = "", method = GET, produces = "application/json")
-    public List<TAF> getTafs(
+    @ReturnType(value = "java.util.List<com.grndctl.model.taf.TAF>")
+    public ResponseEntity<List<TAF>> getTafs(
             @RequestParam(value = STATION, defaultValue = "KIAD") String code,
             @RequestParam(value = HRS_BEFORE, defaultValue = "2.0") Double hrsBefore,
-            @RequestParam(value = TIME_TYPE, required = false) TimeType timeType) throws Exception {
+            @RequestParam(value = TIME_TYPE, required = false) TimeType timeType) throws ServiceException, ResourceNotFoundException {
+
+        if (!stationSvc.stationExists(code, StationCodeType.ICAO)) {
+            throw new ResourceNotFoundException(String.format("Station with ICAO code %s does not exist.", code));
+        }
+
         if (timeType == null) {
             timeType = TimeType.VALID;
         }
-        return svc.getTafs(code, hrsBefore, timeType);
+
+        return new ResponseEntity<>(svc.getTafs(code, hrsBefore, timeType), HttpStatus.OK);
     }
 
 }

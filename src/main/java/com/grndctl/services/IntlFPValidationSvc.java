@@ -16,6 +16,7 @@
  */
 package com.grndctl.services;
 
+import com.grndctl.ServiceException;
 import com.grndctl.model.flightplan.ValidationResults;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -58,8 +59,12 @@ public class IntlFPValidationSvc {
 
     public IntlFPValidationSvc() { }
 
-    public ValidationResults validateFlightPlan(final String flightPlan) throws Exception {
-        return sendRequestAndInterpretResults(flightPlan);
+    public ValidationResults validateFlightPlan(final String flightPlan) throws ServiceException {
+        try {
+            return sendRequestAndInterpretResults(flightPlan);
+        } catch (IOException e) {
+            throw new ServiceException(e);
+        }
     }
 
     private ValidationResults sendRequestAndInterpretResults(final String flightPlan) throws IOException {

@@ -16,9 +16,16 @@
  */
 package com.grndctl.controllers;
 
+import com.grndctl.ResourceNotFoundException;
+import com.grndctl.ServiceException;
 import com.grndctl.model.metar.METAR;
+import com.grndctl.model.station.StationCodeType;
 import com.grndctl.services.MetarSvc;
+import com.grndctl.services.StationSvc;
+import com.qmino.miredot.annotations.ReturnType;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -35,7 +42,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
  */
 @RestController
 @RequestMapping("/metar")
-public class MetarController {
+public class MetarController extends AbstractController {
 
     private static final String STATION = "station";
 
@@ -43,9 +50,12 @@ public class MetarController {
 
     private final MetarSvc svc;
 
+    private final StationSvc stationSvc;
+
     @Autowired
-    public MetarController(final MetarSvc svc) {
+    public MetarController(final MetarSvc svc, final StationSvc stationSvc) {
         this.svc = svc;
+        this.stationSvc = stationSvc;
     }
 
     /**
@@ -54,16 +64,24 @@ public class MetarController {
      * @param station Station string (Default -> KIAD)
      * @param hrsBefore Hours before now (Default -> 1.0)
      * @return <code>List</code> of filtered <code>METAR</code>s
-     * @throws Exception
+     * @throws com.grndctl.ServiceException
+     * @throws com.grndctl.ResourceNotFoundException
      */
     @RequestMapping(value = "", method = GET, produces = "application/json")
-    public List<METAR> getMetar(
+    @ReturnType(value = "java.util.List<com.grndctl.model.metar.METAR>")
+    public ResponseEntity<List<METAR>> getMetar(
             @RequestParam(value = STATION, defaultValue = "KIAD") String station,
-            @RequestParam(value = HRS_BEFORE, required = false, defaultValue = "1.0") Double hrsBefore) throws Exception {
+            @RequestParam(value = HRS_BEFORE, required = false, defaultValue = "1.0") Double hrsBefore) throws
+            ServiceException, ResourceNotFoundException {
+
+        if (!stationSvc.stationExists(station, StationCodeType.ICAO)) {
+            throw new ResourceNotFoundException(String.format("Station with ICAO code %s does not exist.", station));
+        }
+
         if (hrsBefore == null)
-            return svc.getCurrentMetar(station);
+            return new ResponseEntity<>(svc.getCurrentMetar(station), HttpStatus.OK);
         else
-            return svc.getMetars(station, hrsBefore);
+            return new ResponseEntity<>(svc.getMetars(station, hrsBefore), HttpStatus.OK);
     }
 
 }

@@ -31,7 +31,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
  */
 @RestController
 @RequestMapping("/conversions")
-public class ConversionsController {
+public class ConversionsController extends AbstractController {
 
     public ConversionsController() { }
 

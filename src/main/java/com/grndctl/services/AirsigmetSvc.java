@@ -16,15 +16,14 @@
  */
 package com.grndctl.services;
 
+import com.grndctl.ServiceException;
 import com.grndctl.model.airsigmet.AIRSIGMET;
 import com.grndctl.model.airsigmet.Response;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
-import javax.xml.bind.JAXBException;
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -71,37 +70,53 @@ public class AirsigmetSvc extends AbstractSvc<Response> {
         super(Response.class, NAME);
     }
     
-    public List<AIRSIGMET> getAirsigmets() throws Exception {
+    public List<AIRSIGMET> getAirsigmets() throws ServiceException {
         String[] times = startAndEndTimes();
-        URL url = new URL(RQST_URL + MOST_RECENT_CONSTRAINT + START_TIME + times[0] + END_TIME + times[1]);
-        LOG.info(url.toString());
+        try {
+            URL url = new URL(RQST_URL + MOST_RECENT_CONSTRAINT + START_TIME + times[0] + END_TIME + times[1]);
+            LOG.info(url.toString());
 
-        return unmarshall(url.openStream()).getData().getAIRSIGMET();
+            return unmarshall(url.openStream()).getData().getAIRSIGMET();
+        } catch (IOException e) {
+            throw new ServiceException(e);
+        }
     }
 
-    public List<AIRSIGMET> getAirsigmetsHoursBeforeNow(double hoursBeforeNow) throws Exception {
-        URL url = new URL(RQST_URL + HOURS_BEFORE_NOW + hoursBeforeNow);
-        LOG.info(url.toString());
+    public List<AIRSIGMET> getAirsigmetsHoursBeforeNow(double hoursBeforeNow) throws ServiceException {
+        try {
+            URL url = new URL(RQST_URL + HOURS_BEFORE_NOW + hoursBeforeNow);
+            LOG.info(url.toString());
 
-        return unmarshall(url.openStream()).getData().getAIRSIGMET();
+            return unmarshall(url.openStream()).getData().getAIRSIGMET();
+        } catch (IOException e) {
+            throw new ServiceException(e);
+        }
     }
 
     public List<AIRSIGMET> getAirsigmetsInAltitudeRange(int minAltFt, int maxAltFt, double hrsBeforeNow)
-            throws Exception{
-        URL url = new URL(RQST_URL + MIN_ALTITUDE_FT + minAltFt + MAX_ALTITUDE_FT + maxAltFt + HOURS_BEFORE_NOW + hrsBeforeNow);
-        LOG.info(url.toString());
+            throws ServiceException {
+        try {
+            URL url = new URL(RQST_URL + MIN_ALTITUDE_FT + minAltFt + MAX_ALTITUDE_FT + maxAltFt + HOURS_BEFORE_NOW + hrsBeforeNow);
+            LOG.info(url.toString());
 
-        return unmarshall(url.openStream()).getData().getAIRSIGMET();
+            return unmarshall(url.openStream()).getData().getAIRSIGMET();
+        } catch (IOException e) {
+            throw new ServiceException(e);
+        }
     }
 
     public List<AIRSIGMET> getAirsigmetsInLatLongRectangle(int minLat, int minLong, int maxLat, int maxLong,
-                                                           double hrsBeforeNow) throws Exception {
-        URL url = new URL(
-                RQST_URL + MIN_LON + minLong + MAX_LON + maxLong + MIN_LAT + minLat + MAX_LAT + maxLat + HOURS_BEFORE_NOW + hrsBeforeNow
-        );
-        LOG.info(url.toString());
+                                                           double hrsBeforeNow) throws ServiceException {
+        try {
+            URL url = new URL(
+                    RQST_URL + MIN_LON + minLong + MAX_LON + maxLong + MIN_LAT + minLat + MAX_LAT + maxLat + HOURS_BEFORE_NOW + hrsBeforeNow
+            );
+            LOG.info(url.toString());
 
-        return unmarshall(url.openStream()).getData().getAIRSIGMET();
+            return unmarshall(url.openStream()).getData().getAIRSIGMET();
+        } catch (IOException e) {
+            throw new ServiceException(e);
+        }
     }
 
     private static String[] startAndEndTimes() {
