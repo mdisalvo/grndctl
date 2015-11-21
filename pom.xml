@@ -166,13 +166,13 @@
                     <!--</execution>-->
                 <!--</executions>-->
                 <!--<configuration>-->
-                    <!--<baseUrl>grndctl.herokuapp.com</baseUrl>-->
                     <!--<licence>-->
                         <!--UHJvamVjdHxjb20uZ3JuZGN0bC5ncm5kY3RsfDIwMTYtMTAtMTZ8dHJ1ZSNNQ3dDRkExNEo5ZnRvbm5RVkJUOU56QW9QaElreEJ4OEFoUVRPU2xOc2NnSmJMQnQwUGZScUxVdmoybTB2QT09-->
                     <!--</licence>-->
                     <!--<output>-->
                         <!--<title>GrndCtl/AvWx ${project.version}</title>-->
                         <!--<html>-->
+                            <!--<baseUrl>grndctl.herokuapp.com</baseUrl>-->
                             <!--<sections>-->
                                 <!--<strategy>singlepage</strategy>-->
                             <!--</sections>-->
