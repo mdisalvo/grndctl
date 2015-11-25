@@ -21,6 +21,7 @@ import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.ImmutableListMultimap;
 import com.google.common.collect.ListMultimap;
 import com.grndctl.model.flightplan.Navaid;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.io.FileReader;
@@ -44,6 +45,7 @@ public class NavaidSvc {
 
     private static ImmutableListMultimap<String, Navaid> STATION_NAVAID_MAP;
 
+    @Cacheable("navaids")
     public Map<String, Collection<Navaid>> getAllNavaidsByIdent() {
         return IDENT_NAVAID_MAP.asMap();
     }

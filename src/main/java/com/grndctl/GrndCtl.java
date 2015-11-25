@@ -20,15 +20,21 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.context.web.SpringBootServletInitializer;
+import org.springframework.cache.CacheManager;
+import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.cache.concurrent.ConcurrentMapCacheManager;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
 /**
- * Created by michael on 10/16/15.
+ *
+ * @author Michael Di Salvo
  */
 @Component
 @ComponentScan
+@EnableCaching
 @EnableAutoConfiguration
 @PropertySource("classpath:application.properties")
 public class GrndCtl extends SpringBootServletInitializer {
@@ -36,6 +42,11 @@ public class GrndCtl extends SpringBootServletInitializer {
     @Override
     protected final SpringApplicationBuilder configure(final SpringApplicationBuilder app) {
         return app.sources(GrndCtl.class);
+    }
+
+    @Bean
+    public CacheManager cacheManager() {
+        return new ConcurrentMapCacheManager("navaids");
     }
 
     public static void main(String...args) {
