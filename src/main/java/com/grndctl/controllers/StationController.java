@@ -17,8 +17,8 @@
 package com.grndctl.controllers;
 
 import com.grndctl.ResourceNotFoundException;
-import com.grndctl.model.station.Station;
 import com.grndctl.ServiceException;
+import com.grndctl.model.station.Station;
 import com.grndctl.model.station.StationCodeType;
 import com.grndctl.services.StationSvc;
 import com.qmino.miredot.annotations.ReturnType;
@@ -29,7 +29,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.io.FileNotFoundException;
 import java.util.List;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;

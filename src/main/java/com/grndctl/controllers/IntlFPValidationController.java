@@ -16,9 +16,9 @@
  */
 package com.grndctl.controllers;
 
+import com.grndctl.ServiceException;
 import com.grndctl.model.flightplan.ValidationResults;
 import com.grndctl.services.IntlFPValidationSvc;
-import com.grndctl.ServiceException;
 import com.qmino.miredot.annotations.ReturnType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

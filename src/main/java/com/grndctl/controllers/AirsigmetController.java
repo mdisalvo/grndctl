@@ -16,9 +16,9 @@
  */
 package com.grndctl.controllers;
 
+import com.grndctl.ServiceException;
 import com.grndctl.model.airsigmet.AIRSIGMET;
 import com.grndctl.services.AirsigmetSvc;
-import com.grndctl.ServiceException;
 import com.qmino.miredot.annotations.ReturnType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

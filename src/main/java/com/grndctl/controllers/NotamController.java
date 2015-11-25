@@ -17,6 +17,7 @@
 package com.grndctl.controllers;
 
 import com.grndctl.ServiceException;
+import com.grndctl.model.notam.Notam;
 import com.grndctl.services.NotamSvc;
 import com.qmino.miredot.annotations.ReturnType;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +42,10 @@ public class NotamController extends AbstractController {
 
     private static final String CODES = "codes";
 
+    private static final String REPORT_TYPE = "reportType";
+
+    private static final String FORMAT_TYPE = "formatType";
+
     private final NotamSvc svc;
 
     @Autowired
@@ -60,19 +65,31 @@ public class NotamController extends AbstractController {
      * </pre>
      *
      * @param codes Aerodrome/FIR boundary ICAO codes to retrieve <code>NOTAM</code>s for (Default -> [KIAD, ZDC])
+     * @param reportType NOTAM Report Type (Default -> RAW)
+     * @param formatType NOTAM Format Type (Default -> DOMESTIC)
      * @return <code>List</code> of raw <code>NOTAM</code> Strings for the requested codes
      * @throws ServiceException
      */
     @RequestMapping(value = "", method = GET, produces = "application/json")
     @ReturnType(value = "java.util.List<java.lang.String>")
     public ResponseEntity<List<String>> getNotamsForCodes(
-            @RequestParam(value = CODES) List<String> codes) throws ServiceException {
+            @RequestParam(value = CODES) List<String> codes,
+            @RequestParam(value = REPORT_TYPE, required = false) Notam.ReportType reportType,
+            @RequestParam(value = FORMAT_TYPE, required = false) Notam.FormatType formatType) throws ServiceException {
 
         if (codes == null || codes.isEmpty()) {
             codes = new ArrayList<String>(){{add("KIAD");add("ZDC");}};
         }
 
-        return new ResponseEntity<>(svc.getNotamsForCodes(codes), HttpStatus.OK);
+        if (reportType == null) {
+            reportType = Notam.ReportType.RAW;
+        }
+
+        if (formatType == null) {
+            formatType = Notam.FormatType.DOMESTIC;
+        }
+
+        return new ResponseEntity<>(svc.getNotamsForCodes(codes, reportType, formatType), HttpStatus.OK);
     }
 
 }

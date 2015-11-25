@@ -16,8 +16,6 @@
  */
 package com.grndctl.model.aircraftrep;
 
-import com.google.common.base.Preconditions;
-
 /**
  *
  */

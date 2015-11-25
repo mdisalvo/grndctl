@@ -17,10 +17,10 @@
 package com.grndctl.controllers;
 
 import com.grndctl.ResourceNotFoundException;
+import com.grndctl.ServiceException;
 import com.grndctl.model.aggregates.CombinedWx;
 import com.grndctl.model.station.StationCodeType;
 import com.grndctl.services.MetarSvc;
-import com.grndctl.ServiceException;
 import com.grndctl.services.StationSvc;
 import com.grndctl.services.TafSvc;
 import com.qmino.miredot.annotations.ReturnType;
