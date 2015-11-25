@@ -17,7 +17,7 @@
 package com.grndctl.controllers;
 
 import com.grndctl.ServiceException;
-import com.grndctl.model.notam.Notam;
+import com.grndctl.model.flightplan.Notam;
 import com.grndctl.services.NotamSvc;
 import com.qmino.miredot.annotations.ReturnType;
 import org.springframework.beans.factory.annotation.Autowired;

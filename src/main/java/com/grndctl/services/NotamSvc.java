@@ -17,7 +17,7 @@
 package com.grndctl.services;
 
 import com.grndctl.ServiceException;
-import com.grndctl.model.notam.Notam;
+import com.grndctl.model.flightplan.Notam;
 import org.apache.commons.lang3.StringUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -34,7 +34,7 @@ import java.util.List;
 @Service
 public class NotamSvc {
 
-    private static final String FAA_NOTAM_URL = "https://pilotweb.nas.faa.gov/PilotWeb/notamRetrievalByICAOAction.do?" +
+    private static final String FAA_NOTAM_SEARCH_URL = "https://pilotweb.nas.faa.gov/PilotWeb/notamRetrievalByICAOAction.do?" +
             "method=displayByICAOs&actionType=notamRetrievalByICAOs";
     private static final String FORMAT_TYPE = "&formatType=";
     private static final String REPORT_TYPE = "&reportType=";
@@ -50,7 +50,7 @@ public class NotamSvc {
         Document dom;
         try {
             dom = Jsoup
-                    .connect(FAA_NOTAM_URL + ICAO_CODE + icaoString + REPORT_TYPE + reportType + FORMAT_TYPE + formatType)
+                    .connect(FAA_NOTAM_SEARCH_URL + ICAO_CODE + icaoString + REPORT_TYPE + reportType + FORMAT_TYPE + formatType)
                     .userAgent(USER_AGENT)
                     .timeout(5000)
                     .get();

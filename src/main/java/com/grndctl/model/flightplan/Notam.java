@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with grndctl.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.grndctl.model.notam;
+package com.grndctl.model.flightplan;
 
 /**
  */
