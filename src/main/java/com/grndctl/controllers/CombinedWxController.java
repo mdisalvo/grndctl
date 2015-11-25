@@ -40,7 +40,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
  */
 @RestController
 @RequestMapping("/combinedwx")
-public class CombinedWxController extends AbstractController {
+public class CombinedWxController {
 
     private static final String STATION = "station";
 

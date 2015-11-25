@@ -40,7 +40,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping(value = "/aircraftrep")
-public class AircraftReportController extends AbstractController {
+public class AircraftReportController {
 
     private static final String HRS_BEFORE = "hrsBefore";
 
