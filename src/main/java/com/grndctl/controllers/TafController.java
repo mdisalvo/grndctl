@@ -42,7 +42,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
  */
 @RestController
 @RequestMapping("/taf")
-public class TafController extends AbstractController {
+public class TafController {
 
     private static final String STATION = "station";
 

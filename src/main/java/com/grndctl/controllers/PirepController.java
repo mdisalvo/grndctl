@@ -39,7 +39,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 @Deprecated
 @RestController
 @RequestMapping(value = "/pirep")
-public class PirepController extends AbstractController {
+public class PirepController {
 
     private static final String HRS_BEFORE = "hrsBefore";
 

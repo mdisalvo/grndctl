@@ -37,7 +37,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
  */
 @RestController
 @RequestMapping("/intlfpvalidator")
-public class IntlFPValidationController extends AbstractController {
+public class IntlFPValidationController {
 
     private final IntlFPValidationSvc svc;
 

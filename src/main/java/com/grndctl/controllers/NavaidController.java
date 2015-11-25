@@ -39,7 +39,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
  */
 @RestController
 @RequestMapping("/navaid")
-public class NavaidController extends AbstractController {
+public class NavaidController {
 
     private final NavaidSvc svc;
 

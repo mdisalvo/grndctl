@@ -42,7 +42,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
  */
 @RestController
 @RequestMapping("/metar")
-public class MetarController extends AbstractController {
+public class MetarController {
 
     private static final String STATION = "station";
 

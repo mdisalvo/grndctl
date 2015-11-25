@@ -37,7 +37,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
  */
 @RestController
 @RequestMapping("/airsigmet")
-public class AirsigmetController extends AbstractController {
+public class AirsigmetController {
 
     private static final String HRS_BEFORE = "hrsBefore";
     private static final String MAX_ALT_FT = "maxAltitudeFt";

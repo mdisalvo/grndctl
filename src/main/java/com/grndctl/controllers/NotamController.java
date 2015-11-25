@@ -38,7 +38,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
  */
 @RestController
 @RequestMapping("/notam")
-public class NotamController extends AbstractController {
+public class NotamController {
 
     private static final String CODES = "codes";
 
