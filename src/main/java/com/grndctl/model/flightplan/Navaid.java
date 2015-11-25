@@ -34,29 +34,29 @@ public class Navaid {
     @XmlElement
     private String type;
     @XmlElement
-    private String frequencyKhz;
+    private int frequencyKhz;
     @XmlElement
-    private String latitudeDeg;
+    private double latitudeDeg;
     @XmlElement
-    private String longitudeDeg;
+    private double longitudeDeg;
     @XmlElement
-    private String elevationFt;
+    private int elevationFt;
     @XmlElement
     private String isoCountry;
     @XmlElement
-    private String dmeFrequencyKhz;
+    private int dmeFrequencyKhz;
     @XmlElement
     private String dmeChannel;
     @XmlElement
-    private String dmeLatitudeDeg;
+    private double dmeLatitudeDeg;
     @XmlElement
-    private String dmeLongitudeDeg;
+    private double dmeLongitudeDeg;
     @XmlElement
-    private String dmeElevationFt;
+    private int dmeElevationFt;
     @XmlElement
-    private String slavedVariationDeg;
+    private double slavedVariationDeg;
     @XmlElement
-    private String magneticVariationDeg;
+    private double magneticVariationDeg;
     @XmlElement
     private String usageType;
     @XmlElement
@@ -107,35 +107,35 @@ public class Navaid {
         this.type = type;
     }
 
-    public String getFrequencyKhz() {
+    public int getFrequencyKhz() {
         return frequencyKhz;
     }
 
-    public void setFrequencyKhz(String frequencyKhz) {
+    public void setFrequencyKhz(int frequencyKhz) {
         this.frequencyKhz = frequencyKhz;
     }
 
-    public String getLatitudeDeg() {
+    public double getLatitudeDeg() {
         return latitudeDeg;
     }
 
-    public void setLatitudeDeg(String latitudeDeg) {
+    public void setLatitudeDeg(double latitudeDeg) {
         this.latitudeDeg = latitudeDeg;
     }
 
-    public String getLongitudeDeg() {
+    public double getLongitudeDeg() {
         return longitudeDeg;
     }
 
-    public void setLongitudeDeg(String longitudeDeg) {
+    public void setLongitudeDeg(double longitudeDeg) {
         this.longitudeDeg = longitudeDeg;
     }
 
-    public String getElevationFt() {
+    public int getElevationFt() {
         return elevationFt;
     }
 
-    public void setElevationFt(String elevationFt) {
+    public void setElevationFt(int elevationFt) {
         this.elevationFt = elevationFt;
     }
 
@@ -147,11 +147,11 @@ public class Navaid {
         this.isoCountry = isoCountry;
     }
 
-    public String getDmeFrequencyKhz() {
+    public int getDmeFrequencyKhz() {
         return dmeFrequencyKhz;
     }
 
-    public void setDmeFrequencyKhz(String dmeFrequencyKhz) {
+    public void setDmeFrequencyKhz(int dmeFrequencyKhz) {
         this.dmeFrequencyKhz = dmeFrequencyKhz;
     }
 
@@ -163,43 +163,43 @@ public class Navaid {
         this.dmeChannel = dmeChannel;
     }
 
-    public String getDmeLatitudeDeg() {
+    public double getDmeLatitudeDeg() {
         return dmeLatitudeDeg;
     }
 
-    public void setDmeLatitudeDeg(String dmeLatitudeDeg) {
+    public void setDmeLatitudeDeg(double dmeLatitudeDeg) {
         this.dmeLatitudeDeg = dmeLatitudeDeg;
     }
 
-    public String getDmeLongitudeDeg() {
+    public double getDmeLongitudeDeg() {
         return dmeLongitudeDeg;
     }
 
-    public void setDmeLongitudeDeg(String dmeLongitudeDeg) {
+    public void setDmeLongitudeDeg(double dmeLongitudeDeg) {
         this.dmeLongitudeDeg = dmeLongitudeDeg;
     }
 
-    public String getDmeElevationFt() {
+    public int getDmeElevationFt() {
         return dmeElevationFt;
     }
 
-    public void setDmeElevationFt(String dmeElevationFt) {
+    public void setDmeElevationFt(int dmeElevationFt) {
         this.dmeElevationFt = dmeElevationFt;
     }
 
-    public String getSlavedVariationDeg() {
+    public double getSlavedVariationDeg() {
         return slavedVariationDeg;
     }
 
-    public void setSlavedVariationDeg(String slavedVariationDeg) {
+    public void setSlavedVariationDeg(double slavedVariationDeg) {
         this.slavedVariationDeg = slavedVariationDeg;
     }
 
-    public String getMagneticVariationDeg() {
+    public double getMagneticVariationDeg() {
         return magneticVariationDeg;
     }
 
-    public void setMagneticVariationDeg(String magneticVariationDeg) {
+    public void setMagneticVariationDeg(double magneticVariationDeg) {
         this.magneticVariationDeg = magneticVariationDeg;
     }
 
@@ -259,31 +259,23 @@ public class Navaid {
 
         Navaid navaid = (Navaid) o;
 
+        if (frequencyKhz != navaid.frequencyKhz) return false;
+        if (Double.compare(navaid.latitudeDeg, latitudeDeg) != 0) return false;
+        if (Double.compare(navaid.longitudeDeg, longitudeDeg) != 0) return false;
+        if (elevationFt != navaid.elevationFt) return false;
+        if (dmeFrequencyKhz != navaid.dmeFrequencyKhz) return false;
+        if (Double.compare(navaid.dmeLatitudeDeg, dmeLatitudeDeg) != 0) return false;
+        if (Double.compare(navaid.dmeLongitudeDeg, dmeLongitudeDeg) != 0) return false;
+        if (dmeElevationFt != navaid.dmeElevationFt) return false;
+        if (Double.compare(navaid.slavedVariationDeg, slavedVariationDeg) != 0) return false;
+        if (Double.compare(navaid.magneticVariationDeg, magneticVariationDeg) != 0) return false;
         if (id != null ? !id.equals(navaid.id) : navaid.id != null) return false;
         if (filename != null ? !filename.equals(navaid.filename) : navaid.filename != null) return false;
         if (ident != null ? !ident.equals(navaid.ident) : navaid.ident != null) return false;
         if (name != null ? !name.equals(navaid.name) : navaid.name != null) return false;
         if (type != null ? !type.equals(navaid.type) : navaid.type != null) return false;
-        if (frequencyKhz != null ? !frequencyKhz.equals(navaid.frequencyKhz) : navaid.frequencyKhz != null)
-            return false;
-        if (latitudeDeg != null ? !latitudeDeg.equals(navaid.latitudeDeg) : navaid.latitudeDeg != null) return false;
-        if (longitudeDeg != null ? !longitudeDeg.equals(navaid.longitudeDeg) : navaid.longitudeDeg != null)
-            return false;
-        if (elevationFt != null ? !elevationFt.equals(navaid.elevationFt) : navaid.elevationFt != null) return false;
         if (isoCountry != null ? !isoCountry.equals(navaid.isoCountry) : navaid.isoCountry != null) return false;
-        if (dmeFrequencyKhz != null ? !dmeFrequencyKhz.equals(navaid.dmeFrequencyKhz) : navaid.dmeFrequencyKhz != null)
-            return false;
         if (dmeChannel != null ? !dmeChannel.equals(navaid.dmeChannel) : navaid.dmeChannel != null) return false;
-        if (dmeLatitudeDeg != null ? !dmeLatitudeDeg.equals(navaid.dmeLatitudeDeg) : navaid.dmeLatitudeDeg != null)
-            return false;
-        if (dmeLongitudeDeg != null ? !dmeLongitudeDeg.equals(navaid.dmeLongitudeDeg) : navaid.dmeLongitudeDeg != null)
-            return false;
-        if (dmeElevationFt != null ? !dmeElevationFt.equals(navaid.dmeElevationFt) : navaid.dmeElevationFt != null)
-            return false;
-        if (slavedVariationDeg != null ? !slavedVariationDeg.equals(navaid.slavedVariationDeg) : navaid.slavedVariationDeg != null)
-            return false;
-        if (magneticVariationDeg != null ? !magneticVariationDeg.equals(navaid.magneticVariationDeg) : navaid.magneticVariationDeg != null)
-            return false;
         if (usageType != null ? !usageType.equals(navaid.usageType) : navaid.usageType != null) return false;
         if (power != null ? !power.equals(navaid.power) : navaid.power != null) return false;
         return !(associatedAirport != null ? !associatedAirport.equals(navaid.associatedAirport) : navaid.associatedAirport != null);
@@ -292,23 +284,31 @@ public class Navaid {
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
+        int result;
+        long temp;
+        result = id != null ? id.hashCode() : 0;
         result = 31 * result + (filename != null ? filename.hashCode() : 0);
         result = 31 * result + (ident != null ? ident.hashCode() : 0);
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (type != null ? type.hashCode() : 0);
-        result = 31 * result + (frequencyKhz != null ? frequencyKhz.hashCode() : 0);
-        result = 31 * result + (latitudeDeg != null ? latitudeDeg.hashCode() : 0);
-        result = 31 * result + (longitudeDeg != null ? longitudeDeg.hashCode() : 0);
-        result = 31 * result + (elevationFt != null ? elevationFt.hashCode() : 0);
+        result = 31 * result + frequencyKhz;
+        temp = Double.doubleToLongBits(latitudeDeg);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(longitudeDeg);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        result = 31 * result + elevationFt;
         result = 31 * result + (isoCountry != null ? isoCountry.hashCode() : 0);
-        result = 31 * result + (dmeFrequencyKhz != null ? dmeFrequencyKhz.hashCode() : 0);
+        result = 31 * result + dmeFrequencyKhz;
         result = 31 * result + (dmeChannel != null ? dmeChannel.hashCode() : 0);
-        result = 31 * result + (dmeLatitudeDeg != null ? dmeLatitudeDeg.hashCode() : 0);
-        result = 31 * result + (dmeLongitudeDeg != null ? dmeLongitudeDeg.hashCode() : 0);
-        result = 31 * result + (dmeElevationFt != null ? dmeElevationFt.hashCode() : 0);
-        result = 31 * result + (slavedVariationDeg != null ? slavedVariationDeg.hashCode() : 0);
-        result = 31 * result + (magneticVariationDeg != null ? magneticVariationDeg.hashCode() : 0);
+        temp = Double.doubleToLongBits(dmeLatitudeDeg);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(dmeLongitudeDeg);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        result = 31 * result + dmeElevationFt;
+        temp = Double.doubleToLongBits(slavedVariationDeg);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(magneticVariationDeg);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
         result = 31 * result + (usageType != null ? usageType.hashCode() : 0);
         result = 31 * result + (power != null ? power.hashCode() : 0);
         result = 31 * result + (associatedAirport != null ? associatedAirport.hashCode() : 0);

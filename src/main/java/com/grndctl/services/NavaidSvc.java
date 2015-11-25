@@ -17,10 +17,12 @@
 package com.grndctl.services;
 
 import au.com.bytecode.opencsv.CSVReader;
+import com.google.common.base.Strings;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.ImmutableListMultimap;
 import com.google.common.collect.ListMultimap;
 import com.grndctl.model.flightplan.Navaid;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.io.FileReader;
@@ -44,6 +46,7 @@ public class NavaidSvc {
 
     private static ImmutableListMultimap<String, Navaid> STATION_NAVAID_MAP;
 
+    @Cacheable("navaids")
     public Map<String, Collection<Navaid>> getAllNavaidsByIdent() {
         return IDENT_NAVAID_MAP.asMap();
     }
@@ -61,17 +64,15 @@ public class NavaidSvc {
     }
 
     private static void buildNavaidMaps(String csvUrl) {
-        List<String[]> rows;
         try {
-            CSVReader reader = new CSVReader(new FileReader(csvUrl));
-            // read off the column headers...
-            reader.readNext();
-            rows = reader.readAll();
+            try (CSVReader reader = new CSVReader(new FileReader(csvUrl))) {
+                // read off the column headers...
+                reader.readNext();
+                transformRows(reader.readAll());
+            }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
-        transformRows(rows);
     }
 
     private static void transformRows(List<String[]> rows) {
@@ -97,40 +98,60 @@ public class NavaidSvc {
                         navaid.setType(row[i]);
                         continue;
                     case (5):
-                        navaid.setFrequencyKhz(row[i]);
+                        if (!Strings.isNullOrEmpty(row[i])) {
+                            navaid.setFrequencyKhz(Integer.parseInt(row[i]));
+                        }
                         continue;
                     case (6):
-                        navaid.setLatitudeDeg(row[i]);
+                        if (!Strings.isNullOrEmpty(row[i])) {
+                            navaid.setLatitudeDeg(Double.parseDouble(row[i]));
+                        }
                         continue;
                     case (7):
-                        navaid.setLongitudeDeg(row[i]);
+                        if (!Strings.isNullOrEmpty(row[i])) {
+                            navaid.setLongitudeDeg(Double.parseDouble(row[i]));
+                        }
                         continue;
                     case (8):
-                        navaid.setElevationFt(row[i]);
+                        if (!Strings.isNullOrEmpty(row[i])) {
+                            navaid.setElevationFt(Integer.parseInt(row[i]));
+                        }
                         continue;
                     case (9):
                         navaid.setIsoCountry(row[i]);
                         continue;
                     case (10):
-                        navaid.setDmeFrequencyKhz(row[i]);
+                        if (!Strings.isNullOrEmpty(row[i])) {
+                            navaid.setDmeFrequencyKhz(Integer.parseInt(row[i]));
+                        }
                         continue;
                     case (11):
                         navaid.setDmeChannel(row[i]);
                         continue;
                     case (12):
-                        navaid.setDmeLatitudeDeg(row[i]);
+                        if (!Strings.isNullOrEmpty(row[i])) {
+                            navaid.setDmeLatitudeDeg(Double.parseDouble(row[i]));
+                        }
                         continue;
                     case (13):
-                        navaid.setDmeLongitudeDeg(row[i]);
+                        if (!Strings.isNullOrEmpty(row[i])) {
+                            navaid.setDmeLongitudeDeg(Double.parseDouble(row[i]));
+                        }
                         continue;
                     case (14):
-                        navaid.setDmeElevationFt(row[i]);
+                        if (!Strings.isNullOrEmpty(row[i])) {
+                            navaid.setDmeElevationFt(Integer.parseInt(row[i]));
+                        }
                         continue;
                     case (15):
-                        navaid.setSlavedVariationDeg(row[i]);
+                        if (!Strings.isNullOrEmpty(row[i])) {
+                            navaid.setSlavedVariationDeg(Double.parseDouble(row[i]));
+                        }
                         continue;
                     case (16):
-                        navaid.setMagneticVariationDeg(row[i]);
+                        if (!Strings.isNullOrEmpty(row[i])) {
+                            navaid.setMagneticVariationDeg(Double.parseDouble(row[i]));
+                        }
                         continue;
                     case (17):
                         navaid.setUsageType(row[i]);
@@ -143,9 +164,9 @@ public class NavaidSvc {
                         break;
                 }
             }
+
             identNavaids.put(navaid.getIdent(), navaid);
             stationNavaids.put(navaid.getAssociatedAirport(), navaid);
-
         }
 
         IDENT_NAVAID_MAP = ImmutableListMultimap.copyOf(identNavaids);
