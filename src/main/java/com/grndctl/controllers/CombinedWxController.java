@@ -27,6 +27,7 @@ import com.qmino.miredot.annotations.ReturnType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -60,16 +61,16 @@ public class CombinedWxController {
     /**
      * The combined conditions for a field. Takes a string parameter for the field to retrieve, and hours before now.
      *
-     * @param station Station string (Default -> KIAD)
+     * @param station Station string
      * @param hrsBefore Hours before now (Default -> 1.0)
      * @return <code>CombinedWx</code> entity
      * @throws com.grndctl.ServiceException
      * @throws com.grndctl.ResourceNotFoundException
      */
-    @RequestMapping(value = "", method = GET, produces = "application/json")
+    @RequestMapping(value = "/{station}", method = GET, produces = "application/json")
     @ReturnType(value = "com.grndctl.model.aggregates.CombinedWx")
     public ResponseEntity<CombinedWx> getCombinedWx(
-            @RequestParam(value = STATION, defaultValue = "KIAD") String station,
+            @PathVariable(value = STATION) String station,
             @RequestParam(value = HRS_BEFORE, required = false, defaultValue = "1.0") Double hrsBefore) throws
             ServiceException, ResourceNotFoundException {
 

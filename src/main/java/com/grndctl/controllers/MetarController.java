@@ -26,6 +26,7 @@ import com.qmino.miredot.annotations.ReturnType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -61,16 +62,16 @@ public class MetarController {
     /**
      * <code>METAR</code>s for a station.  <code>hrsBefore</code> parameter is provided to retrieve historical reports.
      *
-     * @param station Station string (Default -> KIAD)
+     * @param station Station string
      * @param hrsBefore Hours before now (Default -> 1.0)
      * @return <code>List</code> of filtered <code>METAR</code>s
      * @throws com.grndctl.ServiceException
      * @throws com.grndctl.ResourceNotFoundException
      */
-    @RequestMapping(value = "", method = GET, produces = "application/json")
+    @RequestMapping(value = "/{station}", method = GET, produces = "application/json")
     @ReturnType(value = "java.util.List<com.grndctl.model.metar.METAR>")
     public ResponseEntity<List<METAR>> getMetar(
-            @RequestParam(value = STATION, defaultValue = "KIAD") String station,
+            @PathVariable(value = STATION) String station,
             @RequestParam(value = HRS_BEFORE, required = false, defaultValue = "1.0") Double hrsBefore) throws
             ServiceException, ResourceNotFoundException {
 

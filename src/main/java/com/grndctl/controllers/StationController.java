@@ -25,6 +25,7 @@ import com.qmino.miredot.annotations.ReturnType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -42,7 +43,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 @RequestMapping("/station")
 public class StationController {
 
-    private static final String STATION = "station";
+    private static final String ICAO_CODE = "icaocode";
 
     private static final String IATA_CODE = "iatacode";
 
@@ -56,21 +57,21 @@ public class StationController {
     /**
      * Get information for a field such as latest <code>METAR</code> latest <code>TAF</code>, forecasts, etc.
      *
-     * @param station Station string (Default -> KIAD)
+     * @param icaocode Station string
      * @return <code>List</code> of filtered <code>Station</code>s
      * @throws com.grndctl.ServiceException
      * @throws com.grndctl.ResourceNotFoundException
      */
-    @RequestMapping(value = "/adds", method = GET, produces = "application/json")
+    @RequestMapping(value = "/adds/{icaocode}", method = GET, produces = "application/json")
     @ReturnType(value = "java.util.List<com.grndctl.model.station.Station>")
     public ResponseEntity<List<Station>> getStationInfo(
-            @RequestParam(value = STATION, defaultValue = "KIAD") final String station) throws ServiceException,
+            @PathVariable(value = ICAO_CODE) final String icaocode) throws ServiceException,
             ResourceNotFoundException {
-        if (!stationSvc.stationExists(station, StationCodeType.ICAO)) {
-            throw new ResourceNotFoundException(String.format("Station with ICAO code %s does not exist.", station));
+        if (!stationSvc.stationExists(icaocode, StationCodeType.ICAO)) {
+            throw new ResourceNotFoundException(String.format("Station with ICAO code %s does not exist.", icaocode));
         }
 
-        return new ResponseEntity<>(stationSvc.getStationInfo(station), HttpStatus.OK);
+        return new ResponseEntity<>(stationSvc.getStationInfo(icaocode), HttpStatus.OK);
     }
 
     /**
@@ -110,15 +111,15 @@ public class StationController {
      *     }
      * </pre>
      *
-     * @param iatacode IATA code for the aerodrome (Default -> IAD)
+     * @param iatacode IATA code for the aerodrome
      * @return A JSON <code>String</code> that is the FAA Airport Status Response
      * @throws com.grndctl.ServiceException
      * @throws com.grndctl.ResourceNotFoundException
      */
-    @RequestMapping(value = "/faa", method = GET, produces = "application/json")
+    @RequestMapping(value = "/faa/{iatacode}", method = GET, produces = "application/json")
     @ReturnType(value = "java.lang.String")
     public ResponseEntity<String> getFAAStationStatus(
-            @RequestParam(value = IATA_CODE, defaultValue = "IAD") final String iatacode) throws ServiceException, ResourceNotFoundException {
+            @PathVariable(value = IATA_CODE) final String iatacode) throws ServiceException, ResourceNotFoundException {
 
         if (!stationSvc.stationExists(iatacode, StationCodeType.IATA)) {
             throw new ResourceNotFoundException(String.format("Station with IATA code %s does not exist.", iatacode));

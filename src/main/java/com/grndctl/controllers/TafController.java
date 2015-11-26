@@ -27,6 +27,7 @@ import com.qmino.miredot.annotations.ReturnType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -64,18 +65,18 @@ public class TafController {
      * Retrieve <code>TAF</code>s hours before now for a station by either issue time or validity.  If
      * <code>timeType</code> is null, then <code>TimeType.VALID</code> will be passed to the service.
      *
-     * @param code Station string (Default -> KIAD)
+     * @param code Station string
      * @param hrsBefore Hours before now (Default -> 2.0)
      * @param timeType <code>ISSUE</code> or (Default)<code>VALID</code>
      * @return <code>List</code> of filtered <code>TAF</code>s
      * @throws com.grndctl.ServiceException
      * @throws com.grndctl.ResourceNotFoundException
      */
-    @RequestMapping(value = "", method = GET, produces = "application/json")
+    @RequestMapping(value = "/{station}", method = GET, produces = "application/json")
     @ReturnType(value = "java.util.List<com.grndctl.model.taf.TAF>")
     public ResponseEntity<List<TAF>> getTafs(
-            @RequestParam(value = STATION, defaultValue = "KIAD") String code,
-            @RequestParam(value = HRS_BEFORE, defaultValue = "2.0") Double hrsBefore,
+            @PathVariable(value = STATION) String code,
+            @RequestParam(value = HRS_BEFORE, required = false, defaultValue = "2.0") Double hrsBefore,
             @RequestParam(value = TIME_TYPE, required = false) TimeType timeType) throws ServiceException, ResourceNotFoundException {
 
         if (!stationSvc.stationExists(code, StationCodeType.ICAO)) {
