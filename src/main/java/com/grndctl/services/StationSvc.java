@@ -16,8 +16,11 @@
  */
 package com.grndctl.services;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.google.common.io.CharStreams;
 import com.grndctl.ServiceException;
+import com.grndctl.model.station.FaaStation;
 import com.grndctl.model.station.Response;
 import com.grndctl.model.station.Station;
 import com.grndctl.model.station.StationCodeType;
@@ -66,12 +69,14 @@ public class StationSvc extends AbstractSvc<Response> {
         }
     }
 
-    public String getFAAStationStatus(String iataCode) throws ServiceException {
+    public FaaStation getFAAStationStatus(String iataCode) throws ServiceException {
         try {
             URL url = new URL(FAA_RQST_URL + iataCode + RQST_FORMAT_JSON);
             LOG.info(url.toString());
 
-            return CharStreams.toString(new InputStreamReader(url.openStream()));
+            return new ObjectMapper().readValue(
+                    CharStreams.toString(new InputStreamReader(url.openStream())).getBytes(), FaaStation.class
+            );
         } catch (IOException e) {
             throw new ServiceException(e);
         }
