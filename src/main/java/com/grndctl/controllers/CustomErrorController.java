@@ -37,6 +37,8 @@ public class CustomErrorController implements ErrorController {
 
     private static final String PATH = "/error";
 
+    private static final String MESSAGE = "message";
+
     @Autowired
     private ErrorAttributes errorAttributes;
 
@@ -47,7 +49,7 @@ public class CustomErrorController implements ErrorController {
     public ResponseEntity<Map<String, Object>> error(HttpServletRequest request) {
         Map<String, Object> body = getErrorAttributes(request, getTraceParameter(request));
         HttpStatus status = getStatus(request);
-        return new ResponseEntity<Map<String, Object>>(body, status);
+        return new ResponseEntity<>(body, status);
     }
 
     @Override
@@ -56,29 +58,23 @@ public class CustomErrorController implements ErrorController {
     }
 
     private boolean getTraceParameter(HttpServletRequest request) {
-        String parameter = request.getParameter("trace");
-        if (parameter == null) {
-            return false;
-        }
-        return !"false".equals(parameter.toLowerCase());
+        return request.getParameter("trace") != null && !"false".equals(request.getParameter("trace").toLowerCase());
     }
 
     private Map<String, Object> getErrorAttributes(HttpServletRequest request,
                                                    boolean includeStackTrace) {
         RequestAttributes requestAttributes = new ServletRequestAttributes(request);
-        return this.errorAttributes.getErrorAttributes(requestAttributes,
+        Map<String, Object> errorAttributesMap = this.errorAttributes.getErrorAttributes(requestAttributes,
                 includeStackTrace);
+        errorAttributesMap.put(MESSAGE, this.errorAttributes.getError(requestAttributes).getLocalizedMessage());
+        return errorAttributesMap;
     }
 
     private HttpStatus getStatus(HttpServletRequest request) {
         Integer statusCode = (Integer) request
                 .getAttribute("javax.servlet.error.status_code");
         if (statusCode != null) {
-            try {
-                return HttpStatus.valueOf(statusCode);
-            }
-            catch (Exception ex) {
-            }
+            return HttpStatus.valueOf(statusCode);
         }
         return HttpStatus.INTERNAL_SERVER_ERROR;
     }
