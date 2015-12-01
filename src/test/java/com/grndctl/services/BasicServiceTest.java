@@ -18,6 +18,7 @@ package com.grndctl.services;
 
 import com.grndctl.model.flightplan.ValidationResults;
 import com.grndctl.model.metar.METAR;
+import com.grndctl.model.station.FaaStation;
 import com.grndctl.model.station.Station;
 import com.grndctl.model.taf.TAF;
 import org.junit.BeforeClass;
@@ -67,10 +68,10 @@ public class BasicServiceTest {
         assertNotNull(station);
         assertEquals("KIAD", station.getStationId());
 
-        String faaStatus = stationSvc.getFAAStationStatus("IAD");
-        assertTrue(faaStatus.contains("IAD"));
-        assertTrue(faaStatus.contains("KIAD"));
-        assertTrue(faaStatus.contains("Washington Dulles International"));
+        FaaStation faaStatus = stationSvc.getFAAStationStatus("IAD");
+        assertTrue(faaStatus.getIata().equals("IAD"));
+        assertTrue(faaStatus.getIcao().equals("KIAD"));
+        assertTrue(faaStatus.getName().equals("Washington Dulles International"));
     }
 
     @Test

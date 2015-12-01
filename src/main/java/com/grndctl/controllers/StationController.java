@@ -18,6 +18,7 @@ package com.grndctl.controllers;
 
 import com.grndctl.ResourceNotFoundException;
 import com.grndctl.ServiceException;
+import com.grndctl.model.station.FaaStation;
 import com.grndctl.model.station.Station;
 import com.grndctl.model.station.StationCodeType;
 import com.grndctl.services.StationSvc;
@@ -112,13 +113,13 @@ public class StationController {
      * </pre>
      *
      * @param iatacode IATA code for the aerodrome
-     * @return A JSON <code>String</code> that is the FAA Airport Status Response
+     * @return A {@link FaaStation} object that is the FAA Airport Status Response
      * @throws com.grndctl.ServiceException
      * @throws com.grndctl.ResourceNotFoundException
      */
     @RequestMapping(value = "/faa/{iatacode}", method = GET, produces = "application/json")
-    @ReturnType(value = "java.lang.String")
-    public ResponseEntity<String> getFAAStationStatus(
+    @ReturnType(value = "com.grndctl.model.station.FaaStation")
+    public ResponseEntity<FaaStation> getFAAStationStatus(
             @PathVariable(value = IATA_CODE) final String iatacode) throws ServiceException, ResourceNotFoundException {
 
         if (!stationSvc.stationExists(iatacode, StationCodeType.IATA)) {
