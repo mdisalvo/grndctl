@@ -66,7 +66,13 @@ public class CustomErrorController implements ErrorController {
         RequestAttributes requestAttributes = new ServletRequestAttributes(request);
         Map<String, Object> errorAttributesMap = this.errorAttributes.getErrorAttributes(requestAttributes,
                 includeStackTrace);
-        errorAttributesMap.put(MESSAGE, this.errorAttributes.getError(requestAttributes).getLocalizedMessage());
+
+        errorAttributesMap.put(
+                MESSAGE,
+                errorAttributes.getError(requestAttributes) != null ?
+                        errorAttributes.getError(requestAttributes).getLocalizedMessage() : null
+        );
+
         return errorAttributesMap;
     }
 
