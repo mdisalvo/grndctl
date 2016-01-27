@@ -59,15 +59,15 @@ public class IntlFPValidationController {
      *
      * </pre>
      *
-     * @param flightPlan ICAO flight plan to validate (Default ^)
+     * @param flightPlan ICAO flight plan to validate (Ex. ^) [REQ'D]
      * @return <code>ValidationResults</code> object that holds the original flight plan, and the returned messages.
      * @throws com.grndctl.ServiceException
      */
     @RequestMapping(value = "/validate", method = POST, consumes = "application/json", produces = "application/json")
     @ReturnType(value = "com.grndctl.model.flightplan.ValidationResults")
     public ResponseEntity<ValidationResults> validateFlightPlan(
-            @RequestBody(required = true) String flightPlan) throws ServiceException {
-        return new ResponseEntity<>(svc.validateFlightPlan(flightPlan), HttpStatus.OK);
+            @RequestBody String flightPlan) throws ServiceException {
+        return ResponseEntity.ok(svc.validateFlightPlan(flightPlan));
     }
 
 }

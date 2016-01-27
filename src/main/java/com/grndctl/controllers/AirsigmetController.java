@@ -63,47 +63,47 @@ public class AirsigmetController {
     @RequestMapping(value = "", method = GET, produces = "application/json")
     @ReturnType(value = "java.util.List<com.grndctl.model.airsigmet.AIRSIGMET>")
     public ResponseEntity<List<AIRSIGMET>> getAirsigmets() throws ServiceException {
-        return new ResponseEntity<>(svc.getAirsigmets(), HttpStatus.OK);
+        return ResponseEntity.ok(svc.getAirsigmets());
     }
 
     /**
      * Retrieve <code>AIRSIGMET</code>s by altitude range, with an additional parameter for hours before now.
      *
-     * @param hrsBefore Hours before now (Default -> 1.0)
-     * @param minAltFt Minimum altitude (Default -> 5000)
-     * @param maxAltFt Maximum altitude (Default -> 30000)
+     * @param hrsBefore Hours before now (Ex. -> 1.0) [REQ'D]
+     * @param minAltFt Minimum altitude (Ex. -> 5000) [REQ'D]
+     * @param maxAltFt Maximum altitude (Ex. -> 30000) [REQ'D]
      * @return <code>List</code> of filtered <code>AIRSIGMET</code>s
      * @throws com.grndctl.ServiceException
      */
     @RequestMapping(value = "/altLimited", method = GET, produces = "application/json")
     @ReturnType(value = "java.util.List<com.grndctl.model.airsigmet.AIRSIGMET>")
     public ResponseEntity<List<AIRSIGMET>> getAirsigmetsByAlt(
-            @RequestParam(value = HRS_BEFORE, required = true, defaultValue = "1.0") double hrsBefore,
-            @RequestParam(value = MIN_ALT_FT, required = true, defaultValue = "5000") int minAltFt,
-            @RequestParam(value = MAX_ALT_FT, required = true, defaultValue = "30000") int maxAltFt) throws ServiceException {
-        return new ResponseEntity<>(svc.getAirsigmetsInAltitudeRange(minAltFt, maxAltFt, hrsBefore), HttpStatus.OK);
+            @RequestParam(value = HRS_BEFORE) double hrsBefore,
+            @RequestParam(value = MIN_ALT_FT) int minAltFt,
+            @RequestParam(value = MAX_ALT_FT) int maxAltFt) throws ServiceException {
+        return ResponseEntity.ok(svc.getAirsigmetsInAltitudeRange(minAltFt, maxAltFt, hrsBefore));
     }
 
     /**
      * Retreive <code>AIRSIGMET</code>s by lat/lon box, with an additional parameter for hours before now.
      *
-     * @param hrsBefore Hours before now (Default -> 1.0)
-     * @param minLat Minimum latitude (Default -> 25)
-     * @param maxLat Maximum latitude (Default -> 65)
-     * @param minLon Minimum longitude (Default -> -130)
-     * @param maxLon Maximum longitude (Default -> -40)
+     * @param hrsBefore Hours before now (Ex. -> 1.0) [REQ'D]
+     * @param minLat Minimum latitude (Ex. -> 25) [REQ'D]
+     * @param maxLat Maximum latitude (Ex. -> 65) [REQ'D]
+     * @param minLon Minimum longitude (Ex. -> -130) [REQ'D]
+     * @param maxLon Maximum longitude (Ex. -> -40) [REQ'D]
      * @return <code>List</code> of filtered <code>AIRSIGMET</code>s
      * @throws com.grndctl.ServiceException
      */
     @RequestMapping(value = "/latLonLimited", method = GET, produces = "application/json")
     @ReturnType(value = "java.util.List<com.grndctl.model.airsigmet.AIRSIGMET>")
     public ResponseEntity<List<AIRSIGMET>> getAirsimetsByLatLon(
-            @RequestParam(value = HRS_BEFORE, required = true, defaultValue = "1.0") double hrsBefore,
-            @RequestParam(value = MIN_LAT, required = true, defaultValue = "25") int minLat,
-            @RequestParam(value = MAX_LAT, required = true, defaultValue = "65") int maxLat,
-            @RequestParam(value = MIN_LON, required = true, defaultValue = "-130") int minLon,
-            @RequestParam(value = MAX_LON, required = true, defaultValue = "-40") int maxLon) throws ServiceException {
-        return new ResponseEntity<>(svc.getAirsigmetsInLatLongRectangle(minLat, minLon, maxLat, maxLon, hrsBefore), HttpStatus.OK);
+            @RequestParam(value = HRS_BEFORE) double hrsBefore,
+            @RequestParam(value = MIN_LAT) int minLat,
+            @RequestParam(value = MAX_LAT) int maxLat,
+            @RequestParam(value = MIN_LON) int minLon,
+            @RequestParam(value = MAX_LON) int maxLon) throws ServiceException {
+        return ResponseEntity.ok(svc.getAirsigmetsInLatLongRectangle(minLat, minLon, maxLat, maxLon, hrsBefore));
     }
 
 }

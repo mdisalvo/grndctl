@@ -65,7 +65,7 @@ public class TafController {
      * Retrieve <code>TAF</code>s hours before now for a station by either issue time or validity.  If
      * <code>timeType</code> is null, then <code>TimeType.VALID</code> will be passed to the service.
      *
-     * @param code Station string
+     * @param code Station string [REQ'D]
      * @param hrsBefore Hours before now (Default -> 2.0)
      * @param timeType <code>ISSUE</code> or (Default)<code>VALID</code>
      * @return <code>List</code> of filtered <code>TAF</code>s
@@ -87,7 +87,7 @@ public class TafController {
             timeType = TimeType.VALID;
         }
 
-        return new ResponseEntity<>(svc.getTafs(code, hrsBefore, timeType), HttpStatus.OK);
+        return ResponseEntity.ok(svc.getTafs(code, hrsBefore, timeType));
     }
 
 }

@@ -56,7 +56,7 @@ public class AircraftReportController {
     /**
      * Get the reports.  The <code>AircraftReport</code>s.
      *
-     * @param hrsBefore Hours before now (Default -> 1.0)
+     * @param hrsBefore Hours before now (Ex. 1.0) [REQ'D]
      * @param reportType The {@link com.grndctl.model.aircraftrep.ReportType} to return (Default -> AIREP)
      * @return <code>List</code> of filtered <code>AircraftReport</code>s
      * @throws com.grndctl.ServiceException
@@ -64,13 +64,13 @@ public class AircraftReportController {
     @RequestMapping(value = "", method = RequestMethod.GET, produces = "application/json")
     @ReturnType(value = "java.util.List<com.grndctl.model.aircraftrep.AircraftReport>")
     public ResponseEntity<List<AircraftReport>> getAircraftReports(
-            @RequestParam(value = HRS_BEFORE, defaultValue = "1.0") double hrsBefore,
+            @RequestParam(value = HRS_BEFORE) double hrsBefore,
             @RequestParam(value = REPORT_TYPE, required = false) ReportType reportType) throws ServiceException {
         if (reportType == null) {
             reportType = ReportType.AIREP;
         }
 
-        return new ResponseEntity<>(svc.getAircraftReports(hrsBefore, reportType), HttpStatus.OK);
+        return ResponseEntity.ok(svc.getAircraftReports(hrsBefore, reportType));
     }
 
 }

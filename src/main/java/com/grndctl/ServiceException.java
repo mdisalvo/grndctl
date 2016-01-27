@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 /**
  *
  */
-@ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR, reason = "The service call has not succeeded")
+@ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR, reason = "The Service Call Has Not Succeeded")
 public class ServiceException extends Exception {
 
     public ServiceException(String message, Throwable cause) {

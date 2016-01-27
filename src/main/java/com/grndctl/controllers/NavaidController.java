@@ -56,13 +56,13 @@ public class NavaidController {
     @RequestMapping(value = "", method = GET, produces = "application/json")
     @ReturnType(value = "java.util.Map<java.lang.String, java.util.Collection<com.grndctl.model.flightplan.Navaid>>")
     public ResponseEntity<Map<String, Collection<Navaid>>> getAllNavaidsByIdent() {
-        return new ResponseEntity<>(svc.getAllNavaidsByIdent(), HttpStatus.OK);
+        return ResponseEntity.ok(svc.getAllNavaidsByIdent());
     }
 
     /**
      * Retrieve <code>Navaid</code>s associated with an identifier.
      *
-     * @param ident The identifier of the <code>Navaid</code>(s) to return
+     * @param ident The identifier of the <code>Navaid</code>(s) to return [REQ'D]
      * @return <code>List</code> of filtered <code>Navaid</code>s
      * @throws ResourceNotFoundException
      */
@@ -75,13 +75,13 @@ public class NavaidController {
             throw new ResourceNotFoundException(String.format("No Navaids with ident %s exist.", ident));
         }
 
-        return new ResponseEntity<>(response, HttpStatus.OK);
+        return ResponseEntity.ok(response);
     }
 
     /**
      * Retrieve <code>Navaid</code>s associate with an ICAO station code.
      *
-     * @param station The ICAO station code of the associated <code>Navaid</code>(s) to return
+     * @param station The ICAO station code of the associated <code>Navaid</code>(s) to return [REQ'D]
      * @return <code>List</code> of filtered <code>Navaid</code>s
      * @throws ResourceNotFoundException
      */
@@ -94,7 +94,7 @@ public class NavaidController {
             throw new ResourceNotFoundException(String.format("No Navaids for station %s exist.", station));
         }
 
-        return new ResponseEntity<>(response, HttpStatus.OK);
+        return ResponseEntity.ok(response);
     }
 
 }

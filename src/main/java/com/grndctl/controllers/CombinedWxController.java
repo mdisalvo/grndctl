@@ -61,7 +61,7 @@ public class CombinedWxController {
     /**
      * The combined conditions for a field. Takes a string parameter for the field to retrieve, and hours before now.
      *
-     * @param station Station string
+     * @param station Station string (Ex. KIAD) [REQ'D]
      * @param hrsBefore Hours before now (Default -> 1.0)
      * @return <code>CombinedWx</code> entity
      * @throws com.grndctl.ServiceException
@@ -79,10 +79,10 @@ public class CombinedWxController {
         }
 
         CombinedWx resp = new CombinedWx();
-        resp.setMetars(metarSvc.getMetars(station, (hrsBefore == null || hrsBefore < 1.0 ? 1.0 : hrsBefore)));
+        resp.setMetars(metarSvc.getMetars(station, hrsBefore));
         resp.setTafs(tafSvc.getCurrentTaf(station));
 
-        return new ResponseEntity<>(resp, HttpStatus.OK);
+        return ResponseEntity.ok(resp);
     }
 
 }
