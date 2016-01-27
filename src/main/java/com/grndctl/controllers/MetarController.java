@@ -62,7 +62,7 @@ public class MetarController {
     /**
      * <code>METAR</code>s for a station.  <code>hrsBefore</code> parameter is provided to retrieve historical reports.
      *
-     * @param station Station string
+     * @param station Station string [REQ'D]
      * @param hrsBefore Hours before now (Default -> 1.0)
      * @return <code>List</code> of filtered <code>METAR</code>s
      * @throws com.grndctl.ServiceException
@@ -80,9 +80,9 @@ public class MetarController {
         }
 
         if (hrsBefore == null)
-            return new ResponseEntity<>(svc.getCurrentMetar(station), HttpStatus.OK);
+            return ResponseEntity.ok(svc.getCurrentMetar(station));
         else
-            return new ResponseEntity<>(svc.getMetars(station, hrsBefore), HttpStatus.OK);
+            return ResponseEntity.ok(svc.getMetars(station, hrsBefore));
     }
 
 }

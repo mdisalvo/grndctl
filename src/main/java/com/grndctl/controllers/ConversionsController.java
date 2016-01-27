@@ -17,7 +17,10 @@
 package com.grndctl.controllers;
 
 import com.grndctl.model.aggregates.WindComponent;
+import com.qmino.miredot.annotations.ReturnType;
 import org.apache.commons.lang3.math.Fraction;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -38,64 +41,69 @@ public class ConversionsController {
     /**
      * Convert Fahrenheit to Centigrade.
      *
-     * @param tempF Temp. Fahrenheit (Default -> 75)
+     * @param tempF Temp. Fahrenheit (Ex. -> 75) [REQ'D]
      * @return F converted to Temp. Centigrade as a <code>double</code>
      */
     @RequestMapping(value = "/FtoC", method = GET, produces = "application/json")
-    public double getFtoC(
-            @RequestParam(value = "tempF", defaultValue = "75") double tempF) {
-        return (tempF - 32) * (Fraction.getFraction(5, 9).doubleValue());
+    @ReturnType(value = "java.lang.Double")
+    public ResponseEntity<Double> getFtoC(
+            @RequestParam(value = "tempF") double tempF) {
+        return ResponseEntity.ok((tempF - 32) * (Fraction.getFraction(5, 9).doubleValue()));
     }
 
     /**
      * Convert Centigrade to Fahrenheit.
      *
-     * @param tempC Temp. Centigrade (Default -> 24)
+     * @param tempC Temp. Centigrade (Ex. -> 24) [REQ'D]
      * @return C converted to Temp. Fahrenheit as a <code>double</code>
      */
     @RequestMapping(value = "/CtoF", method = GET, produces = "application/json")
-    public double getCtoF(
-            @RequestParam(value = "tempC", defaultValue = "24") double tempC) {
-        return (tempC * 1.8 + 32);
+    @ReturnType(value = "java.lang.Double")
+    public ResponseEntity<Double> getCtoF(
+            @RequestParam(value = "tempC") double tempC) {
+        return ResponseEntity.ok((tempC * 1.8 + 32));
     }
 
     /**
      * Convert inHg to mb.
      *
-     * @param pressureInches Pressure in inHg to convert (Default -> 29.92)
+     * @param pressureInches Pressure in inHg to convert (Ex. -> 29.92) [REQ'D]
      * @return inHg converted to mb as a <code>double</code>
      */
     @RequestMapping(value = "/inchesToMillibars", method = GET, produces = "application/json")
-    public double inchesToMillibars(
-            @RequestParam(value = "pressInches", defaultValue = "29.92") double pressureInches) {
-        return (33.8639 * pressureInches);
+    @ReturnType(value = "java.lang.Double")
+    public ResponseEntity<Double> inchesToMillibars(
+            @RequestParam(value = "pressInches") double pressureInches) {
+        return ResponseEntity.ok((33.8639 * pressureInches));
     }
 
     /**
      * Convert mb to inHg.
      *
-     * @param pressureMillibars Pressure in mb to convert (Default -> 1013.2)
+     * @param pressureMillibars Pressure in mb to convert (Ex. -> 1013.2) [REQ'D]
      * @return mg converted to inHg as a <code>double</code>
      */
     @RequestMapping(value = "/millibarsToInches", method = GET, produces = "application/json")
-    public double millibarsToInches(
+    @ReturnType(value = "java.lang.Double")
+    public ResponseEntity<Double> millibarsToInches(
             @RequestParam(value = "pressMillibars", defaultValue = "1013.2") final double pressureMillibars) {
-        return (pressureMillibars / 33.8639);
+        return ResponseEntity.ok(pressureMillibars / 33.8639);
     }
 
     /**
      * Get wind components (Negative HW is a tailwind component, and Negative XW from left).
      *
-     * @param windSpeed Windspeed in KTS (Default -> 15.0)
-     * @param windDirection Wind direction (from) (Default -> 240.0)
-     * @param heading Current heading (Default -> 180.0)
+     * @param windSpeed Windspeed in KTS (Ex. -> 15.0) [REQ'D]
+     * @param windDirection Wind direction (from) (Ex. -> 240.0) [REQ'D]
+     * @param heading Current heading (Ex. -> 180.0) [REQ'D]
      * @return <code>WindComponent</code> entity that contains calculated components
      */
     @RequestMapping(value = "/windcomponent", method = GET, produces = "application/json")
-    public WindComponent getWindComponents(
-            @RequestParam(value = "windspeed", defaultValue = "15.0") double windSpeed,
-            @RequestParam(value = "winddirection", defaultValue = "240.0") double windDirection,
-            @RequestParam(value = "heading", defaultValue = "180.0") double heading) {
-        return new WindComponent(windSpeed, windDirection, heading);
+    @ReturnType(value = "com.grndctl.model.aggregates.WindComponent")
+    public ResponseEntity<WindComponent> getWindComponents(
+            @RequestParam(value = "windspeed") double windSpeed,
+            @RequestParam(value = "winddirection") double windDirection,
+            @RequestParam(value = "heading") double heading) {
+        return ResponseEntity.ok(new WindComponent(windSpeed, windDirection, heading));
     }
 }

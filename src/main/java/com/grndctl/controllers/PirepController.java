@@ -62,6 +62,6 @@ public class PirepController {
     @ReturnType(value = "java.util.List<com.grndctl.model.pirep.PIREP>")
     public ResponseEntity<List<PIREP>> getPireps(
             @RequestParam(value = HRS_BEFORE, defaultValue = "1.0") double hrsBefore) throws ServiceException {
-        return new ResponseEntity<>(svc.getPireps(hrsBefore), HttpStatus.OK);
+        return ResponseEntity.ok(svc.getPireps(hrsBefore));
     }
 }

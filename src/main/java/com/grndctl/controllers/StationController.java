@@ -58,7 +58,7 @@ public class StationController {
     /**
      * Get information for a field such as latest <code>METAR</code> latest <code>TAF</code>, forecasts, etc.
      *
-     * @param icaocode Station string
+     * @param icaocode Station string [REQ'D]
      * @return <code>List</code> of filtered <code>Station</code>s
      * @throws com.grndctl.ServiceException
      * @throws com.grndctl.ResourceNotFoundException
@@ -72,7 +72,7 @@ public class StationController {
             throw new ResourceNotFoundException(String.format("Station with ICAO code %s does not exist.", icaocode));
         }
 
-        return new ResponseEntity<>(stationSvc.getStationInfo(icaocode), HttpStatus.OK);
+        return ResponseEntity.ok(stationSvc.getStationInfo(icaocode));
     }
 
     /**
@@ -112,7 +112,7 @@ public class StationController {
      *     }
      * </pre>
      *
-     * @param iatacode IATA code for the aerodrome
+     * @param iatacode IATA code for the aerodrome [REQ'D]
      * @return A {@link FaaStation} object that is the FAA Airport Status Response
      * @throws com.grndctl.ServiceException
      * @throws com.grndctl.ResourceNotFoundException
@@ -126,7 +126,7 @@ public class StationController {
             throw new ResourceNotFoundException(String.format("Station with IATA code %s does not exist.", iatacode));
         }
 
-        return new ResponseEntity<>(stationSvc.getFAAStationStatus(iatacode), HttpStatus.OK);
+        return ResponseEntity.ok(stationSvc.getFAAStationStatus(iatacode));
     }
 
 }

@@ -64,9 +64,9 @@ public class NotamController {
      *     ]
      * </pre>
      *
-     * @param codes Aerodrome/FIR boundary ICAO codes to retrieve <code>NOTAM</code>s for (Default -> [KIAD, ZDC])
-     * @param reportType NOTAM Report Type (Default -> RAW)
-     * @param formatType NOTAM Format Type (Default -> DOMESTIC)
+     * @param codes Aerodrome/FIR boundary ICAO codes to retrieve <code>NOTAM</code>s for (Ex. -> [KIAD, ZDC]) [REQ'D]
+     * @param reportType NOTAM Report Type (Ex. -> RAW)
+     * @param formatType NOTAM Format Type (Ex. -> DOMESTIC)
      * @return <code>List</code> of raw <code>NOTAM</code> Strings for the requested codes
      * @throws ServiceException
      */
@@ -77,10 +77,6 @@ public class NotamController {
             @RequestParam(value = REPORT_TYPE, required = false) Notam.ReportType reportType,
             @RequestParam(value = FORMAT_TYPE, required = false) Notam.FormatType formatType) throws ServiceException {
 
-        if (codes == null || codes.isEmpty()) {
-            codes = new ArrayList<String>(){{add("KIAD");add("ZDC");}};
-        }
-
         if (reportType == null) {
             reportType = Notam.ReportType.RAW;
         }
@@ -89,7 +85,7 @@ public class NotamController {
             formatType = Notam.FormatType.DOMESTIC;
         }
 
-        return new ResponseEntity<>(svc.getNotamsForCodes(codes, reportType, formatType), HttpStatus.OK);
+        return ResponseEntity.ok(svc.getNotamsForCodes(codes, reportType, formatType));
     }
 
 }
