@@ -16,7 +16,7 @@
  */
 package com.grndctl.services;
 
-import com.grndctl.ServiceException;
+import com.grndctl.exceptions.ServiceException;
 import com.grndctl.model.metar.METAR;
 import com.grndctl.model.metar.Response;
 import org.apache.log4j.LogManager;

@@ -16,12 +16,11 @@
  */
 package com.grndctl.controllers;
 
-import com.grndctl.ServiceException;
+import com.grndctl.exceptions.ServiceException;
 import com.grndctl.model.pirep.PIREP;
 import com.grndctl.services.PirepSvc;
 import com.qmino.miredot.annotations.ReturnType;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -55,7 +54,7 @@ public class PirepController {
      *
      * @param hrsBefore Hours before now (Default -> 1.0)
      * @return <code>List</code> of filtered <code>PIREP</code>s
-     * @throws com.grndctl.ServiceException
+     * @throws ServiceException
      */
     @Deprecated
     @RequestMapping(value = "", method = GET, produces = "application/json")

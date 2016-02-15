@@ -16,19 +16,17 @@
  */
 package com.grndctl.controllers;
 
-import com.grndctl.ResourceNotFoundException;
-import com.grndctl.ServiceException;
+import com.grndctl.exceptions.ResourceNotFoundException;
+import com.grndctl.exceptions.ServiceException;
 import com.grndctl.model.station.FaaStation;
 import com.grndctl.model.station.Station;
 import com.grndctl.model.station.StationCodeType;
 import com.grndctl.services.StationSvc;
 import com.qmino.miredot.annotations.ReturnType;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -60,8 +58,8 @@ public class StationController {
      *
      * @param icaocode Station string [REQ'D]
      * @return <code>List</code> of filtered <code>Station</code>s
-     * @throws com.grndctl.ServiceException
-     * @throws com.grndctl.ResourceNotFoundException
+     * @throws ServiceException
+     * @throws ResourceNotFoundException
      */
     @RequestMapping(value = "/adds/{icaocode}", method = GET, produces = "application/json")
     @ReturnType(value = "java.util.List<com.grndctl.model.station.Station>")
@@ -114,8 +112,8 @@ public class StationController {
      *
      * @param iatacode IATA code for the aerodrome [REQ'D]
      * @return A {@link FaaStation} object that is the FAA Airport Status Response
-     * @throws com.grndctl.ServiceException
-     * @throws com.grndctl.ResourceNotFoundException
+     * @throws ServiceException
+     * @throws ResourceNotFoundException
      */
     @RequestMapping(value = "/faa/{iatacode}", method = GET, produces = "application/json")
     @ReturnType(value = "com.grndctl.model.station.FaaStation")

@@ -16,7 +16,7 @@
  */
 package com.grndctl.services;
 
-import com.grndctl.ServiceException;
+import com.grndctl.exceptions.ServiceException;
 import com.grndctl.model.taf.Response;
 import com.grndctl.model.taf.TAF;
 import com.grndctl.model.taf.TimeType;

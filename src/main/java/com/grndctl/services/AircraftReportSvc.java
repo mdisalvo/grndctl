@@ -16,7 +16,7 @@
  */
 package com.grndctl.services;
 
-import com.grndctl.ServiceException;
+import com.grndctl.exceptions.ServiceException;
 import com.grndctl.model.aircraftrep.AircraftReport;
 import com.grndctl.model.aircraftrep.ReportType;
 import com.grndctl.model.aircraftrep.Response;
