@@ -16,8 +16,8 @@
  */
 package com.grndctl.controllers;
 
-import com.grndctl.ResourceNotFoundException;
-import com.grndctl.ServiceException;
+import com.grndctl.exceptions.ResourceNotFoundException;
+import com.grndctl.exceptions.ServiceException;
 import com.grndctl.model.aggregates.CombinedWx;
 import com.grndctl.model.station.StationCodeType;
 import com.grndctl.services.MetarSvc;
@@ -25,7 +25,6 @@ import com.grndctl.services.StationSvc;
 import com.grndctl.services.TafSvc;
 import com.qmino.miredot.annotations.ReturnType;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -64,8 +63,8 @@ public class CombinedWxController {
      * @param station Station string (Ex. KIAD) [REQ'D]
      * @param hrsBefore Hours before now (Default -> 1.0)
      * @return <code>CombinedWx</code> entity
-     * @throws com.grndctl.ServiceException
-     * @throws com.grndctl.ResourceNotFoundException
+     * @throws ServiceException
+     * @throws ResourceNotFoundException
      */
     @RequestMapping(value = "/{station}", method = GET, produces = "application/json")
     @ReturnType(value = "com.grndctl.model.aggregates.CombinedWx")

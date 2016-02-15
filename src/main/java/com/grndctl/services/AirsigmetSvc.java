@@ -16,7 +16,7 @@
  */
 package com.grndctl.services;
 
-import com.grndctl.ServiceException;
+import com.grndctl.exceptions.ServiceException;
 import com.grndctl.model.airsigmet.AIRSIGMET;
 import com.grndctl.model.airsigmet.Response;
 import org.apache.log4j.LogManager;
@@ -34,7 +34,7 @@ import java.util.List;
  * @author Michael Di Salvo
  */
 @Service
-public class AirsigmetSvc extends AbstractSvc<Response> {
+public class AirsigmetSvc extends AbstractSvc<com.grndctl.model.airsigmet.Response> {
     
     private static final String NAME = AirsigmetSvc.class.getSimpleName();
 

@@ -16,15 +16,14 @@
  */
 package com.grndctl.controllers;
 
-import com.grndctl.ResourceNotFoundException;
-import com.grndctl.ServiceException;
+import com.grndctl.exceptions.ResourceNotFoundException;
+import com.grndctl.exceptions.ServiceException;
 import com.grndctl.model.metar.METAR;
 import com.grndctl.model.station.StationCodeType;
 import com.grndctl.services.MetarSvc;
 import com.grndctl.services.StationSvc;
 import com.qmino.miredot.annotations.ReturnType;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -65,8 +64,8 @@ public class MetarController {
      * @param station Station string [REQ'D]
      * @param hrsBefore Hours before now (Default -> 1.0)
      * @return <code>List</code> of filtered <code>METAR</code>s
-     * @throws com.grndctl.ServiceException
-     * @throws com.grndctl.ResourceNotFoundException
+     * @throws ServiceException
+     * @throws ResourceNotFoundException
      */
     @RequestMapping(value = "/{station}", method = GET, produces = "application/json")
     @ReturnType(value = "java.util.List<com.grndctl.model.metar.METAR>")

@@ -17,9 +17,8 @@
 package com.grndctl.services;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.google.common.io.CharStreams;
-import com.grndctl.ServiceException;
+import com.grndctl.exceptions.ServiceException;
 import com.grndctl.model.station.FaaStation;
 import com.grndctl.model.station.Response;
 import com.grndctl.model.station.Station;
@@ -38,7 +37,7 @@ import java.util.List;
  * @author Michael Di Salvo
  */
 @Service
-public class StationSvc extends AbstractSvc<Response> {
+public class StationSvc extends AbstractSvc<com.grndctl.model.station.Response> {
     
     private static final String NAME = StationSvc.class.getSimpleName();
 

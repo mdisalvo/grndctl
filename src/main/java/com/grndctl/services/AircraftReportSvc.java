@@ -16,7 +16,7 @@
  */
 package com.grndctl.services;
 
-import com.grndctl.ServiceException;
+import com.grndctl.exceptions.ServiceException;
 import com.grndctl.model.aircraftrep.AircraftReport;
 import com.grndctl.model.aircraftrep.ReportType;
 import com.grndctl.model.aircraftrep.Response;
@@ -34,7 +34,7 @@ import java.util.stream.Collectors;
  * @author Michael Di Salvo
  */
 @Service
-public class AircraftReportSvc extends AbstractSvc<Response> {
+public class AircraftReportSvc extends AbstractSvc<com.grndctl.model.aircraftrep.Response> {
     
     private static final String NAME = AircraftReportSvc.class.getSimpleName();
 

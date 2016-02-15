@@ -16,7 +16,7 @@
  */
 package com.grndctl.services;
 
-import com.grndctl.ServiceException;
+import com.grndctl.exceptions.ServiceException;
 import com.grndctl.model.flightplan.Notam;
 import org.apache.commons.lang3.StringUtils;
 import org.jsoup.Jsoup;

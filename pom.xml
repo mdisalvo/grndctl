@@ -196,7 +196,7 @@
                             <!--<httpStatusCode>-->
                                 <!--<httpCode>200</httpCode>-->
                                 <!--<document>always</document>-->
-                                <!--<defaultMessage>The service call has completed successfully</defaultMessage>-->
+                                <!--<defaultMessage>The Service Call Has Completed Successfully</defaultMessage>-->
                             <!--</httpStatusCode>-->
                             <!--<httpStatusCode>-->
                                 <!--<httpCode>400</httpCode>-->
@@ -206,12 +206,12 @@
                             <!--<httpStatusCode>-->
                                 <!--<httpCode>401</httpCode>-->
                                 <!--<document>explicit: com.acme.exceptions.AuthorizationException</document>-->
-                                <!--<defaultMessage>The user is not authorized to use this service</defaultMessage>-->
+                                <!--<defaultMessage>The User Is Not Authorized To Use This Service</defaultMessage>-->
                             <!--</httpStatusCode>-->
                             <!--<httpStatusCode>-->
                                 <!--<httpCode>412</httpCode>-->
                                 <!--<document>put,post</document>-->
-                                <!--<defaultMessage>Invalid JSON input</defaultMessage>-->
+                                <!--<defaultMessage>Invalid JSON Input</defaultMessage>-->
                             <!--</httpStatusCode>-->
                         <!--</httpStatusCodes>-->
                     <!--</restModel>-->

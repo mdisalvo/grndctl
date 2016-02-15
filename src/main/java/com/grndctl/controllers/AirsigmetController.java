@@ -16,12 +16,11 @@
  */
 package com.grndctl.controllers;
 
-import com.grndctl.ServiceException;
+import com.grndctl.exceptions.ServiceException;
 import com.grndctl.model.airsigmet.AIRSIGMET;
 import com.grndctl.services.AirsigmetSvc;
 import com.qmino.miredot.annotations.ReturnType;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -58,7 +57,7 @@ public class AirsigmetController {
      * Retrieve all of the active <code>AIRSIGMET</code>s currently issued by the NWS.
      *
      * @return <code>List</code> of <code>AIRSIGMET</code>s
-     * @throws com.grndctl.ServiceException
+     * @throws ServiceException
      */
     @RequestMapping(value = "", method = GET, produces = "application/json")
     @ReturnType(value = "java.util.List<com.grndctl.model.airsigmet.AIRSIGMET>")
@@ -73,7 +72,7 @@ public class AirsigmetController {
      * @param minAltFt Minimum altitude (Ex. -> 5000) [REQ'D]
      * @param maxAltFt Maximum altitude (Ex. -> 30000) [REQ'D]
      * @return <code>List</code> of filtered <code>AIRSIGMET</code>s
-     * @throws com.grndctl.ServiceException
+     * @throws ServiceException
      */
     @RequestMapping(value = "/altLimited", method = GET, produces = "application/json")
     @ReturnType(value = "java.util.List<com.grndctl.model.airsigmet.AIRSIGMET>")
@@ -93,7 +92,7 @@ public class AirsigmetController {
      * @param minLon Minimum longitude (Ex. -> -130) [REQ'D]
      * @param maxLon Maximum longitude (Ex. -> -40) [REQ'D]
      * @return <code>List</code> of filtered <code>AIRSIGMET</code>s
-     * @throws com.grndctl.ServiceException
+     * @throws ServiceException
      */
     @RequestMapping(value = "/latLonLimited", method = GET, produces = "application/json")
     @ReturnType(value = "java.util.List<com.grndctl.model.airsigmet.AIRSIGMET>")

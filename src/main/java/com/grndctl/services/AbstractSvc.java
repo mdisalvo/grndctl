@@ -16,7 +16,7 @@
  */
 package com.grndctl.services;
 
-import com.grndctl.ServiceException;
+import com.grndctl.exceptions.ServiceException;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;

@@ -16,12 +16,11 @@
  */
 package com.grndctl.controllers;
 
-import com.grndctl.ResourceNotFoundException;
+import com.grndctl.exceptions.ResourceNotFoundException;
 import com.grndctl.model.flightplan.Navaid;
 import com.grndctl.services.NavaidSvc;
 import com.qmino.miredot.annotations.ReturnType;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;

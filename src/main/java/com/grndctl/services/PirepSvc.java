@@ -16,7 +16,7 @@
  */
 package com.grndctl.services;
 
-import com.grndctl.ServiceException;
+import com.grndctl.exceptions.ServiceException;
 import com.grndctl.model.pirep.PIREP;
 import com.grndctl.model.pirep.Response;
 import org.apache.log4j.LogManager;
@@ -32,7 +32,7 @@ import java.util.List;
  */
 @Service
 @Deprecated
-public class PirepSvc extends AbstractSvc<Response> {
+public class PirepSvc extends AbstractSvc<com.grndctl.model.pirep.Response> {
     
     private static final String NAME = PirepSvc.class.getSimpleName();
 

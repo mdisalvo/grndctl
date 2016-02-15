@@ -16,13 +16,12 @@
  */
 package com.grndctl.controllers;
 
-import com.grndctl.ServiceException;
+import com.grndctl.exceptions.ServiceException;
 import com.grndctl.model.aircraftrep.AircraftReport;
 import com.grndctl.model.aircraftrep.ReportType;
 import com.grndctl.services.AircraftReportSvc;
 import com.qmino.miredot.annotations.ReturnType;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -59,7 +58,7 @@ public class AircraftReportController {
      * @param hrsBefore Hours before now (Ex. 1.0) [REQ'D]
      * @param reportType The {@link com.grndctl.model.aircraftrep.ReportType} to return (Default -> AIREP)
      * @return <code>List</code> of filtered <code>AircraftReport</code>s
-     * @throws com.grndctl.ServiceException
+     * @throws ServiceException
      */
     @RequestMapping(value = "", method = RequestMethod.GET, produces = "application/json")
     @ReturnType(value = "java.util.List<com.grndctl.model.aircraftrep.AircraftReport>")

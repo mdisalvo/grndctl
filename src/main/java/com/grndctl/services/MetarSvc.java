@@ -16,7 +16,7 @@
  */
 package com.grndctl.services;
 
-import com.grndctl.ServiceException;
+import com.grndctl.exceptions.ServiceException;
 import com.grndctl.model.metar.METAR;
 import com.grndctl.model.metar.Response;
 import org.apache.log4j.LogManager;
@@ -32,7 +32,7 @@ import java.util.List;
  * @author Michael Di Salvo
  */
 @Service
-public class MetarSvc extends AbstractSvc<Response> {
+public class MetarSvc extends AbstractSvc<com.grndctl.model.metar.Response> {
     
     private static final String NAME = MetarSvc.class.getSimpleName();
 
