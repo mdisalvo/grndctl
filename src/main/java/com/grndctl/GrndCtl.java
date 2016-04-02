@@ -46,7 +46,7 @@ public class GrndCtl extends SpringBootServletInitializer {
 
     @Bean
     public CacheManager cacheManager() {
-        return new ConcurrentMapCacheManager("navaids");
+        return new ConcurrentMapCacheManager("navaids", "airlines");
     }
 
     public static void main(String...args) {

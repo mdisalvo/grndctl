@@ -78,97 +78,95 @@ public class NavaidSvc {
     private static void transformRows(List<String[]> rows) {
         ListMultimap<String, Navaid> identNavaids = ArrayListMultimap.create();
         ListMultimap<String, Navaid> stationNavaids = ArrayListMultimap.create();
-        for (String[] row : rows) {
+        rows.forEach(r -> {
             Navaid navaid = new Navaid();
             for (int i = 0; i < COLUMN_COUNT; i++) {
                 switch (i) {
                     case (0):
-                        navaid.setId(row[i]);
+                        navaid.setId(r[i]);
                         continue;
                     case (1):
-                        navaid.setFilename(row[i]);
+                        navaid.setFilename(r[i]);
                         continue;
                     case (2):
-                        navaid.setIdent(row[i]);
+                        navaid.setIdent(r[i]);
                         continue;
                     case (3):
-                        navaid.setName(row[i]);
+                        navaid.setName(r[i]);
                         continue;
                     case (4):
-                        navaid.setType(row[i]);
+                        navaid.setType(r[i]);
                         continue;
                     case (5):
-                        if (!Strings.isNullOrEmpty(row[i])) {
-                            navaid.setFrequencyKhz(Integer.parseInt(row[i]));
+                        if (!Strings.isNullOrEmpty(r[i])) {
+                            navaid.setFrequencyKhz(Integer.parseInt(r[i]));
                         }
                         continue;
                     case (6):
-                        if (!Strings.isNullOrEmpty(row[i])) {
-                            navaid.setLatitudeDeg(Double.parseDouble(row[i]));
+                        if (!Strings.isNullOrEmpty(r[i])) {
+                            navaid.setLatitudeDeg(Double.parseDouble(r[i]));
                         }
                         continue;
                     case (7):
-                        if (!Strings.isNullOrEmpty(row[i])) {
-                            navaid.setLongitudeDeg(Double.parseDouble(row[i]));
+                        if (!Strings.isNullOrEmpty(r[i])) {
+                            navaid.setLongitudeDeg(Double.parseDouble(r[i]));
                         }
                         continue;
                     case (8):
-                        if (!Strings.isNullOrEmpty(row[i])) {
-                            navaid.setElevationFt(Integer.parseInt(row[i]));
+                        if (!Strings.isNullOrEmpty(r[i])) {
+                            navaid.setElevationFt(Integer.parseInt(r[i]));
                         }
                         continue;
                     case (9):
-                        navaid.setIsoCountry(row[i]);
+                        navaid.setIsoCountry(r[i]);
                         continue;
                     case (10):
-                        if (!Strings.isNullOrEmpty(row[i])) {
-                            navaid.setDmeFrequencyKhz(Integer.parseInt(row[i]));
+                        if (!Strings.isNullOrEmpty(r[i])) {
+                            navaid.setDmeFrequencyKhz(Integer.parseInt(r[i]));
                         }
                         continue;
                     case (11):
-                        navaid.setDmeChannel(row[i]);
+                        navaid.setDmeChannel(r[i]);
                         continue;
                     case (12):
-                        if (!Strings.isNullOrEmpty(row[i])) {
-                            navaid.setDmeLatitudeDeg(Double.parseDouble(row[i]));
+                        if (!Strings.isNullOrEmpty(r[i])) {
+                            navaid.setDmeLatitudeDeg(Double.parseDouble(r[i]));
                         }
                         continue;
                     case (13):
-                        if (!Strings.isNullOrEmpty(row[i])) {
-                            navaid.setDmeLongitudeDeg(Double.parseDouble(row[i]));
+                        if (!Strings.isNullOrEmpty(r[i])) {
+                            navaid.setDmeLongitudeDeg(Double.parseDouble(r[i]));
                         }
                         continue;
                     case (14):
-                        if (!Strings.isNullOrEmpty(row[i])) {
-                            navaid.setDmeElevationFt(Integer.parseInt(row[i]));
+                        if (!Strings.isNullOrEmpty(r[i])) {
+                            navaid.setDmeElevationFt(Integer.parseInt(r[i]));
                         }
                         continue;
                     case (15):
-                        if (!Strings.isNullOrEmpty(row[i])) {
-                            navaid.setSlavedVariationDeg(Double.parseDouble(row[i]));
+                        if (!Strings.isNullOrEmpty(r[i])) {
+                            navaid.setSlavedVariationDeg(Double.parseDouble(r[i]));
                         }
                         continue;
                     case (16):
-                        if (!Strings.isNullOrEmpty(row[i])) {
-                            navaid.setMagneticVariationDeg(Double.parseDouble(row[i]));
+                        if (!Strings.isNullOrEmpty(r[i])) {
+                            navaid.setMagneticVariationDeg(Double.parseDouble(r[i]));
                         }
                         continue;
                     case (17):
-                        navaid.setUsageType(row[i]);
+                        navaid.setUsageType(r[i]);
                         continue;
                     case (18):
-                        navaid.setPower(row[i]);
+                        navaid.setPower(r[i]);
                         continue;
                     case (19):
-                        navaid.setAssociatedAirport(row[i]);
+                        navaid.setAssociatedAirport(r[i]);
                         break;
                 }
             }
-
             identNavaids.put(navaid.getIdent(), navaid);
             stationNavaids.put(navaid.getAssociatedAirport(), navaid);
-        }
-
+        });
         IDENT_NAVAID_MAP = ImmutableListMultimap.copyOf(identNavaids);
         STATION_NAVAID_MAP = ImmutableListMultimap.copyOf(stationNavaids);
     }
