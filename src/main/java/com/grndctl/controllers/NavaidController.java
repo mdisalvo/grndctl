@@ -33,6 +33,7 @@ import java.util.Map;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 /**
+ * Retrieve NAVAID information from data source by openflights.org.
  *
  * @author Michael Di Salvo
  */
@@ -50,6 +51,8 @@ public class NavaidController {
     /**
      * Retrieve all <code>Navaid</code>s.
      *
+     * All credit for data goes to the hardworking folk at openflights.org.
+     *
      * @return <code>List</code> of <code>Navaid</code>s
      */
     @RequestMapping(value = "", method = GET, produces = "application/json")
@@ -60,6 +63,8 @@ public class NavaidController {
 
     /**
      * Retrieve <code>Navaid</code>s associated with an identifier.
+     *
+     * All credit for data goes to the hardworking folk at openflights.org.
      *
      * @param ident The identifier of the <code>Navaid</code>(s) to return [REQ'D]
      * @return <code>List</code> of filtered <code>Navaid</code>s
@@ -79,6 +84,8 @@ public class NavaidController {
 
     /**
      * Retrieve <code>Navaid</code>s associate with an ICAO station code.
+     *
+     * All credit for data goes to the hardworking folk at openflights.org.
      *
      * @param station The ICAO station code of the associated <code>Navaid</code>(s) to return [REQ'D]
      * @return <code>List</code> of filtered <code>Navaid</code>s
