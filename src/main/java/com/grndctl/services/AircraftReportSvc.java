@@ -22,6 +22,7 @@ import com.grndctl.model.aircraftrep.ReportType;
 import com.grndctl.model.aircraftrep.Response;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -50,9 +51,10 @@ public class AircraftReportSvc extends AbstractSvc<com.grndctl.model.aircraftrep
         super(Response.class, NAME);
     }
 
-    public List<AircraftReport> getAircraftReports(final double hrsBefore, final ReportType reportType) throws ServiceException {
+    @Cacheable("aircraftreps")
+    public List<AircraftReport> getAircraftReports(final double hrsBefore, final ReportType reportType)
+            throws ServiceException {
         try {
-
             URL url = new URL(RQST_URL + HRS_BEFORE + hrsBefore);
             LOG.info(url.toString());
 
@@ -62,7 +64,6 @@ public class AircraftReportSvc extends AbstractSvc<com.grndctl.model.aircraftrep
                     .stream()
                     .filter(airep -> airep.getReportType().equals(reportType.toString()))
                     .collect(Collectors.toList());
-
         } catch (IOException e) {
             throw new ServiceException(e);
         }
