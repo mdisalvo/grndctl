@@ -26,6 +26,7 @@ import org.springframework.stereotype.Service;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  *
@@ -50,6 +51,13 @@ public class AirlineSvc {
 
     public Airline getAirlineByIata(String station) {
         return IATA_NAVAID_MAP.get(station);
+    }
+
+    public List<Airline> getActiveAirlines() {
+        return AIRLINE_LIST
+                .stream()
+                .filter(a -> a.getActive().equals("Y"))
+                .collect(Collectors.toList());
     }
 
     @Cacheable("airlines")

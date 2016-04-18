@@ -73,7 +73,7 @@ public class NavaidController {
     @RequestMapping(value = "/ident/{ident}", method = GET, produces = "application/json")
     @ReturnType(value = "java.util.List<com.grndctl.model.flightplan.Navaid>")
     public ResponseEntity<List<Navaid>> getNavaidsByIdent(@PathVariable String ident) throws ResourceNotFoundException {
-        List<Navaid> response = svc.getNavaidByIdent(ident);
+        List<Navaid> response = svc.getNavaidByIdent(ident.toUpperCase());
 
         if (response.isEmpty()) {
             throw new ResourceNotFoundException(String.format("No Navaids with ident %s exist.", ident));
@@ -93,8 +93,9 @@ public class NavaidController {
      */
     @RequestMapping(value = "/station/{station}", method = GET, produces = "application/json")
     @ReturnType(value = "java.util.List<com.grndctl.model.flightplan.Navaid>")
-    public ResponseEntity<List<Navaid>> getNavaidsByStation(@PathVariable String station) throws ResourceNotFoundException {
-        List<Navaid> response = svc.getNavaidsByAssociatedAirport(station);
+    public ResponseEntity<List<Navaid>> getNavaidsByStation(@PathVariable String station)
+            throws ResourceNotFoundException {
+        List<Navaid> response = svc.getNavaidsByAssociatedAirport(station.toUpperCase());
 
         if (response.isEmpty()) {
             throw new ResourceNotFoundException(String.format("No Navaids for station %s exist.", station));

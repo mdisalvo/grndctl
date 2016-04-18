@@ -71,7 +71,7 @@ public class AirlineController {
     @RequestMapping(value = "/icao/{icao}", method = GET, produces = "application/json")
     @ReturnType(value = "com.grndctl.model.misc.Airline")
     public ResponseEntity<Airline> getAirlineByIcao(@PathVariable String icao) throws ResourceNotFoundException {
-        Airline a = svc.getAirlineByIcao(icao);
+        Airline a = svc.getAirlineByIcao(icao.toUpperCase());
 
         if (a == null) {
             throw new ResourceNotFoundException(String.format("Airline with ICAO code %s does not exist.", icao));
@@ -92,13 +92,26 @@ public class AirlineController {
     @RequestMapping(value = "/iata/{iata}", method = GET, produces = "application/json")
     @ReturnType(value = "com.grndctl.model.misc.Airline")
     public ResponseEntity<Airline> getAirlineByIata(@PathVariable String iata) throws ResourceNotFoundException {
-        Airline a = svc.getAirlineByIata(iata);
+        Airline a = svc.getAirlineByIata(iata.toUpperCase());
 
         if (a == null) {
             throw new ResourceNotFoundException(String.format("Airline with IATA code %s does not exist.", iata));
         }
 
         return ResponseEntity.ok(a);
+    }
+
+    /**
+     * Retrieve all active <code>Airline</code>s.
+     *
+     * All credit for data goes to the hardworking folk at openflights.org.
+     *
+     * @return A <code>List</code> of all active airlines in the openflights.org database
+     */
+    @RequestMapping(value = "/active", method = GET, produces = "application/json")
+    @ReturnType(value = "java.util.List<com.grndctl.model.misc.Airline>")
+    public ResponseEntity<List<Airline>> getActiveAirlines() {
+        return ResponseEntity.ok(svc.getActiveAirlines());
     }
 
 }
