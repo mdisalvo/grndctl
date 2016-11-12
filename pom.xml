@@ -118,6 +118,13 @@
             <version>2.3</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.json/json -->
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20160810</version>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -163,7 +170,7 @@
             <!--<plugin>-->
                 <!--<groupId>com.qmino</groupId>-->
                 <!--<artifactId>miredot-plugin</artifactId>-->
-                <!--<version>1.6.2</version>-->
+                <!--<version>2.0.1</version>-->
                 <!--<executions>-->
                     <!--<execution>-->
                         <!--<goals>-->
@@ -172,9 +179,7 @@
                     <!--</execution>-->
                 <!--</executions>-->
                 <!--<configuration>-->
-                    <!--<licence>-->
-                        <!--UHJvamVjdHxjb20uZ3JuZGN0bC5ncm5kY3RsfDIwMTYtMTAtMTZ8dHJ1ZSNNQ3dDRkExNEo5ZnRvbm5RVkJUOU56QW9QaElreEJ4OEFoUVRPU2xOc2NnSmJMQnQwUGZScUxVdmoybTB2QT09-->
-                    <!--</licence>-->
+                    <!--<organizationId>c715bfc7-d9ec-49d2-9b4e-a0d9876e4425</organizationId>-->
                     <!--<output>-->
                         <!--<title>grndctl v${project.version} - [an aviators api]</title>-->
                         <!--<html>-->

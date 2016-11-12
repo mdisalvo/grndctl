@@ -16,6 +16,7 @@
  */
 package com.grndctl.controllers;
 
+import com.qmino.miredot.annotations.MireDotIgnore;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.web.ErrorAttributes;
 import org.springframework.boot.autoconfigure.web.ErrorController;
@@ -33,6 +34,7 @@ import java.util.Map;
 /**
  */
 @RestController
+@MireDotIgnore
 public class CustomErrorController implements ErrorController {
 
     private static final String PATH = "/error";

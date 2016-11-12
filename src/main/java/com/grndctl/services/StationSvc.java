@@ -43,6 +43,8 @@ public class StationSvc extends AbstractSvc<com.grndctl.model.station.Response> 
 
     private static final Logger LOG = LogManager.getLogger(StationSvc.class);
 
+    private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
+
     private static final String ADDS_RQST_URL = "https://aviationweather.gov/adds/"
             + "dataserver_current/httpparam?datasource=stations&requesttype=retrieve"
             + "&format=xml";
@@ -73,9 +75,11 @@ public class StationSvc extends AbstractSvc<com.grndctl.model.station.Response> 
             URL url = new URL(FAA_RQST_URL + iataCode + RQST_FORMAT_JSON);
             LOG.info(url.toString());
 
-            return new ObjectMapper().readValue(
-                    CharStreams.toString(new InputStreamReader(url.openStream())).getBytes(), FaaStation.class
-            );
+            try (InputStreamReader isr = new InputStreamReader(url.openStream())) {
+                return OBJECT_MAPPER.readValue(
+                        CharStreams.toString(isr).getBytes(), FaaStation.class
+                );
+            }
         } catch (IOException e) {
             throw new ServiceException(e);
         }
