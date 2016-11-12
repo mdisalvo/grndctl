@@ -27,6 +27,12 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
+import springfox.documentation.builders.ApiInfoBuilder;
+import springfox.documentation.builders.PathSelectors;
+import springfox.documentation.service.ApiInfo;
+import springfox.documentation.spi.DocumentationType;
+import springfox.documentation.spring.web.plugins.Docket;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
  *
@@ -35,6 +41,7 @@ import org.springframework.stereotype.Component;
 @Component
 @ComponentScan
 @EnableCaching
+@EnableSwagger2
 @EnableAutoConfiguration
 @PropertySource("classpath:application.properties")
 public class GrndCtl extends SpringBootServletInitializer {
@@ -49,8 +56,28 @@ public class GrndCtl extends SpringBootServletInitializer {
         return new ConcurrentMapCacheManager("navaids", "airlines", "aircraftreps");
     }
 
+    @Bean
+    public Docket api() {
+        return new Docket(DocumentationType.SWAGGER_2)
+                .groupName("com.grndctl")
+                .apiInfo(apiInfo())
+                .select()
+                .paths(PathSelectors.regex("/airline.*"))
+                .build();
+    }
+
     public static void main(String...args) {
         SpringApplication.run(GrndCtl.class, args);
+    }
+
+    private static ApiInfo apiInfo() {
+        return new ApiInfoBuilder()
+                .version("1.0")
+                .title("grndctl")
+                .description("An Aviators API")
+                .contact("Michael Di Salvo (michael.vincent.disalvo@gmail.com)")
+                .licenseUrl("/GPL-3.txt")
+                .build();
     }
 
 

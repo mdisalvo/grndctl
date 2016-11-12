@@ -19,7 +19,6 @@ package com.grndctl.controllers;
 import com.grndctl.exceptions.ServiceException;
 import com.grndctl.model.airsigmet.AIRSIGMET;
 import com.grndctl.services.AirsigmetSvc;
-import com.qmino.miredot.annotations.ReturnType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -60,7 +59,6 @@ public class AirsigmetController {
      * @throws ServiceException
      */
     @RequestMapping(value = "", method = GET, produces = "application/json")
-    @ReturnType(value = "java.util.List<com.grndctl.model.airsigmet.AIRSIGMET>")
     public ResponseEntity<List<AIRSIGMET>> getAirsigmets() throws ServiceException {
         return ResponseEntity.ok(svc.getAirsigmets());
     }
@@ -75,7 +73,6 @@ public class AirsigmetController {
      * @throws ServiceException
      */
     @RequestMapping(value = "/altLimited", method = GET, produces = "application/json")
-    @ReturnType(value = "java.util.List<com.grndctl.model.airsigmet.AIRSIGMET>")
     public ResponseEntity<List<AIRSIGMET>> getAirsigmetsByAlt(
             @RequestParam(value = HRS_BEFORE) double hrsBefore,
             @RequestParam(value = MIN_ALT_FT) int minAltFt,
@@ -95,7 +92,6 @@ public class AirsigmetController {
      * @throws ServiceException
      */
     @RequestMapping(value = "/latLonLimited", method = GET, produces = "application/json")
-    @ReturnType(value = "java.util.List<com.grndctl.model.airsigmet.AIRSIGMET>")
     public ResponseEntity<List<AIRSIGMET>> getAirsimetsByLatLon(
             @RequestParam(value = HRS_BEFORE) double hrsBefore,
             @RequestParam(value = MIN_LAT) int minLat,

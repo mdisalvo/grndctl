@@ -19,7 +19,7 @@ package com.grndctl.controllers;
 import com.grndctl.exceptions.ResourceNotFoundException;
 import com.grndctl.model.misc.Airline;
 import com.grndctl.services.AirlineSvc;
-import com.qmino.miredot.annotations.ReturnType;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -54,7 +54,8 @@ public class AirlineController {
      * @return A <code>List</code> of all <code>Airline</code>s in the openflights.org database
      */
     @RequestMapping(value = "", method = GET, produces = "application/json")
-    @ReturnType(value = "java.util.List<com.grndctl.model.misc.Airline>")
+//    @ReturnType(value = "java.util.List<com.grndctl.model.misc.Airline>")
+    @ApiOperation(value = "getAllAirlines", nickname = "getAllAirlines")
     public ResponseEntity<List<Airline>> getAllAirlines() {
         return ResponseEntity.ok(svc.getAllAirlines());
     }
@@ -69,7 +70,6 @@ public class AirlineController {
      * @throws ResourceNotFoundException
      */
     @RequestMapping(value = "/icao/{icao}", method = GET, produces = "application/json")
-    @ReturnType(value = "com.grndctl.model.misc.Airline")
     public ResponseEntity<Airline> getAirlineByIcao(@PathVariable String icao) throws ResourceNotFoundException {
         Airline a = svc.getAirlineByIcao(icao.toUpperCase());
 
@@ -90,7 +90,6 @@ public class AirlineController {
      * @throws ResourceNotFoundException
      */
     @RequestMapping(value = "/iata/{iata}", method = GET, produces = "application/json")
-    @ReturnType(value = "com.grndctl.model.misc.Airline")
     public ResponseEntity<Airline> getAirlineByIata(@PathVariable String iata) throws ResourceNotFoundException {
         Airline a = svc.getAirlineByIata(iata.toUpperCase());
 
@@ -109,7 +108,6 @@ public class AirlineController {
      * @return A <code>List</code> of all active airlines in the openflights.org database
      */
     @RequestMapping(value = "/active", method = GET, produces = "application/json")
-    @ReturnType(value = "java.util.List<com.grndctl.model.misc.Airline>")
     public ResponseEntity<List<Airline>> getActiveAirlines() {
         return ResponseEntity.ok(svc.getActiveAirlines());
     }

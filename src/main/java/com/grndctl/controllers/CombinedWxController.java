@@ -23,7 +23,6 @@ import com.grndctl.model.station.StationCodeType;
 import com.grndctl.services.MetarSvc;
 import com.grndctl.services.StationSvc;
 import com.grndctl.services.TafSvc;
-import com.qmino.miredot.annotations.ReturnType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -67,7 +66,6 @@ public class CombinedWxController {
      * @throws ResourceNotFoundException
      */
     @RequestMapping(value = "/{station}", method = GET, produces = "application/json")
-    @ReturnType(value = "com.grndctl.model.aggregates.CombinedWx")
     public ResponseEntity<CombinedWx> getCombinedWx(
             @PathVariable(value = STATION) String station,
             @RequestParam(value = HRS_BEFORE, required = false, defaultValue = "1.0") Double hrsBefore) throws

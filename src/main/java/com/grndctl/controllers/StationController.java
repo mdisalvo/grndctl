@@ -22,7 +22,6 @@ import com.grndctl.model.station.FaaStation;
 import com.grndctl.model.station.Station;
 import com.grndctl.model.station.StationCodeType;
 import com.grndctl.services.StationSvc;
-import com.qmino.miredot.annotations.ReturnType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -62,7 +61,6 @@ public class StationController {
      * @throws ResourceNotFoundException
      */
     @RequestMapping(value = "/adds/{icaocode}", method = GET, produces = "application/json")
-    @ReturnType(value = "java.util.List<com.grndctl.model.station.Station>")
     public ResponseEntity<List<Station>> getStationInfo(
             @PathVariable(value = ICAO_CODE) final String icaocode) throws ServiceException,
             ResourceNotFoundException {
@@ -116,7 +114,6 @@ public class StationController {
      * @throws ResourceNotFoundException
      */
     @RequestMapping(value = "/faa/{iatacode}", method = GET, produces = "application/json")
-    @ReturnType(value = "com.grndctl.model.station.FaaStation")
     public ResponseEntity<FaaStation> getFAAStationStatus(
             @PathVariable(value = IATA_CODE) final String iatacode) throws ServiceException, ResourceNotFoundException {
 

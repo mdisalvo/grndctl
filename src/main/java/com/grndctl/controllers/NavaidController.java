@@ -19,7 +19,6 @@ package com.grndctl.controllers;
 import com.grndctl.exceptions.ResourceNotFoundException;
 import com.grndctl.model.flightplan.Navaid;
 import com.grndctl.services.NavaidSvc;
-import com.qmino.miredot.annotations.ReturnType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -56,7 +55,6 @@ public class NavaidController {
      * @return <code>List</code> of <code>Navaid</code>s
      */
     @RequestMapping(value = "", method = GET, produces = "application/json")
-    @ReturnType(value = "java.util.Map<java.lang.String, java.util.Collection<com.grndctl.model.flightplan.Navaid>>")
     public ResponseEntity<Map<String, Collection<Navaid>>> getAllNavaidsByIdent() {
         return ResponseEntity.ok(svc.getAllNavaidsByIdent());
     }
@@ -71,7 +69,6 @@ public class NavaidController {
      * @throws ResourceNotFoundException
      */
     @RequestMapping(value = "/ident/{ident}", method = GET, produces = "application/json")
-    @ReturnType(value = "java.util.List<com.grndctl.model.flightplan.Navaid>")
     public ResponseEntity<List<Navaid>> getNavaidsByIdent(@PathVariable String ident) throws ResourceNotFoundException {
         List<Navaid> response = svc.getNavaidByIdent(ident.toUpperCase());
 
@@ -92,7 +89,6 @@ public class NavaidController {
      * @throws ResourceNotFoundException
      */
     @RequestMapping(value = "/station/{station}", method = GET, produces = "application/json")
-    @ReturnType(value = "java.util.List<com.grndctl.model.flightplan.Navaid>")
     public ResponseEntity<List<Navaid>> getNavaidsByStation(@PathVariable String station)
             throws ResourceNotFoundException {
         List<Navaid> response = svc.getNavaidsByAssociatedAirport(station.toUpperCase());

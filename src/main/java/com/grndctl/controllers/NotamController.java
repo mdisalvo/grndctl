@@ -19,7 +19,6 @@ package com.grndctl.controllers;
 import com.grndctl.exceptions.ServiceException;
 import com.grndctl.model.flightplan.Notam;
 import com.grndctl.services.NotamSvc;
-import com.qmino.miredot.annotations.ReturnType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -69,7 +68,6 @@ public class NotamController {
      * @throws ServiceException
      */
     @RequestMapping(value = "", method = GET, produces = "application/json")
-    @ReturnType(value = "java.util.List<java.lang.String>")
     public ResponseEntity<List<String>> getNotamsForCodes(
             @RequestParam(value = CODES) List<String> codes,
             @RequestParam(value = REPORT_TYPE, required = false) Notam.ReportType reportType,

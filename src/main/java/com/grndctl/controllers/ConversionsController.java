@@ -18,7 +18,6 @@ package com.grndctl.controllers;
 
 import com.grndctl.model.aggregates.ConversionResult;
 import com.grndctl.model.aggregates.WindComponent;
-import com.qmino.miredot.annotations.ReturnType;
 import org.apache.commons.lang3.math.Fraction;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -45,7 +44,6 @@ public class ConversionsController {
      * @return F converted to Temp. Centigrade as a <code>double</code>
      */
     @RequestMapping(value = "/FtoC", method = GET, produces = "application/json")
-    @ReturnType(value = "com.grndctl.model.aggregates.ConversionResult")
     public ResponseEntity<ConversionResult> getFtoC(
             @RequestParam(value = "tempF") double tempF) {
         return ResponseEntity.ok(new ConversionResult((tempF - 32) * (Fraction.getFraction(5, 9).doubleValue()), "C"));
@@ -58,7 +56,6 @@ public class ConversionsController {
      * @return C converted to Temp. Fahrenheit as a <code>double</code>
      */
     @RequestMapping(value = "/CtoF", method = GET, produces = "application/json")
-    @ReturnType(value = "com.grndctl.model.aggregates.ConversionResult")
     public ResponseEntity<ConversionResult> getCtoF(
             @RequestParam(value = "tempC") double tempC) {
         return ResponseEntity.ok(new ConversionResult((tempC * 1.8 + 32), "F"));
@@ -71,7 +68,6 @@ public class ConversionsController {
      * @return inHg converted to mb as a <code>double</code>
      */
     @RequestMapping(value = "/inchesToMillibars", method = GET, produces = "application/json")
-    @ReturnType(value = "com.grndctl.model.aggregates.ConversionResult")
     public ResponseEntity<ConversionResult> inchesToMillibars(
             @RequestParam(value = "pressInches") double pressureInches) {
         return ResponseEntity.ok(new ConversionResult((33.8639 * pressureInches), "mb"));
@@ -84,7 +80,6 @@ public class ConversionsController {
      * @return mg converted to inHg as a <code>double</code>
      */
     @RequestMapping(value = "/millibarsToInches", method = GET, produces = "application/json")
-    @ReturnType(value = "com.grndctl.model.aggregates.ConversionResult")
     public ResponseEntity<ConversionResult> millibarsToInches(
             @RequestParam(value = "pressMillibars", defaultValue = "1013.2") final double pressureMillibars) {
         return ResponseEntity.ok(new ConversionResult(pressureMillibars / 33.8639, "inHg"));
@@ -99,7 +94,6 @@ public class ConversionsController {
      * @return <code>WindComponent</code> entity that contains calculated components
      */
     @RequestMapping(value = "/windcomponent", method = GET, produces = "application/json")
-    @ReturnType(value = "com.grndctl.model.aggregates.WindComponent")
     public ResponseEntity<WindComponent> getWindComponents(
             @RequestParam(value = "windspeed") double windSpeed,
             @RequestParam(value = "winddirection") double windDirection,

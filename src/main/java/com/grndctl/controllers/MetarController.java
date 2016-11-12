@@ -22,7 +22,6 @@ import com.grndctl.model.metar.METAR;
 import com.grndctl.model.station.StationCodeType;
 import com.grndctl.services.MetarSvc;
 import com.grndctl.services.StationSvc;
-import com.qmino.miredot.annotations.ReturnType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -68,7 +67,6 @@ public class MetarController {
      * @throws ResourceNotFoundException
      */
     @RequestMapping(value = "/{station}", method = GET, produces = "application/json")
-    @ReturnType(value = "java.util.List<com.grndctl.model.metar.METAR>")
     public ResponseEntity<List<METAR>> getMetar(
             @PathVariable(value = STATION) String station,
             @RequestParam(value = HRS_BEFORE, required = false, defaultValue = "1.0") Double hrsBefore) throws

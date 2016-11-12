@@ -19,7 +19,6 @@ package com.grndctl.controllers;
 import com.grndctl.exceptions.ServiceException;
 import com.grndctl.model.flightplan.ValidationResults;
 import com.grndctl.services.IntlFPValidationSvc;
-import com.qmino.miredot.annotations.ReturnType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -63,7 +62,6 @@ public class IntlFPValidationController {
      * @throws ServiceException
      */
     @RequestMapping(value = "/validate", method = POST, consumes = "application/json", produces = "application/json")
-    @ReturnType(value = "com.grndctl.model.flightplan.ValidationResults")
     public ResponseEntity<ValidationResults> validateFlightPlan(
             @RequestBody String flightPlan) throws ServiceException {
         return ResponseEntity.ok(svc.validateFlightPlan(flightPlan));

@@ -20,7 +20,6 @@ import com.grndctl.exceptions.ServiceException;
 import com.grndctl.model.aircraftrep.AircraftReport;
 import com.grndctl.model.aircraftrep.ReportType;
 import com.grndctl.services.AircraftReportSvc;
-import com.qmino.miredot.annotations.ReturnType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -61,7 +60,6 @@ public class AircraftReportController {
      * @throws ServiceException
      */
     @RequestMapping(value = "", method = RequestMethod.GET, produces = "application/json")
-    @ReturnType(value = "java.util.List<com.grndctl.model.aircraftrep.AircraftReport>")
     public ResponseEntity<List<AircraftReport>> getAircraftReports(
             @RequestParam(value = HRS_BEFORE) double hrsBefore,
             @RequestParam(value = REPORT_TYPE, required = false) ReportType reportType) throws ServiceException {

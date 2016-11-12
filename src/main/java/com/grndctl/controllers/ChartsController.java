@@ -21,7 +21,6 @@ import com.grndctl.exceptions.ResourceNotFoundException;
 import com.grndctl.exceptions.ServiceException;
 import com.grndctl.model.station.StationCodeType;
 import com.grndctl.services.StationSvc;
-import com.qmino.miredot.annotations.ReturnType;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.json.JSONObject;
@@ -92,7 +91,6 @@ public class ChartsController {
      * @throws ResourceNotFoundException
      */
     @RequestMapping(value = "/{icaocode}", method = GET, produces = "application/json")
-    @ReturnType(value = "java.lang.String")
     public ResponseEntity<String> getStationsCharts(@PathVariable(value = ICAO_CODE) final String icaoCode)
             throws ServiceException, ResourceNotFoundException {
         if (!stationSvc.stationExists(icaoCode, StationCodeType.ICAO)) {

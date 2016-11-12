@@ -19,7 +19,6 @@ package com.grndctl.controllers;
 import com.grndctl.exceptions.ServiceException;
 import com.grndctl.model.pirep.PIREP;
 import com.grndctl.services.PirepSvc;
-import com.qmino.miredot.annotations.ReturnType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -58,7 +57,6 @@ public class PirepController {
      */
     @Deprecated
     @RequestMapping(value = "", method = GET, produces = "application/json")
-    @ReturnType(value = "java.util.List<com.grndctl.model.pirep.PIREP>")
     public ResponseEntity<List<PIREP>> getPireps(
             @RequestParam(value = HRS_BEFORE, defaultValue = "1.0") double hrsBefore) throws ServiceException {
         return ResponseEntity.ok(svc.getPireps(hrsBefore));
