@@ -19,7 +19,9 @@ package com.grndctl.controllers;
 import com.grndctl.exceptions.ServiceException;
 import com.grndctl.model.flightplan.Notam;
 import com.grndctl.services.NotamSvc;
-import com.qmino.miredot.annotations.ReturnType;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,7 +33,6 @@ import java.util.List;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 /**
- *
  * @author Michael Di Salvo
  */
 @RestController
@@ -51,25 +52,18 @@ public class NotamController {
         this.svc = svc;
     }
 
-    /**
-     * Retrieve <code>NOTAM</code>s for the requested aerodromes/fir's.  Example Response Entity:
-     *
-     * <pre>
-     *     [
-     *         "!IAD 11/127 IAD RWY 30 RVRR OUT OF SERVICE 1511210332-151127200EST",
-     *         "!IAD 11/126 IAD RWY 12 RVRT OUT OF SERVICE 1511210331-1511272000EST",
-     *         "!FDC 5/3437 ZDC ROUTE ZDC ZTL.\nQ58 KELLN, SC TO PEETT, NC NA.\n1510271603-1604201603EST"
-     *     ]
-     * </pre>
-     *
-     * @param codes Aerodrome/FIR boundary ICAO codes to retrieve <code>NOTAM</code>s for (Ex. -> [KIAD, ZDC]) [REQ'D]
-     * @param reportType NOTAM Report Type (Ex. -> RAW)
-     * @param formatType NOTAM Format Type (Ex. -> DOMESTIC)
-     * @return <code>List</code> of raw <code>NOTAM</code> Strings for the requested codes
-     * @throws ServiceException
-     */
     @RequestMapping(value = "", method = GET, produces = "application/json")
-    @ReturnType(value = "java.util.List<java.lang.String>")
+    @ApiOperation(
+            value = "getNotamsForCodes",
+            nickname = "getNotamsForCodes",
+            response = String.class,
+            responseContainer = "List"
+    )
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Success"),
+            @ApiResponse(code = 400, message = "Bad Request"),
+            @ApiResponse(code = 500, message = "Internal Server Error")
+    })
     public ResponseEntity<List<String>> getNotamsForCodes(
             @RequestParam(value = CODES) List<String> codes,
             @RequestParam(value = REPORT_TYPE, required = false) Notam.ReportType reportType,

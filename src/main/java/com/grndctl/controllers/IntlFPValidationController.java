@@ -19,7 +19,9 @@ package com.grndctl.controllers;
 import com.grndctl.exceptions.ServiceException;
 import com.grndctl.model.flightplan.ValidationResults;
 import com.grndctl.services.IntlFPValidationSvc;
-import com.qmino.miredot.annotations.ReturnType;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -29,9 +31,6 @@ import org.springframework.web.bind.annotation.RestController;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 /**
- * Basic service to validate an ICAO international flight plan String.
- *
- *
  * @author Michael Di Salvo
  */
 @RestController
@@ -45,25 +44,17 @@ public class IntlFPValidationController {
         this.svc = svc;
     }
 
-    /**
-     * Accepts an ICAO flight plan as a <code>String</code> to validate.
-     *
-     * <pre>
-     *
-     * (FPL-DLH560_IS
-     * -1A319/M-SHWY/S
-     * -EGLL0600
-     * -N0420F370 BPK UQ295 CLN UL620 ARTOV UP44 SOMVA UP155 OKOKO UZ303 DHE UP729 DOSUR P729 LUGAS
-     * -EKCH0715 ESMS)
-     *
-     * </pre>
-     *
-     * @param flightPlan ICAO flight plan to validate (Ex. ^) [REQ'D]
-     * @return <code>ValidationResults</code> object that holds the original flight plan, and the returned messages.
-     * @throws ServiceException
-     */
     @RequestMapping(value = "/validate", method = POST, consumes = "application/json", produces = "application/json")
-    @ReturnType(value = "com.grndctl.model.flightplan.ValidationResults")
+    @ApiOperation(
+            value = "validateFlightPlan",
+            nickname = "validateFlightPlan",
+            response = ValidationResults.class
+    )
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Success"),
+            @ApiResponse(code = 400, message = "Bad Request"),
+            @ApiResponse(code = 500, message = "Internal Server Error")
+    })
     public ResponseEntity<ValidationResults> validateFlightPlan(
             @RequestBody String flightPlan) throws ServiceException {
         return ResponseEntity.ok(svc.validateFlightPlan(flightPlan));

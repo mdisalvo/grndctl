@@ -20,7 +20,9 @@ import com.grndctl.exceptions.ServiceException;
 import com.grndctl.model.aircraftrep.AircraftReport;
 import com.grndctl.model.aircraftrep.ReportType;
 import com.grndctl.services.AircraftReportSvc;
-import com.qmino.miredot.annotations.ReturnType;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,10 +33,6 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 /**
- * Controller to retrieve {@link com.grndctl.model.aircraftrep.AircraftReport}s issued by the NWS.
- *
- * This replaces the {@link com.grndctl.controllers.PirepController}, a service that has been deprecated by the NWS.
- *
  * @author Michael Di Salvo
  */
 @RestController
@@ -52,16 +50,18 @@ public class AircraftReportController {
         this.svc = svc;
     }
 
-    /**
-     * Get the reports.  The <code>AircraftReport</code>s.
-     *
-     * @param hrsBefore Hours before now (Ex. 1.0) [REQ'D]
-     * @param reportType The {@link com.grndctl.model.aircraftrep.ReportType} to return (Default -> AIREP)
-     * @return <code>List</code> of filtered <code>AircraftReport</code>s
-     * @throws ServiceException
-     */
     @RequestMapping(value = "", method = RequestMethod.GET, produces = "application/json")
-    @ReturnType(value = "java.util.List<com.grndctl.model.aircraftrep.AircraftReport>")
+    @ApiOperation(
+            value = "getAircraftReports",
+            nickname = "getAircraftReports",
+            response = AircraftReport.class,
+            responseContainer = "List"
+    )
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Success"),
+            @ApiResponse(code = 400, message = "Bad Request"),
+            @ApiResponse(code = 500, message = "Internal Server Error")
+    })
     public ResponseEntity<List<AircraftReport>> getAircraftReports(
             @RequestParam(value = HRS_BEFORE) double hrsBefore,
             @RequestParam(value = REPORT_TYPE, required = false) ReportType reportType) throws ServiceException {

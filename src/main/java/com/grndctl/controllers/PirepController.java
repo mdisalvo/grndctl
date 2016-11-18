@@ -19,7 +19,9 @@ package com.grndctl.controllers;
 import com.grndctl.exceptions.ServiceException;
 import com.grndctl.model.pirep.PIREP;
 import com.grndctl.services.PirepSvc;
-import com.qmino.miredot.annotations.ReturnType;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,8 +33,6 @@ import java.util.List;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 /**
- * Controller to retrieve {@link PIREP}s issued by the NWS.
- *
  * @author Michael Di Salvo
  */
 @Deprecated
@@ -49,16 +49,19 @@ public class PirepController {
         this.svc = svc;
     }
 
-    /**
-     * [DEPRECATED] Get the reps.  The <code>PIREP</code>s.
-     *
-     * @param hrsBefore Hours before now (Default -> 1.0)
-     * @return <code>List</code> of filtered <code>PIREP</code>s
-     * @throws ServiceException
-     */
-    @Deprecated
+//    @Deprecated
     @RequestMapping(value = "", method = GET, produces = "application/json")
-    @ReturnType(value = "java.util.List<com.grndctl.model.pirep.PIREP>")
+    @ApiOperation(
+            value = "getPireps",
+            nickname = "getPireps",
+            response = PIREP.class,
+            responseContainer = "List"
+    )
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Success"),
+            @ApiResponse(code = 400, message = "Bad Request"),
+            @ApiResponse(code = 500, message = "Internal Server Error")
+    })
     public ResponseEntity<List<PIREP>> getPireps(
             @RequestParam(value = HRS_BEFORE, defaultValue = "1.0") double hrsBefore) throws ServiceException {
         return ResponseEntity.ok(svc.getPireps(hrsBefore));

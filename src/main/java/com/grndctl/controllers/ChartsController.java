@@ -18,11 +18,9 @@ package com.grndctl.controllers;
 
 import com.grndctl.exceptions.ResourceNotFoundException;
 import com.grndctl.exceptions.ServiceException;
-import com.grndctl.model.aggregates.CombinedWx;
 import com.grndctl.model.station.StationCodeType;
-import com.grndctl.services.MetarSvc;
+import com.grndctl.services.ChartsSvc;
 import com.grndctl.services.StationSvc;
-import com.grndctl.services.TafSvc;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
@@ -30,7 +28,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
@@ -39,51 +36,38 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
  * @author Michael Di Salvo
  */
 @RestController
-@RequestMapping("/combinedwx")
-public class CombinedWxController {
+@RequestMapping("/charts")
+public class ChartsController {
 
-    private static final String STATION = "station";
+    private static final String ICAO_CODE = "icaocode";
 
-    private static final String HRS_BEFORE = "hrsBefore";
+    private final StationSvc stationSvc;
 
-    private MetarSvc metarSvc;
-    private TafSvc tafSvc;
-    private StationSvc stationSvc;
+    private final ChartsSvc chartsSvc;
 
     @Autowired
-    public CombinedWxController(final MetarSvc metarSvc, final TafSvc tafSvc, final StationSvc stationSvc) {
-        this.metarSvc = metarSvc;
-        this.tafSvc = tafSvc;
+    public ChartsController(final StationSvc stationSvc, final ChartsSvc chartsSvc) {
         this.stationSvc = stationSvc;
+        this.chartsSvc = chartsSvc;
     }
 
-    @RequestMapping(value = "/{station}", method = GET, produces = "application/json")
+    @RequestMapping(value = "/{icaocode}", method = GET, produces = "application/json")
     @ApiOperation(
-            value = "getCombinedWx",
-            nickname = "getCombinedWx",
-            response = CombinedWx.class
+            value = "getStationCharts",
+            nickname = "getStationCharts"
     )
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Success"),
-            @ApiResponse(code = 400, message = "Bad Request"),
             @ApiResponse(code = 404, message = "Resource Not Found"),
             @ApiResponse(code = 500, message = "Internal Server Error")
 
     })
-    public ResponseEntity<CombinedWx> getCombinedWx(
-            @PathVariable(value = STATION) String station,
-            @RequestParam(value = HRS_BEFORE, required = false, defaultValue = "1.0") Double hrsBefore) throws
-            ServiceException, ResourceNotFoundException {
-
-        if (!stationSvc.stationExists(station, StationCodeType.ICAO)) {
-            throw new ResourceNotFoundException(String.format("Station with code %s does not exist.", station));
+    public ResponseEntity<String> getStationCharts(@PathVariable(value = ICAO_CODE) final String icaoCode)
+            throws ServiceException, ResourceNotFoundException {
+        if (!stationSvc.stationExists(icaoCode, StationCodeType.ICAO)) {
+            throw new ResourceNotFoundException(String.format("Station with ICAO code %s does not exist.", icaoCode));
         }
 
-        CombinedWx resp = new CombinedWx();
-        resp.setMetars(metarSvc.getMetars(station, hrsBefore));
-        resp.setTafs(tafSvc.getCurrentTaf(station));
-
-        return ResponseEntity.ok(resp);
+        return ResponseEntity.ok(chartsSvc.getStationCharts(icaoCode));
     }
-
 }

@@ -19,7 +19,9 @@ package com.grndctl.controllers;
 import com.grndctl.exceptions.ServiceException;
 import com.grndctl.model.airsigmet.AIRSIGMET;
 import com.grndctl.services.AirsigmetSvc;
-import com.qmino.miredot.annotations.ReturnType;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,8 +32,6 @@ import java.util.List;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 /**
- * Retrieve AIRSIGMETs from the NWS.
- *
  * @author Michael Di Salvo
  */
 @RestController
@@ -53,29 +53,33 @@ public class AirsigmetController {
         this.svc = svc;
     }
 
-    /**
-     * Retrieve all of the active <code>AIRSIGMET</code>s currently issued by the NWS.
-     *
-     * @return <code>List</code> of <code>AIRSIGMET</code>s
-     * @throws ServiceException
-     */
     @RequestMapping(value = "", method = GET, produces = "application/json")
-    @ReturnType(value = "java.util.List<com.grndctl.model.airsigmet.AIRSIGMET>")
+    @ApiOperation(
+            value = "getAirsigmets",
+            nickname = "getAirsigmets",
+            response = AIRSIGMET.class,
+            responseContainer = "List"
+    )
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Success"),
+            @ApiResponse(code = 500, message = "Internal Server Error")
+    })
     public ResponseEntity<List<AIRSIGMET>> getAirsigmets() throws ServiceException {
         return ResponseEntity.ok(svc.getAirsigmets());
     }
 
-    /**
-     * Retrieve <code>AIRSIGMET</code>s by altitude range, with an additional parameter for hours before now.
-     *
-     * @param hrsBefore Hours before now (Ex. -> 1.0) [REQ'D]
-     * @param minAltFt Minimum altitude (Ex. -> 5000) [REQ'D]
-     * @param maxAltFt Maximum altitude (Ex. -> 30000) [REQ'D]
-     * @return <code>List</code> of filtered <code>AIRSIGMET</code>s
-     * @throws ServiceException
-     */
     @RequestMapping(value = "/altLimited", method = GET, produces = "application/json")
-    @ReturnType(value = "java.util.List<com.grndctl.model.airsigmet.AIRSIGMET>")
+    @ApiOperation(
+            value = "getAirsigmetsByAlt",
+            nickname = "getAirsigmetsByAlt",
+            response = AIRSIGMET.class,
+            responseContainer = "List"
+    )
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Success"),
+            @ApiResponse(code = 400, message = "Bad Request"),
+            @ApiResponse(code = 500, message = "Internal Server Error")
+    })
     public ResponseEntity<List<AIRSIGMET>> getAirsigmetsByAlt(
             @RequestParam(value = HRS_BEFORE) double hrsBefore,
             @RequestParam(value = MIN_ALT_FT) int minAltFt,
@@ -83,19 +87,18 @@ public class AirsigmetController {
         return ResponseEntity.ok(svc.getAirsigmetsInAltitudeRange(minAltFt, maxAltFt, hrsBefore));
     }
 
-    /**
-     * Retreive <code>AIRSIGMET</code>s by lat/lon box, with an additional parameter for hours before now.
-     *
-     * @param hrsBefore Hours before now (Ex. -> 1.0) [REQ'D]
-     * @param minLat Minimum latitude (Ex. -> 25) [REQ'D]
-     * @param maxLat Maximum latitude (Ex. -> 65) [REQ'D]
-     * @param minLon Minimum longitude (Ex. -> -130) [REQ'D]
-     * @param maxLon Maximum longitude (Ex. -> -40) [REQ'D]
-     * @return <code>List</code> of filtered <code>AIRSIGMET</code>s
-     * @throws ServiceException
-     */
     @RequestMapping(value = "/latLonLimited", method = GET, produces = "application/json")
-    @ReturnType(value = "java.util.List<com.grndctl.model.airsigmet.AIRSIGMET>")
+    @ApiOperation(
+            value = "getAirsigmetsByLatLon",
+            nickname = "getAirsigmetsByLatLon",
+            response = AIRSIGMET.class,
+            responseContainer = "List"
+    )
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Success"),
+            @ApiResponse(code = 400, message = "Bad Request"),
+            @ApiResponse(code = 500, message = "Internal Server Error")
+    })
     public ResponseEntity<List<AIRSIGMET>> getAirsimetsByLatLon(
             @RequestParam(value = HRS_BEFORE) double hrsBefore,
             @RequestParam(value = MIN_LAT) int minLat,

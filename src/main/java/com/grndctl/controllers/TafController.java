@@ -23,7 +23,9 @@ import com.grndctl.model.taf.TAF;
 import com.grndctl.model.taf.TimeType;
 import com.grndctl.services.StationSvc;
 import com.grndctl.services.TafSvc;
-import com.qmino.miredot.annotations.ReturnType;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -36,8 +38,6 @@ import java.util.List;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 /**
- * Terminal Aerodrome Forecasts as issued by the NWS.
- *
  * @author Michael Di Salvo
  */
 @RestController
@@ -60,19 +60,19 @@ public class TafController {
         this.stationSvc = stationSvc;
     }
 
-    /**
-     * Retrieve <code>TAF</code>s hours before now for a station by either issue time or validity.  If
-     * <code>timeType</code> is null, then <code>TimeType.VALID</code> will be passed to the service.
-     *
-     * @param code Station string [REQ'D]
-     * @param hrsBefore Hours before now (Default -> 2.0)
-     * @param timeType <code>ISSUE</code> or (Default)<code>VALID</code>
-     * @return <code>List</code> of filtered <code>TAF</code>s
-     * @throws ServiceException
-     * @throws ResourceNotFoundException
-     */
     @RequestMapping(value = "/{station}", method = GET, produces = "application/json")
-    @ReturnType(value = "java.util.List<com.grndctl.model.taf.TAF>")
+    @ApiOperation(
+            value = "getTafs",
+            nickname = "getTafs",
+            response = TAF.class,
+            responseContainer = "List"
+    )
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Success"),
+            @ApiResponse(code = 400, message = "Bad Request"),
+            @ApiResponse(code = 404, message = "Not Found"),
+            @ApiResponse(code = 500, message = "Internal Server Error")
+    })
     public ResponseEntity<List<TAF>> getTafs(
             @PathVariable(value = STATION) String code,
             @RequestParam(value = HRS_BEFORE, required = false, defaultValue = "2.0") Double hrsBefore,
