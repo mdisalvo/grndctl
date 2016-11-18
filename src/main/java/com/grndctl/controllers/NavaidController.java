@@ -19,6 +19,9 @@ package com.grndctl.controllers;
 import com.grndctl.exceptions.ResourceNotFoundException;
 import com.grndctl.model.flightplan.Navaid;
 import com.grndctl.services.NavaidSvc;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,8 +35,6 @@ import java.util.Map;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 /**
- * Retrieve NAVAID information from data source by openflights.org.
- *
  * @author Michael Di Salvo
  */
 @RestController
@@ -47,28 +48,33 @@ public class NavaidController {
         this.svc = svc;
     }
 
-    /**
-     * Retrieve all <code>Navaid</code>s.
-     *
-     * All credit for data goes to the hardworking folk at openflights.org.
-     *
-     * @return <code>List</code> of <code>Navaid</code>s
-     */
     @RequestMapping(value = "", method = GET, produces = "application/json")
+    @ApiOperation(
+            value = "getAllNavaidsByIdent",
+            nickname = "getAllNavaidsByIdent",
+            response = Navaid.class,
+            responseContainer = "Map"
+    )
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Success"),
+            @ApiResponse(code = 500, message = "Internal Server Error")
+    })
     public ResponseEntity<Map<String, Collection<Navaid>>> getAllNavaidsByIdent() {
         return ResponseEntity.ok(svc.getAllNavaidsByIdent());
     }
 
-    /**
-     * Retrieve <code>Navaid</code>s associated with an identifier.
-     *
-     * All credit for data goes to the hardworking folk at openflights.org.
-     *
-     * @param ident The identifier of the <code>Navaid</code>(s) to return [REQ'D]
-     * @return <code>List</code> of filtered <code>Navaid</code>s
-     * @throws ResourceNotFoundException
-     */
     @RequestMapping(value = "/ident/{ident}", method = GET, produces = "application/json")
+    @ApiOperation(
+            value = "getNavaidsByIdent",
+            nickname = "getNavaidsByIdent",
+            response = Navaid.class,
+            responseContainer = "List"
+    )
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Success"),
+            @ApiResponse(code = 404, message = "Not Found"),
+            @ApiResponse(code = 500, message = "Internal Server Error")
+    })
     public ResponseEntity<List<Navaid>> getNavaidsByIdent(@PathVariable String ident) throws ResourceNotFoundException {
         List<Navaid> response = svc.getNavaidByIdent(ident.toUpperCase());
 
@@ -79,16 +85,18 @@ public class NavaidController {
         return ResponseEntity.ok(response);
     }
 
-    /**
-     * Retrieve <code>Navaid</code>s associate with an ICAO station code.
-     *
-     * All credit for data goes to the hardworking folk at openflights.org.
-     *
-     * @param station The ICAO station code of the associated <code>Navaid</code>(s) to return [REQ'D]
-     * @return <code>List</code> of filtered <code>Navaid</code>s
-     * @throws ResourceNotFoundException
-     */
     @RequestMapping(value = "/station/{station}", method = GET, produces = "application/json")
+    @ApiOperation(
+            value = "getNavaidsByStation",
+            nickname = "getNavaidsByStation",
+            response = Navaid.class,
+            responseContainer = "List"
+    )
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Success"),
+            @ApiResponse(code = 404, message = "Not Found"),
+            @ApiResponse(code = 500, message = "Internal Server Error")
+    })
     public ResponseEntity<List<Navaid>> getNavaidsByStation(@PathVariable String station)
             throws ResourceNotFoundException {
         List<Navaid> response = svc.getNavaidsByAssociatedAirport(station.toUpperCase());
