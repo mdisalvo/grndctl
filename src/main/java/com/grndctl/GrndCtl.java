@@ -35,7 +35,6 @@ import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
- *
  * @author Michael Di Salvo
  */
 @Component
@@ -45,6 +44,22 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableAutoConfiguration
 @PropertySource("classpath:application.properties")
 public class GrndCtl extends SpringBootServletInitializer {
+
+    private static final String PATHS =
+            "/airline.*" +
+            "|/aircraftrep.*" +
+            "|/charts.*" +
+            "|/airline.*" +
+            "|/airsigmet.*" +
+            "|/combinedwx.*" +
+            "|/conversions.*" +
+            "|/intlfpvalidator.*" +
+            "|/metar.*" +
+            "|/navaid.*" +
+            "|/notam.*" +
+            "|/pirep.*" +
+            "|/station.*" +
+            "|/taf.*";
 
     @Override
     protected final SpringApplicationBuilder configure(final SpringApplicationBuilder app) {
@@ -60,9 +75,10 @@ public class GrndCtl extends SpringBootServletInitializer {
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .groupName("com.grndctl")
+                .useDefaultResponseMessages(false)
                 .apiInfo(apiInfo())
                 .select()
-                .paths(PathSelectors.regex("/airline.*"))
+                .paths(PathSelectors.regex(PATHS))
                 .build();
     }
 

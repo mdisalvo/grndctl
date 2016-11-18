@@ -18,6 +18,9 @@ package com.grndctl.controllers;
 
 import com.grndctl.model.aggregates.ConversionResult;
 import com.grndctl.model.aggregates.WindComponent;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.apache.commons.lang3.math.Fraction;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,73 +30,91 @@ import org.springframework.web.bind.annotation.RestController;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 /**
- * Simple conversion functions.
- *
  * @author Michael Di Salvo
  */
 @RestController
 @RequestMapping("/conversions")
 public class ConversionsController {
 
+    private static final double CONV_FACTOR = 33.8639;
+
     public ConversionsController() { }
 
-    /**
-     * Convert Fahrenheit to Centigrade.
-     *
-     * @param tempF Temp. Fahrenheit (Ex. -> 75) [REQ'D]
-     * @return F converted to Temp. Centigrade as a <code>double</code>
-     */
     @RequestMapping(value = "/FtoC", method = GET, produces = "application/json")
+    @ApiOperation(
+            value = "getFtoC",
+            nickname = "getFtoC",
+            response = ConversionResult.class
+    )
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Success"),
+            @ApiResponse(code = 400, message = "Bad Request"),
+            @ApiResponse(code = 500, message = "Internal Server Error")
+    })
     public ResponseEntity<ConversionResult> getFtoC(
             @RequestParam(value = "tempF") double tempF) {
         return ResponseEntity.ok(new ConversionResult((tempF - 32) * (Fraction.getFraction(5, 9).doubleValue()), "C"));
     }
 
-    /**
-     * Convert Centigrade to Fahrenheit.
-     *
-     * @param tempC Temp. Centigrade (Ex. -> 24) [REQ'D]
-     * @return C converted to Temp. Fahrenheit as a <code>double</code>
-     */
     @RequestMapping(value = "/CtoF", method = GET, produces = "application/json")
+    @ApiOperation(
+            value = "getCtoF",
+            nickname = "getCtoF",
+            response = ConversionResult.class
+    )
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Success"),
+            @ApiResponse(code = 400, message = "Bad Request"),
+            @ApiResponse(code = 500, message = "Internal Server Error")
+    })
     public ResponseEntity<ConversionResult> getCtoF(
             @RequestParam(value = "tempC") double tempC) {
         return ResponseEntity.ok(new ConversionResult((tempC * 1.8 + 32), "F"));
     }
 
-    /**
-     * Convert inHg to mb.
-     *
-     * @param pressureInches Pressure in inHg to convert (Ex. -> 29.92) [REQ'D]
-     * @return inHg converted to mb as a <code>double</code>
-     */
     @RequestMapping(value = "/inchesToMillibars", method = GET, produces = "application/json")
+    @ApiOperation(
+            value = "inchesToMillibars",
+            nickname = "inchesToMillibars",
+            response = ConversionResult.class
+    )
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Success"),
+            @ApiResponse(code = 400, message = "Bad Request"),
+            @ApiResponse(code = 500, message = "Internal Server Error")
+    })
     public ResponseEntity<ConversionResult> inchesToMillibars(
             @RequestParam(value = "pressInches") double pressureInches) {
-        return ResponseEntity.ok(new ConversionResult((33.8639 * pressureInches), "mb"));
+        return ResponseEntity.ok(new ConversionResult((CONV_FACTOR * pressureInches), "mb"));
     }
 
-    /**
-     * Convert mb to inHg.
-     *
-     * @param pressureMillibars Pressure in mb to convert (Ex. -> 1013.2) [REQ'D]
-     * @return mg converted to inHg as a <code>double</code>
-     */
     @RequestMapping(value = "/millibarsToInches", method = GET, produces = "application/json")
+    @ApiOperation(
+            value = "millibarsToInches",
+            nickname = "millibarsToInches",
+            response = ConversionResult.class
+    )
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Success"),
+            @ApiResponse(code = 400, message = "Bad Request"),
+            @ApiResponse(code = 500, message = "Internal Server Error")
+    })
     public ResponseEntity<ConversionResult> millibarsToInches(
             @RequestParam(value = "pressMillibars", defaultValue = "1013.2") final double pressureMillibars) {
-        return ResponseEntity.ok(new ConversionResult(pressureMillibars / 33.8639, "inHg"));
+        return ResponseEntity.ok(new ConversionResult(pressureMillibars / CONV_FACTOR, "inHg"));
     }
 
-    /**
-     * Get wind components (Negative HW is a tailwind component, and Negative XW from left).
-     *
-     * @param windSpeed Windspeed in KTS (Ex. -> 15.0) [REQ'D]
-     * @param windDirection Wind direction (from) (Ex. -> 240.0) [REQ'D]
-     * @param heading Current heading (Ex. -> 180.0) [REQ'D]
-     * @return <code>WindComponent</code> entity that contains calculated components
-     */
     @RequestMapping(value = "/windcomponent", method = GET, produces = "application/json")
+    @ApiOperation(
+            value = "getWindComponents",
+            nickname = "getWindComponents",
+            response = WindComponent.class
+    )
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Success"),
+            @ApiResponse(code = 400, message = "Bad Request"),
+            @ApiResponse(code = 500, message = "Internal Server Error")
+    })
     public ResponseEntity<WindComponent> getWindComponents(
             @RequestParam(value = "windspeed") double windSpeed,
             @RequestParam(value = "winddirection") double windDirection,

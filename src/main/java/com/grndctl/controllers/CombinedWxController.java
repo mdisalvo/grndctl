@@ -23,6 +23,9 @@ import com.grndctl.model.station.StationCodeType;
 import com.grndctl.services.MetarSvc;
 import com.grndctl.services.StationSvc;
 import com.grndctl.services.TafSvc;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -33,8 +36,6 @@ import org.springframework.web.bind.annotation.RestController;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 /**
- * Combines the {@link MetarSvc} with the {@link TafSvc} to get the combined meteorological conditions for an aerodrome.
- *
  * @author Michael Di Salvo
  */
 @RestController
@@ -56,16 +57,19 @@ public class CombinedWxController {
         this.stationSvc = stationSvc;
     }
 
-    /**
-     * The combined conditions for a field. Takes a string parameter for the field to retrieve, and hours before now.
-     *
-     * @param station Station string (Ex. KIAD) [REQ'D]
-     * @param hrsBefore Hours before now (Default -> 1.0)
-     * @return <code>CombinedWx</code> entity
-     * @throws ServiceException
-     * @throws ResourceNotFoundException
-     */
     @RequestMapping(value = "/{station}", method = GET, produces = "application/json")
+    @ApiOperation(
+            value = "getCombinedWx",
+            nickname = "getCombinedWx",
+            response = CombinedWx.class
+    )
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Success"),
+            @ApiResponse(code = 400, message = "Bad Request"),
+            @ApiResponse(code = 404, message = "Resource Not Found"),
+            @ApiResponse(code = 500, message = "Internal Server Error")
+
+    })
     public ResponseEntity<CombinedWx> getCombinedWx(
             @PathVariable(value = STATION) String station,
             @RequestParam(value = HRS_BEFORE, required = false, defaultValue = "1.0") Double hrsBefore) throws

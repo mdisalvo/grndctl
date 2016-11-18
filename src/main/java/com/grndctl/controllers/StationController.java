@@ -22,6 +22,9 @@ import com.grndctl.model.station.FaaStation;
 import com.grndctl.model.station.Station;
 import com.grndctl.model.station.StationCodeType;
 import com.grndctl.services.StationSvc;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -33,8 +36,6 @@ import java.util.List;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 /**
- * Station information as provided by the NWS.
- *
  * @author Michael Di Salvo
  */
 @RestController
@@ -52,15 +53,18 @@ public class StationController {
         this.stationSvc = stationSvc;
     }
 
-    /**
-     * Get information for a field such as latest <code>METAR</code> latest <code>TAF</code>, forecasts, etc.
-     *
-     * @param icaocode Station string [REQ'D]
-     * @return <code>List</code> of filtered <code>Station</code>s
-     * @throws ServiceException
-     * @throws ResourceNotFoundException
-     */
     @RequestMapping(value = "/adds/{icaocode}", method = GET, produces = "application/json")
+    @ApiOperation(
+            value = "getStationInfo",
+            nickname = "getStationInfo",
+            response = Station.class,
+            responseContainer = "List"
+    )
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Success"),
+            @ApiResponse(code = 404, message = "Not Found"),
+            @ApiResponse(code = 500, message = "Internal Server Error")
+    })
     public ResponseEntity<List<Station>> getStationInfo(
             @PathVariable(value = ICAO_CODE) final String icaocode) throws ServiceException,
             ResourceNotFoundException {
@@ -71,49 +75,17 @@ public class StationController {
         return ResponseEntity.ok(stationSvc.getStationInfo(icaocode));
     }
 
-    /**
-     * Get FAA station status which includes basic wx, and delay information.
-     *
-     * Response Entity:
-     * <pre>
-     *     {
-     *         "delay": "false",
-     *         "IATA": "IAD",
-     *         "state": "District of Columbia",
-     *         "name": "Washington Dulles International",
-     *         "weather": {
-     *             "visibility": 10,
-     *             "weather": "Mostly Cloudy",
-     *             "meta": {
-     *                 "credit": "NOAA's National Weather Service",
-     *                 "updated": "9:52 PM Local",
-     *                 "url": "http://weather.gov/"
-     *             },
-     *             "temp": "60.0 F (15.6 C)",
-     *             "wind": "Northwest at 8.1mph"
-     *         },
-     *         "ICAO": "KIAD",
-     *         "city" "Washington",
-     *         "status": {
-     *             "reason": "No known delays for this airport.",
-     *             "closureBegin": "",
-     *             "endTime": "",
-     *             "minDelay": "",
-     *             "avgDelay": "",
-     *             "maxDelay": "",
-     *             "closureEnd": "",
-     *             "trend": "",
-     *             "type": ""
-     *         }
-     *     }
-     * </pre>
-     *
-     * @param iatacode IATA code for the aerodrome [REQ'D]
-     * @return A {@link FaaStation} object that is the FAA Airport Status Response
-     * @throws ServiceException
-     * @throws ResourceNotFoundException
-     */
     @RequestMapping(value = "/faa/{iatacode}", method = GET, produces = "application/json")
+    @ApiOperation(
+            value = "getFAAStationStatus",
+            nickname = "getFAAStationStatus",
+            response = FaaStation.class
+    )
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Success"),
+            @ApiResponse(code = 404, message = "Not Found"),
+            @ApiResponse(code = 500, message = "Internal Server Error")
+    })
     public ResponseEntity<FaaStation> getFAAStationStatus(
             @PathVariable(value = IATA_CODE) final String iatacode) throws ServiceException, ResourceNotFoundException {
 

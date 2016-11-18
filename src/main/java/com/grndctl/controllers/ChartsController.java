@@ -16,102 +16,58 @@
  */
 package com.grndctl.controllers;
 
-import com.google.common.io.CharStreams;
 import com.grndctl.exceptions.ResourceNotFoundException;
 import com.grndctl.exceptions.ServiceException;
 import com.grndctl.model.station.StationCodeType;
+import com.grndctl.services.ChartsSvc;
 import com.grndctl.services.StationSvc;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
-import org.json.JSONObject;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.URL;
-
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 /**
- *
  * @author Michael Di Salvo
  */
 @RestController
 @RequestMapping("/charts")
 public class ChartsController {
 
-    private static final Logger LOG = LogManager.getLogger(ChartsController.class);
-
     private static final String ICAO_CODE = "icaocode";
-
-    private static final String AIRCHARTS_URL = "http://api.aircharts.org/Airport/%s.json";
-
-    private static final String THANKS_KEY = "thanks";
-
-    private static final String THANKS_VALUE = "All information retrieved from AirCharts at http://www.aircharts.org";
 
     private final StationSvc stationSvc;
 
+    private final ChartsSvc chartsSvc;
+
     @Autowired
-    public ChartsController(final StationSvc stationSvc) {
+    public ChartsController(final StationSvc stationSvc, final ChartsSvc chartsSvc) {
         this.stationSvc = stationSvc;
+        this.chartsSvc = chartsSvc;
     }
 
-    /**
-     * Get the Aerodrome Charts for a field by ICAO code.  All credit for information goes to AirCharts,
-     * Response Entity:
-     * <pre>
-     *     {
-     *         "thanks": "All information retrieved from AirCharts at http://www.aircharts.org",
-     *         "KIAD": {
-     *              "charts": [
-     *                  {
-     *                      "name": "AIRPORT DIAGRAM",
-     *                      "id": "9f03735f-becb-5abd-822f-a4df05387576",
-     *                      "type": "General",
-     *                      "url": "http://www.aircharts.org/data/view.php?id=9f03735f-becb-5abd-822f-a4df05387576"
-     *                  }
-     *              ],
-     *              "info": {
-     *                  "iata": "IAD",
-     *                  "name": "WASHINGTON DULLES INTL".
-     *                  "icao": "KIAD
-     *              }
-     *         }
-     *     }
-     * </pre>
-     *
-     * @param icaoCode Station string [REQ'D]
-     * @return <code>String</code> that represents the returned model object from AirCharts
-     * @throws ServiceException
-     * @throws ResourceNotFoundException
-     */
     @RequestMapping(value = "/{icaocode}", method = GET, produces = "application/json")
-    public ResponseEntity<String> getStationsCharts(@PathVariable(value = ICAO_CODE) final String icaoCode)
+    @ApiOperation(
+            value = "getStationCharts",
+            nickname = "getStationCharts"
+    )
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Success"),
+            @ApiResponse(code = 404, message = "Resource Not Found"),
+            @ApiResponse(code = 500, message = "Internal Server Error")
+
+    })
+    public ResponseEntity<String> getStationCharts(@PathVariable(value = ICAO_CODE) final String icaoCode)
             throws ServiceException, ResourceNotFoundException {
         if (!stationSvc.stationExists(icaoCode, StationCodeType.ICAO)) {
             throw new ResourceNotFoundException(String.format("Station with ICAO code %s does not exist.", icaoCode));
         }
 
-        URL url;
-        try {
-            url = new URL(String.format(AIRCHARTS_URL, icaoCode.toUpperCase()));
-            LOG.info(url.toString());
-
-            try (InputStreamReader isr = new InputStreamReader(url.openStream())) {
-                return ResponseEntity.ok(generateResponseEntity(isr));
-            }
-        } catch (IOException e) {
-            throw new ServiceException(e);
-        }
+        return ResponseEntity.ok(chartsSvc.getStationCharts(icaoCode));
     }
-
-    private static String generateResponseEntity(InputStreamReader isr) throws IOException {
-        return (new JSONObject(CharStreams.toString(isr)).put(THANKS_KEY, THANKS_VALUE)).toString();
-    }
-
 }

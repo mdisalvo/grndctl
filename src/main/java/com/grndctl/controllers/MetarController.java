@@ -22,6 +22,9 @@ import com.grndctl.model.metar.METAR;
 import com.grndctl.model.station.StationCodeType;
 import com.grndctl.services.MetarSvc;
 import com.grndctl.services.StationSvc;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -35,8 +38,6 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 
 /**
- * {@link METAR}s for a station.
- *
  * @author Michael Di Salvo
  */
 @RestController
@@ -57,16 +58,19 @@ public class MetarController {
         this.stationSvc = stationSvc;
     }
 
-    /**
-     * <code>METAR</code>s for a station.  <code>hrsBefore</code> parameter is provided to retrieve historical reports.
-     *
-     * @param station Station string [REQ'D]
-     * @param hrsBefore Hours before now (Default -> 1.0)
-     * @return <code>List</code> of filtered <code>METAR</code>s
-     * @throws ServiceException
-     * @throws ResourceNotFoundException
-     */
     @RequestMapping(value = "/{station}", method = GET, produces = "application/json")
+    @ApiOperation(
+            value = "getMetar",
+            nickname = "getMetar",
+            response = METAR.class,
+            responseContainer = "List"
+    )
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Success"),
+            @ApiResponse(code = 400, message = "Bad Request"),
+            @ApiResponse(code = 404, message = "Not Found"),
+            @ApiResponse(code = 500, message = "Internal Server Error")
+    })
     public ResponseEntity<List<METAR>> getMetar(
             @PathVariable(value = STATION) String station,
             @RequestParam(value = HRS_BEFORE, required = false, defaultValue = "1.0") Double hrsBefore) throws
