@@ -92,7 +92,7 @@ public class GrndCtl extends SpringBootServletInitializer {
                 .title("grndctl")
                 .description("An Aviators API")
                 .contact("Michael Di Salvo (michael.vincent.disalvo@gmail.com)")
-                .licenseUrl("/GPL-3.txt")
+                .licenseUrl("https://www.gnu.org/licenses/gpl-3.0.html")
                 .build();
     }
 
