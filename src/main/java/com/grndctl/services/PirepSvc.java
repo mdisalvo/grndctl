@@ -31,7 +31,6 @@ import java.util.List;
  * @author Michael Di Salvo
  */
 @Service
-@Deprecated
 public class PirepSvc extends AbstractSvc<com.grndctl.model.pirep.Response> {
     
     private static final String NAME = PirepSvc.class.getSimpleName();
@@ -48,7 +47,6 @@ public class PirepSvc extends AbstractSvc<com.grndctl.model.pirep.Response> {
         super(Response.class, NAME);
     }
 
-    @Deprecated
     public List<PIREP> getPireps(final double hrsBefore) throws ServiceException {
         try {
             URL url = new URL(RQST_URL + HRS_BEFORE + hrsBefore);

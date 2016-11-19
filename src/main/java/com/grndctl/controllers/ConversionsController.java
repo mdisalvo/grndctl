@@ -100,7 +100,7 @@ public class ConversionsController {
             @ApiResponse(code = 500, message = "Internal Server Error")
     })
     public ResponseEntity<ConversionResult> millibarsToInches(
-            @RequestParam(value = "pressMillibars", defaultValue = "1013.2") final double pressureMillibars) {
+            @RequestParam(value = "pressMillibars") final double pressureMillibars) {
         return ResponseEntity.ok(new ConversionResult(pressureMillibars / CONV_FACTOR, "inHg"));
     }
 
