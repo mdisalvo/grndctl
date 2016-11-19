@@ -35,7 +35,6 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 /**
  * @author Michael Di Salvo
  */
-@Deprecated
 @RestController
 @RequestMapping(value = "/pirep")
 public class PirepController {
@@ -49,7 +48,6 @@ public class PirepController {
         this.svc = svc;
     }
 
-//    @Deprecated
     @RequestMapping(value = "", method = GET, produces = "application/json")
     @ApiOperation(
             value = "getPireps",
