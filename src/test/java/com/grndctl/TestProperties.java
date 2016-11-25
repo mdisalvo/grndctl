@@ -44,6 +44,9 @@ class TestProperties {
     protected static final String BAD_AIRLINE_ICAO;
     protected static final String AIRLINE_IATA;
     protected static final String BAD_AIRLINE_IATA;
+    protected static final String NAVAID_IDENT;
+    protected static final String BAD_NAVAID_IDENT;
+    protected static final String ARTCC_CODE;
 
     protected static final URL BASE_URL;
 
@@ -60,6 +63,9 @@ class TestProperties {
         BAD_AIRLINE_ICAO = getProperty("bad.airline.icao", "XXX");
         AIRLINE_IATA = getProperty("airline.iata", "UA");
         BAD_AIRLINE_IATA = getProperty("bad.airline.iata", "XX");
+        NAVAID_IDENT = getProperty("navaid.ident", "AML");
+        BAD_NAVAID_IDENT = getProperty("bad.navaid.ident", "XXX");
+        ARTCC_CODE = getProperty("artcc.code", "ZDC");
 
         try {
             BASE_URL = new URL(format("http://localhost:%s", SERVER_PORT));

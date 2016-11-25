@@ -42,6 +42,8 @@ import java.util.Map;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 /**
+ * All credit for data goes to the hardworking folk at openflights.org.
+ *
  * @author Michael Di Salvo
  */
 @RestController

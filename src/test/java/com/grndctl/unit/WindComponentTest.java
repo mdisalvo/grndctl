@@ -37,7 +37,7 @@
  * You should have received a copy of the GNU General Public License
  * along with grndctl.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.grndctl.misc;
+package com.grndctl.unit;
 
 import com.grndctl.model.aggregates.WindComponent;
 import org.junit.Test;

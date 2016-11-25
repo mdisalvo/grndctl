@@ -99,6 +99,18 @@ public class ExceptionModel {
     public void setPath(String path) {
         this.path = path;
     }
+
+    @Override
+    public String toString() {
+        return "ExceptionModel{" +
+                "timestamp=" + timestamp +
+                ", status=" + status +
+                ", error='" + error + '\'' +
+                ", exception='" + exception + '\'' +
+                ", message='" + message + '\'' +
+                ", path='" + path + '\'' +
+                '}';
+    }
 }
 
 

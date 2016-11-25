@@ -39,6 +39,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ * All credit for data goes to the hardworking folk at openflights.org.
  *
  * @author Michael Di Salvo
  */

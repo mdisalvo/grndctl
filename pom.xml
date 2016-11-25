@@ -23,6 +23,9 @@
         <bad.airline.icao>123</bad.airline.icao>
         <airline.iata>UA</airline.iata>
         <bad.airline.iata>123</bad.airline.iata>
+        <navaid.ident>AML</navaid.ident>
+        <bad.navaid.ident>XXX</bad.navaid.ident>
+        <artcc.code>ZDC</artcc.code>
         <!-- This also sets the port in application.properties -->
         <server.port>8888</server.port>
 
@@ -37,6 +40,9 @@
             -Dbad.airline.icao=${bad.airline.icao}
             -Dairline.iata=${airline.iata}
             -Dbad.airline.iata=${bad.airline.iata}
+            -Dnavaid.ident=${navaid.ident}
+            -Dbad.navaid.ident=${bad.navaid.ident}
+            -Dartcc.code=${artcc.code}
         </argLine>
     </properties>
 
@@ -163,43 +169,43 @@
 
     <build>
         <plugins>
-            <plugin>
-                <groupId>com.mycila</groupId>
-                <artifactId>license-maven-plugin</artifactId>
-                <version>2.11</version>
-                <configuration>
-                    <header>${project.basedir}/LICENSE.txt</header>
-                    <excludes>
-                        <exclude>**/**.yml</exclude>
-                        <exclude>**/**.yaml</exclude>
-                        <exclude>**/**.json</exclude>
-                        <exclude>**/**.txt</exclude>
-                        <exclude>**/**.pdf</exclude>
-                        <exclude>**/**.log</exclude>
-                        <exclude>**/**.md</exclude>
-                        <exclude>**/**.properties</exclude>
-                        <exclude>**/**.xml</exclude>
-                        <exclude>**/**.html</exclude>
-                        <exclude>**/**.css</exclude>
-                        <exclude>**/**.woff</exclude>
-                        <exclude>**/**.gif</exclude>
-                        <exclude>**/**.png</exclude>
-                        <exclude>**/**.js</exclude>
-                        <exclude>**/**.otf</exclude>
-                        <exclude>**/**.eot</exclude>
-                        <exclude>**/**.svg</exclude>
-                        <exclude>**/**.ttf</exclude>
-                    </excludes>
-                </configuration>
-                <executions>
-                    <execution>
-                        <phase>validate</phase>
-                        <goals>
-                            <goal>format</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
+            <!--<plugin>-->
+                <!--<groupId>com.mycila</groupId>-->
+                <!--<artifactId>license-maven-plugin</artifactId>-->
+                <!--<version>2.11</version>-->
+                <!--<configuration>-->
+                    <!--<header>${project.basedir}/LICENSE.txt</header>-->
+                    <!--<excludes>-->
+                        <!--<exclude>**/**.yml</exclude>-->
+                        <!--<exclude>**/**.yaml</exclude>-->
+                        <!--<exclude>**/**.json</exclude>-->
+                        <!--<exclude>**/**.txt</exclude>-->
+                        <!--<exclude>**/**.pdf</exclude>-->
+                        <!--<exclude>**/**.log</exclude>-->
+                        <!--<exclude>**/**.md</exclude>-->
+                        <!--<exclude>**/**.properties</exclude>-->
+                        <!--<exclude>**/**.xml</exclude>-->
+                        <!--<exclude>**/**.html</exclude>-->
+                        <!--<exclude>**/**.css</exclude>-->
+                        <!--<exclude>**/**.woff</exclude>-->
+                        <!--<exclude>**/**.gif</exclude>-->
+                        <!--<exclude>**/**.png</exclude>-->
+                        <!--<exclude>**/**.js</exclude>-->
+                        <!--<exclude>**/**.otf</exclude>-->
+                        <!--<exclude>**/**.eot</exclude>-->
+                        <!--<exclude>**/**.svg</exclude>-->
+                        <!--<exclude>**/**.ttf</exclude>-->
+                    <!--</excludes>-->
+                <!--</configuration>-->
+                <!--<executions>-->
+                    <!--<execution>-->
+                        <!--<phase>validate</phase>-->
+                        <!--<goals>-->
+                            <!--<goal>format</goal>-->
+                        <!--</goals>-->
+                    <!--</execution>-->
+                <!--</executions>-->
+            <!--</plugin>-->
 
             <plugin>
                 <groupId>org.springframework.boot</groupId>

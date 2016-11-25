@@ -34,10 +34,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.web.client.RestTemplate;
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static com.google.common.base.Throwables.propagate;
 import static java.lang.String.format;
@@ -53,6 +50,7 @@ public abstract class ControllerTestSupport extends TestProperties {
 
     private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 
+    // Class vars for use by URL builder methods
     private static final String Q = "?";
 
     private static final String A = "&";
@@ -99,7 +97,7 @@ public abstract class ControllerTestSupport extends TestProperties {
         }
     }
 
-    protected static URL addQueryParams(URL specUrl, Map<String, String> queryParams) {
+    protected static URL addQueryParams(URL url, Map<String, String> queryParams) {
         StringBuilder paramString = new StringBuilder(Q); // ?
         queryParams.entrySet().forEach(e -> {
             paramString.append(e.getKey());
@@ -109,7 +107,7 @@ public abstract class ControllerTestSupport extends TestProperties {
         });
 
         try {
-            return new URL((specUrl.toString() + paramString.toString()));
+            return new URL((url.toString() + paramString.toString()));
         } catch (Exception e) {
             throw new RuntimeException(e.getMessage());
         }

@@ -1,0 +1,4 @@
+http://openflights.org/data.html
+http://ourairports.com/data/
+https://aviationweather.gov/dataserver
+http://www.aircharts.org

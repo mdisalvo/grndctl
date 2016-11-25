@@ -44,20 +44,30 @@ public class WindComponent {
     @XmlElement(name = "crossWind")
     private double crossWind;
 
+    public WindComponent() { }
+
     public WindComponent(final double windSpeed, final double windDirection, final double heading) {
-        calculateComponents(((windDirection * Math.PI) / 180), ((heading * Math.PI) / 180), windSpeed);
+        calculateComponents(windSpeed, windDirection, heading);
     }
 
-    private void calculateComponents(double windDirection, double heading, double windSpeed) {
-        headWind = Math.cos(windDirection - heading) * windSpeed;
-        crossWind = Math.sin(windDirection - heading) * windSpeed;
+    private void calculateComponents(double windSpeed, double windDirection, double heading) {
+        headWind = Math.cos(((windDirection * Math.PI) / 180) - ((heading * Math.PI) / 180)) * windSpeed;
+        crossWind = Math.sin(((windDirection * Math.PI) / 180) - ((heading * Math.PI) / 180)) * windSpeed;
     }
 
     public double getHeadWind() {
         return headWind;
     }
 
+    public void setHeadWind(double headWind) {
+        this.headWind = headWind;
+    }
+
     public double getCrossWind() {
         return crossWind;
+    }
+
+    public void setCrossWind(double crossWind) {
+        this.crossWind = crossWind;
     }
 }

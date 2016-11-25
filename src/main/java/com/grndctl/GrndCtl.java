@@ -52,7 +52,12 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @PropertySource("classpath:application.properties")
 public class GrndCtl extends SpringBootServletInitializer {
 
-    private static final String PATHS =
+    private static final String PATHS;
+
+    private static final ApiInfo API_INFO;
+
+    static {
+        PATHS =
             "/airline.*" +
             "|/aircraftrep.*" +
             "|/charts.*" +
@@ -67,6 +72,15 @@ public class GrndCtl extends SpringBootServletInitializer {
             "|/pirep.*" +
             "|/station.*" +
             "|/taf.*";
+
+        API_INFO = new ApiInfoBuilder()
+                .version("1.0")
+                .title("grndctl")
+                .description("An Aviators API")
+                .contact("Michael Di Salvo (michael.vincent.disalvo@gmail.com)")
+                .licenseUrl("https://www.gnu.org/licenses/gpl-3.0.html")
+                .build();
+    }
 
     @Override
     protected final SpringApplicationBuilder configure(final SpringApplicationBuilder app) {
@@ -83,7 +97,7 @@ public class GrndCtl extends SpringBootServletInitializer {
         return new Docket(DocumentationType.SWAGGER_2)
                 .groupName("com.grndctl")
                 .useDefaultResponseMessages(false)
-                .apiInfo(apiInfo())
+                .apiInfo(API_INFO)
                 .select()
                 .paths(PathSelectors.regex(PATHS))
                 .build();
@@ -92,16 +106,5 @@ public class GrndCtl extends SpringBootServletInitializer {
     public static void main(String...args) {
         SpringApplication.run(GrndCtl.class, args);
     }
-
-    private static ApiInfo apiInfo() {
-        return new ApiInfoBuilder()
-                .version("1.0")
-                .title("grndctl")
-                .description("An Aviators API")
-                .contact("Michael Di Salvo (michael.vincent.disalvo@gmail.com)")
-                .licenseUrl("https://www.gnu.org/licenses/gpl-3.0.html")
-                .build();
-    }
-
 
 }
