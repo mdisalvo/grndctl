@@ -21,30 +21,32 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.grndctl.controllers;
+package com.grndctl.services;
 
-import com.grndctl.ControllerTestSupport;
-import com.grndctl.ExceptionModel;
+import com.grndctl.SvcTestSupport;
+import com.grndctl.model.aircraftrep.AircraftReport;
+import com.grndctl.model.aircraftrep.ReportType;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import java.net.URL;
+import java.util.List;
 
 import static java.lang.String.format;
 
 /**
  */
-public class ChartsControllerTest extends ControllerTestSupport {
+public class AircraftReportSvcTest extends SvcTestSupport {
 
-    private static final String TEST_NAME = ChartsControllerTest.class.getSimpleName();
+    private static final String TEST_NAME = AircraftReportSvcTest.class.getName();
 
-    private static URL CHARTS_RESOURCE;
+    public AircraftReportSvcTest() {
+        super();
+    }
 
     @BeforeClass
-    public static void setUp() {
+    public static void setup() {
         LOG.info(format(BEG_MSG, TEST_NAME));
-        CHARTS_RESOURCE = addPathParams(baseUrl(), "charts");
     }
 
     @AfterClass
@@ -53,20 +55,26 @@ public class ChartsControllerTest extends ControllerTestSupport {
     }
 
     @Test
-    public void getStationCharts() throws Exception {
-        URL url = addPathParams(CHARTS_RESOURCE, ICAO_CODE);
-        LOG.info(url.toString());
+    public void getAircraftReports() throws Exception {
 
-        assert (rest().getForObject(url.toExternalForm(), String.class).contains(ICAO_CODE));
+        List<AircraftReport> reports = aircraftReportSvc.getAircraftReports(10.0, ReportType.AIREP);
+        reports.forEach(aircraftReport -> {
+            assert aircraftReport != null;
+            assert aircraftReport.getReportType().equals(ReportType.AIREP.toString());
+        });
+
+        reports = aircraftReportSvc.getAircraftReports(10.0, ReportType.PIREP);
+        reports.forEach(aircraftReport -> {
+            assert aircraftReport != null;
+            assert aircraftReport.getReportType().equals(ReportType.PIREP.toString());
+        });
+
+        reports = aircraftReportSvc.getAircraftReports(10.0, ReportType.URGENT_PIREP);
+        reports.forEach(aircraftReport -> {
+            assert aircraftReport != null;
+            assert aircraftReport.getReportType().equals(ReportType.URGENT_PIREP.toString());
+        });
+
     }
 
-    @Test
-    public void getStationCharts404() throws Exception {
-        URL url = addPathParams(CHARTS_RESOURCE, BAD_ICAO_CODE);
-        LOG.info(url.toString());
-
-        ExceptionModel e = rest().getForObject(url.toExternalForm(), ExceptionModel.class);
-
-        assert e.getStatus() == 404;
-    }
 }

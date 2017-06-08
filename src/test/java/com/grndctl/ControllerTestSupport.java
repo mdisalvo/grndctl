@@ -1,7 +1,7 @@
 /**
  * MIT License
  *
- * Copyright (c) 2016 grndctl
+ * Copyright (c) 2017 grndctl
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -34,10 +34,12 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.web.client.RestTemplate;
 
 import java.net.URL;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
 
 import static com.google.common.base.Throwables.propagate;
-import static java.lang.String.format;
 
 /**
  */
