@@ -138,17 +138,16 @@
             <artifactId>commons-lang3</artifactId>
             <version>3.1</version>
         </dependency>
-
         <!-- Swagger 2 -->
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger2</artifactId>
-            <version>2.2.2</version>
+            <version>2.6.1</version>
         </dependency>
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger-ui</artifactId>
-            <version>2.2.2</version>
+            <version>2.6.1</version>
         </dependency>
 
         <!-- CSV Reader -->
@@ -169,43 +168,43 @@
 
     <build>
         <plugins>
-            <!--<plugin>-->
-                <!--<groupId>com.mycila</groupId>-->
-                <!--<artifactId>license-maven-plugin</artifactId>-->
-                <!--<version>2.11</version>-->
-                <!--<configuration>-->
-                    <!--<header>${project.basedir}/LICENSE.txt</header>-->
-                    <!--<excludes>-->
-                        <!--<exclude>**/**.yml</exclude>-->
-                        <!--<exclude>**/**.yaml</exclude>-->
-                        <!--<exclude>**/**.json</exclude>-->
-                        <!--<exclude>**/**.txt</exclude>-->
-                        <!--<exclude>**/**.pdf</exclude>-->
-                        <!--<exclude>**/**.log</exclude>-->
-                        <!--<exclude>**/**.md</exclude>-->
-                        <!--<exclude>**/**.properties</exclude>-->
-                        <!--<exclude>**/**.xml</exclude>-->
-                        <!--<exclude>**/**.html</exclude>-->
-                        <!--<exclude>**/**.css</exclude>-->
-                        <!--<exclude>**/**.woff</exclude>-->
-                        <!--<exclude>**/**.gif</exclude>-->
-                        <!--<exclude>**/**.png</exclude>-->
-                        <!--<exclude>**/**.js</exclude>-->
-                        <!--<exclude>**/**.otf</exclude>-->
-                        <!--<exclude>**/**.eot</exclude>-->
-                        <!--<exclude>**/**.svg</exclude>-->
-                        <!--<exclude>**/**.ttf</exclude>-->
-                    <!--</excludes>-->
-                <!--</configuration>-->
-                <!--<executions>-->
-                    <!--<execution>-->
-                        <!--<phase>validate</phase>-->
-                        <!--<goals>-->
-                            <!--<goal>format</goal>-->
-                        <!--</goals>-->
-                    <!--</execution>-->
-                <!--</executions>-->
-            <!--</plugin>-->
+            <!--<plugin>
+                <groupId>com.mycila</groupId>
+                <artifactId>license-maven-plugin</artifactId>
+                <version>2.11</version>
+                <configuration>
+                    <header>${project.basedir}/LICENSE.txt</header>
+                    <excludes>
+                        <exclude>**/**.yml</exclude>
+                        <exclude>**/**.yaml</exclude>
+                        <exclude>**/**.json</exclude>
+                        <exclude>**/**.txt</exclude>
+                        <exclude>**/**.pdf</exclude>
+                        <exclude>**/**.log</exclude>
+                        <exclude>**/**.md</exclude>
+                        <exclude>**/**.properties</exclude>
+                        <exclude>**/**.xml</exclude>
+                        <exclude>**/**.html</exclude>
+                        <exclude>**/**.css</exclude>
+                        <exclude>**/**.woff</exclude>
+                        <exclude>**/**.gif</exclude>
+                        <exclude>**/**.png</exclude>
+                        <exclude>**/**.js</exclude>
+                        <exclude>**/**.otf</exclude>
+                        <exclude>**/**.eot</exclude>
+                        <exclude>**/**.svg</exclude>
+                        <exclude>**/**.ttf</exclude>
+                    </excludes>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>format</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>-->
 
             <plugin>
                 <groupId>org.springframework.boot</groupId>

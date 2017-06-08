@@ -1,7 +1,7 @@
 /**
  * MIT License
  *
- * Copyright (c) 2016 grndctl
+ * Copyright (c) 2017 grndctl
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -41,7 +41,8 @@ import java.util.List;
 @Service
 public class NotamSvc {
 
-    private static final String FAA_NOTAM_SEARCH_URL = "https://pilotweb.nas.faa.gov/PilotWeb/notamRetrievalByICAOAction.do?" +
+    private static final String FAA_NOTAM_SEARCH_URL =
+            "https://pilotweb.nas.faa.gov/PilotWeb/notamRetrievalByICAOAction.do?" +
             "method=displayByICAOs&actionType=notamRetrievalByICAOs";
     private static final String FORMAT_TYPE = "&formatType=";
     private static final String REPORT_TYPE = "&reportType=";
@@ -51,13 +52,20 @@ public class NotamSvc {
 
     public NotamSvc() { }
 
-    public List<String> getNotamsForCodes(List<String> icaoCodes, Notam.ReportType reportType, Notam.FormatType formatType) throws ServiceException {
+    public List<String> getNotamsForCodes(List<String> icaoCodes,
+                                          Notam.ReportType reportType,
+                                          Notam.FormatType formatType) throws ServiceException {
         String icaoString = StringUtils.join(icaoCodes, ",");
 
         Document dom;
         try {
             dom = Jsoup
-                    .connect(FAA_NOTAM_SEARCH_URL + ICAO_CODE + icaoString + REPORT_TYPE + reportType + FORMAT_TYPE + formatType)
+                    .connect(
+                        FAA_NOTAM_SEARCH_URL +
+                                ICAO_CODE + icaoString +
+                                REPORT_TYPE + reportType +
+                                FORMAT_TYPE + formatType
+                    )
                     .userAgent(USER_AGENT)
                     .timeout(5000)
                     .get();

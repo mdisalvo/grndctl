@@ -1,7 +1,7 @@
 /**
  * MIT License
  *
- * Copyright (c) 2016 grndctl
+ * Copyright (c) 2017 grndctl
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,19 +23,19 @@
  */
 package com.grndctl.services;
 
-import com.grndctl.exceptions.ServiceException;
-import com.grndctl.model.aircraftrep.AircraftReport;
-import com.grndctl.model.aircraftrep.ReportType;
-import com.grndctl.model.aircraftrep.Response;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
-import org.springframework.cache.annotation.Cacheable;
-import org.springframework.stereotype.Service;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+import org.springframework.stereotype.Service;
+
+import com.grndctl.exceptions.ServiceException;
+import com.grndctl.model.aircraftrep.AircraftReport;
+import com.grndctl.model.aircraftrep.ReportType;
+import com.grndctl.model.aircraftrep.Response;
 
 /**
  *
@@ -58,7 +58,6 @@ public class AircraftReportSvc extends AbstractSvc<com.grndctl.model.aircraftrep
         super(Response.class, NAME);
     }
 
-    @Cacheable("aircraftreps")
     public List<AircraftReport> getAircraftReports(final double hrsBefore, final ReportType reportType)
             throws ServiceException {
         try {

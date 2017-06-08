@@ -21,30 +21,29 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.grndctl.controllers;
+package com.grndctl.services;
 
-import com.grndctl.ControllerTestSupport;
-import com.grndctl.ExceptionModel;
+import com.grndctl.SvcTestSupport;
+import com.grndctl.model.misc.Airline;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
-
-import java.net.URL;
 
 import static java.lang.String.format;
 
 /**
  */
-public class ChartsControllerTest extends ControllerTestSupport {
+public class AirlineSvcTest extends SvcTestSupport {
 
-    private static final String TEST_NAME = ChartsControllerTest.class.getSimpleName();
+    private static final String TEST_NAME = AirlineSvcTest.class.getName();
 
-    private static URL CHARTS_RESOURCE;
+    public AirlineSvcTest() {
+        super();
+    }
 
     @BeforeClass
-    public static void setUp() {
+    public static void setup() {
         LOG.info(format(BEG_MSG, TEST_NAME));
-        CHARTS_RESOURCE = addPathParams(baseUrl(), "charts");
     }
 
     @AfterClass
@@ -53,20 +52,28 @@ public class ChartsControllerTest extends ControllerTestSupport {
     }
 
     @Test
-    public void getStationCharts() throws Exception {
-        URL url = addPathParams(CHARTS_RESOURCE, ICAO_CODE);
-        LOG.info(url.toString());
-
-        assert (rest().getForObject(url.toExternalForm(), String.class).contains(ICAO_CODE));
+    public void getAirlineByIcao() throws Exception {
+        Airline airline = airlineSvc.getAirlineByIcao(AIRLINE_ICAO);
+        assert airline.getIcao().equals(AIRLINE_ICAO);
+        assert airline.getIata().equals(AIRLINE_IATA);
     }
 
     @Test
-    public void getStationCharts404() throws Exception {
-        URL url = addPathParams(CHARTS_RESOURCE, BAD_ICAO_CODE);
-        LOG.info(url.toString());
+    public void getAirlineByIata() throws Exception {
+        Airline airline = airlineSvc.getAirlineByIata(AIRLINE_IATA);
+        assert airline.getIata().equals(AIRLINE_IATA);
+        assert airline.getIcao().equals(AIRLINE_ICAO);
+    }
 
-        ExceptionModel e = rest().getForObject(url.toExternalForm(), ExceptionModel.class);
+    @Test
+    public void getActiveAirlines() throws Exception {
+        airlineSvc.getActiveAirlines().forEach(airline -> {
+            assert airline.getActive().equals("Y");
+        });
+    }
 
-        assert e.getStatus() == 404;
+    @Test
+    public void getAllAirlines() throws Exception {
+        airlineSvc.getAllAirlines().forEach(airline -> LOG.info(airline.getName() + ":" + airline.getIcao()));
     }
 }

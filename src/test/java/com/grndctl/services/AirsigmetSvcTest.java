@@ -21,30 +21,28 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.grndctl.controllers;
+package com.grndctl.services;
 
-import com.grndctl.ControllerTestSupport;
-import com.grndctl.ExceptionModel;
+import com.grndctl.SvcTestSupport;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
-
-import java.net.URL;
 
 import static java.lang.String.format;
 
 /**
  */
-public class ChartsControllerTest extends ControllerTestSupport {
+public class AirsigmetSvcTest extends SvcTestSupport {
 
-    private static final String TEST_NAME = ChartsControllerTest.class.getSimpleName();
+    private static final String TEST_NAME = AirlineSvcTest.class.getName();
 
-    private static URL CHARTS_RESOURCE;
+    public AirsigmetSvcTest() {
+        super();
+    }
 
     @BeforeClass
     public static void setUp() {
         LOG.info(format(BEG_MSG, TEST_NAME));
-        CHARTS_RESOURCE = addPathParams(baseUrl(), "charts");
     }
 
     @AfterClass
@@ -52,21 +50,27 @@ public class ChartsControllerTest extends ControllerTestSupport {
         LOG.info(format(END_MSG, TEST_NAME));
     }
 
-    @Test
-    public void getStationCharts() throws Exception {
-        URL url = addPathParams(CHARTS_RESOURCE, ICAO_CODE);
-        LOG.info(url.toString());
-
-        assert (rest().getForObject(url.toExternalForm(), String.class).contains(ICAO_CODE));
+    public void getAirsigmets() throws Exception {
+        airsigmetSvc.getAirsigmets().forEach(airsigmet -> LOG.info(airsigmet.getRawText()));
     }
 
     @Test
-    public void getStationCharts404() throws Exception {
-        URL url = addPathParams(CHARTS_RESOURCE, BAD_ICAO_CODE);
-        LOG.info(url.toString());
-
-        ExceptionModel e = rest().getForObject(url.toExternalForm(), ExceptionModel.class);
-
-        assert e.getStatus() == 404;
+    public void getAirsigmentsByAlt() throws Exception {
+        airsigmetSvc.getAirsigmetsInAltitudeRange(10000, 40000, 3.0)
+                .forEach(airsigmet -> {
+                    assert airsigmet != null;
+                    LOG.info(airsigmet.getRawText());
+                });
     }
+
+    @Test
+    public void getAirsigmetsByLatLon() throws Exception {
+        airsigmetSvc.getAirsigmetsInLatLongRectangle(0, 0, 90, 180, 3.0)
+                .forEach(airsigmet -> {
+                    assert airsigmet != null;
+                    LOG.info(airsigmet.getRawText());
+                });
+    }
+
+
 }

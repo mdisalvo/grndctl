@@ -1,7 +1,7 @@
 /**
  * MIT License
  *
- * Copyright (c) 2016 grndctl
+ * Copyright (c) 2017 grndctl
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -37,6 +37,7 @@ import org.springframework.stereotype.Component;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.service.ApiInfo;
+import springfox.documentation.service.Contact;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
@@ -77,8 +78,7 @@ public class GrndCtl extends SpringBootServletInitializer {
                 .version("1.0")
                 .title("grndctl")
                 .description("An Aviators API")
-                .contact("Michael Di Salvo (michael.vincent.disalvo@gmail.com)")
-                .licenseUrl("https://www.gnu.org/licenses/gpl-3.0.html")
+                .contact(new Contact("Michael DiSalvo", null, "michael.vincent.disalvo@gmail.com"))
                 .build();
     }
 
@@ -89,7 +89,7 @@ public class GrndCtl extends SpringBootServletInitializer {
 
     @Bean
     public CacheManager cacheManager() {
-        return new ConcurrentMapCacheManager("navaids", "airlines", "aircraftreps");
+        return new ConcurrentMapCacheManager("navaids", "airlines");
     }
 
     @Bean
