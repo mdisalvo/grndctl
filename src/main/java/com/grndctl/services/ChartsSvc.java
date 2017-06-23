@@ -42,7 +42,7 @@ public class ChartsSvc {
 
     private static final Logger LOG = LogManager.getLogger(ChartsSvc.class);
 
-    private static final String AIRCHARTS_URL = "http://api.aircharts.org/Airport/%s.json";
+    private static final String AIRCHARTS_URL = "https://api.aircharts.org/v2/Airport/%s";
 
     private static final String THANKS_VALUE = "All information retrieved from AirCharts at http://www.aircharts.org";
 
