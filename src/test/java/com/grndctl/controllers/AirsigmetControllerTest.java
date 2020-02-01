@@ -28,6 +28,7 @@ import com.grndctl.ExceptionModel;
 import com.grndctl.model.airsigmet.AIRSIGMET;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.net.URL;
@@ -104,6 +105,7 @@ public class AirsigmetControllerTest extends ControllerTestSupport {
     }
 
     @Test
+    @Ignore
     public void testGetAirsigmetsByLatLon() throws Exception {
         URL url = addPathParams(AIRSIGMET_RESOURCE, "latLonLimited");
         url = addQueryParams(url, GOOD_QUERY_PARAMS_LAT_LON);
