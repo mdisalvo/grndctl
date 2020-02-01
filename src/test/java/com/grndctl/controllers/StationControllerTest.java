@@ -29,6 +29,7 @@ import com.grndctl.model.station.FaaStation;
 import com.grndctl.model.station.Station;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.net.URL;
@@ -41,59 +42,60 @@ import static java.lang.String.format;
  */
 public class StationControllerTest extends ControllerTestSupport {
 
-    private static final String TEST_NAME = StationControllerTest.class.getSimpleName();
+  private static final String TEST_NAME = StationControllerTest.class.getSimpleName();
 
-    private static URL STATION_RESOURCE;
+  private static URL STATION_RESOURCE;
 
-    @BeforeClass
-    public static void setUp() {
-        LOG.info(format(BEG_MSG, TEST_NAME));
-        STATION_RESOURCE = addPathParams(baseUrl(), "station");
-    }
+  @BeforeClass
+  public static void setUp() {
+    LOG.info(format(BEG_MSG, TEST_NAME));
+    STATION_RESOURCE = addPathParams(baseUrl(), "station");
+  }
 
-    @AfterClass
-    public static void tearDown() {
-        LOG.info(format(END_MSG, TEST_NAME));
-    }
+  @AfterClass
+  public static void tearDown() {
+    LOG.info(format(END_MSG, TEST_NAME));
+  }
 
-    @Test
-    public void testGetStationInfo404() throws Exception {
-        URL url = addPathParams(STATION_RESOURCE, "adds");
-        url = addPathParams(url, BAD_ICAO_CODE);
-        LOG.info(url.toString());
+  @Test
+  public void testGetStationInfo404() throws Exception {
+    URL url = addPathParams(STATION_RESOURCE, "adds");
+    url = addPathParams(url, BAD_ICAO_CODE);
+    LOG.info(url.toString());
 
-        ExceptionModel e = rest().getForObject(url.toExternalForm(), ExceptionModel.class);
+    ExceptionModel e = rest().getForObject(url.toExternalForm(), ExceptionModel.class);
 
-        assert e.getStatus() == 404;
-    }
+    assert e.getStatus() == 404;
+  }
 
-    @Test
-    public void testGetFAAStationStatus() throws Exception {
-        URL url = addPathParams(STATION_RESOURCE, "faa");
-        url = addPathParams(url, IATA_CODE);
-        LOG.info(url.toString());
+  @Test
+  @Ignore
+  public void testGetFAAStationStatus() throws Exception {
+    URL url = addPathParams(STATION_RESOURCE, "faa");
+    url = addPathParams(url, IATA_CODE);
+    LOG.info(url.toString());
 
-        FaaStation station = rest().getForObject(url.toExternalForm(), FaaStation.class);
+    FaaStation station = rest().getForObject(url.toExternalForm(), FaaStation.class);
 
-        assert(station != null);
-        assert(station.getIata().equals(IATA_CODE));
-    }
+    assert (station != null);
+    assert (station.getIata().equals(IATA_CODE));
+  }
 
-    @Test
-    public void testGetFAAStationStatus404() throws Exception {
-        URL url = addPathParams(STATION_RESOURCE, "faa");
-        url = addPathParams(url, BAD_IATA_CODE);
-        LOG.info(url.toString());
+  @Test
+  public void testGetFAAStationStatus404() throws Exception {
+    URL url = addPathParams(STATION_RESOURCE, "faa");
+    url = addPathParams(url, BAD_IATA_CODE);
+    LOG.info(url.toString());
 
-        ExceptionModel e = rest().getForObject(url.toExternalForm(), ExceptionModel.class);
+    ExceptionModel e = rest().getForObject(url.toExternalForm(), ExceptionModel.class);
 
-        assert e.getStatus() == 404;
-    }
+    assert e.getStatus() == 404;
+  }
 
-    private static List<Station> stations(List<Object> objects) {
-        List<Station> stations = new ArrayList<>(objects.size());
-        objects.forEach(o -> stations.add((Station)o));
-        return stations;
-    }
+  private static List<Station> stations(List<Object> objects) {
+    List<Station> stations = new ArrayList<>(objects.size());
+    objects.forEach(o -> stations.add((Station) o));
+    return stations;
+  }
 
 }

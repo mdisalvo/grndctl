@@ -27,6 +27,7 @@ import com.grndctl.ControllerTestSupport;
 import com.grndctl.model.flightplan.ValidationResults;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -43,42 +44,39 @@ import static java.lang.String.format;
  */
 public class IntlFPValidationControllerTest extends ControllerTestSupport {
 
-    private static final String TEST_NAME = IntlFPValidationControllerTest.class.getSimpleName();
+  private static final String TEST_NAME = IntlFPValidationControllerTest.class.getSimpleName();
 
-    private static final String SAMPLE_FP =
-            "(FPL-DLH560_IS" +
-            "-1A319/M-SHWY/S" +
-            "-EGLL0600" +
-            "-N0420F370 BPK UQ295 CLN UL620 ARTOV UP44 SOMVA UP155 OKOKO UZ303 DHE UP729 DOSUR P729 LUGAS" +
-            "-EKCH0715 ESMS)";
+  private static final String SAMPLE_FP = "(FPL-DLH560_IS" + "-1A319/M-SHWY/S" + "-EGLL0600"
+      + "-N0420F370 BPK UQ295 CLN UL620 ARTOV UP44 SOMVA UP155 OKOKO UZ303 DHE UP729 DOSUR P729 LUGAS"
+      + "-EKCH0715 ESMS)";
 
-    private static URL FP_VALIDATION_RESOURCE;
+  private static URL FP_VALIDATION_RESOURCE;
 
-    @BeforeClass
-    public static void setUp() {
-        LOG.info(format(BEG_MSG, TEST_NAME));
-        FP_VALIDATION_RESOURCE = addPathParams(baseUrl(), "intlfpvalidator");
-    }
+  @BeforeClass
+  public static void setUp() {
+    LOG.info(format(BEG_MSG, TEST_NAME));
+    FP_VALIDATION_RESOURCE = addPathParams(baseUrl(), "intlfpvalidator");
+  }
 
-    @AfterClass
-    public static void tearDown() {
-        LOG.info(format(END_MSG, TEST_NAME));
-    }
+  @AfterClass
+  public static void tearDown() {
+    LOG.info(format(END_MSG, TEST_NAME));
+  }
 
-    // TODO build out test a bit more
-    @Test
-    public void testPostValidateFlightPlan() throws Exception {
-        Map<String, String> requestObject = new HashMap<>();
-        requestObject.put("flightPlan", SAMPLE_FP);
-        HttpHeaders requestHeaders = new HttpHeaders();
-        requestHeaders.setContentType(MediaType.APPLICATION_JSON);
+  @Test
+  @Ignore
+  public void testPostValidateFlightPlan() throws Exception {
+    Map<String, String> requestObject = new HashMap<>();
+    requestObject.put("flightPlan", SAMPLE_FP);
+    HttpHeaders requestHeaders = new HttpHeaders();
+    requestHeaders.setContentType(MediaType.APPLICATION_JSON);
 
-        URL url = addPathParams(FP_VALIDATION_RESOURCE, "validate");
-        LOG.info(url.toString());
+    URL url = addPathParams(FP_VALIDATION_RESOURCE, "validate");
+    LOG.info(url.toString());
 
-        ValidationResults results = rest().postForObject(url.toURI(), requestObject, ValidationResults.class);
+    ValidationResults results = rest().postForObject(url.toURI(), requestObject, ValidationResults.class);
 
-        assert (!results.getMessages().isEmpty());
-    }
+    assert (!results.getMessages().isEmpty());
+  }
 
 }
