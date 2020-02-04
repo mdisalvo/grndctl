@@ -1,5 +1,6 @@
-### travis-ci: [![Build Status](https://travis-ci.com/mdisalvo/grndctl.svg)](https://travis-ci.com/mdisalvo/grndctl)
-### grndctl - a springbooted app, hosted on Heroku that provides aerodrome information as provided by the National Weather Service.
+### grndctl: [![Build Status](https://travis-ci.com/mdisalvo/grndctl.svg)](https://travis-ci.com/mdisalvo/grndctl)
+A springbooted app, hosted on Heroku that provides aerodrome information as provided by the National Weather Service.
+
 #### Try It Out:
 
 - Base URL: grndctl.herokuapp.com
